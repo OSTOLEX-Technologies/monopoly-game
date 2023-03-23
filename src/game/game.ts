@@ -313,6 +313,90 @@ class Game {
         console.log("Community task card not found");
     }
   }
+  buyHouse(cardId: string, playerIdx: number) {
+    const cardIdx = this.board.players[playerIdx].propertyCards.findIndex(
+      (card: any) => cardId === card.id
+    );
+    const cardPlayer = this.board.players[playerIdx].propertyCards[cardIdx];
+    const hasHotel = cardPlayer.houses === 5;
+    const hasHouses = cardPlayer.houses > 4;
+    if (hasHotel) {
+      console.log('you already have hotel')
+      return;
+    } else if (hasHouses) {
+      this.board.players[playerIdx].balance -= cardPlayer.hotelCost;
+    } else {
+      this.board.players[playerIdx].balance -= cardPlayer.houseCost;
+    }
+    cardPlayer.houses++;
+  }
+
+  payRent(currTile: any) {
+    const ownerId = currTile.owner.id;
+    const ownerIdx = this.board.players.findIndex(
+      (player: Player) => player.id === ownerId
+    );
+    let playerId = this.board.currentPlayer.id;
+    const playerIdx = this.board.players.findIndex(
+      (player: Player) => player.id === playerId
+    );
+    let amountToPay;
+    let card;
+
+    if (currTile.type === 'railroad') {
+      const cardIdx = this.board.players[ownerIdx].railroadsCards.findIndex(
+        (card: any) => {
+          return card.title === currTile.name;
+        }
+      )
+      const quantityOfCards =
+        this.board.players[ownerIdx].railroadsCards.length;
+      card = this.board.players[ownerIdx].railroadsCards[cardIdx];
+
+      if (quantityOfCards === 1) {
+        amountToPay = card.rent;
+      } else if (quantityOfCards === 2) {
+        amountToPay = card.ifTwoCards;
+      } else if (quantityOfCards === 3) {
+        amountToPay = card.ifthreeCards;
+      } else if (quantityOfCards === 4) {
+        amountToPay = card.ifFourCards;
+      }
+    } else if (currTile.type === 'city') {
+      const cardIdx = this.board.players[ownerIdx].propertyCards.findIndex(
+        (card: any) => {
+          return card.title === currTile.name;
+        }
+      );
+      card = this.board.players[ownerIdx].propertyCards[cardIdx];
+
+      if (card.houses === 0) {
+        amountToPay = card.rent;
+      } else if (card.houses === 1) {
+        amountToPay = card.oneHouse;
+      } else if (card.houses === 2) {
+        amountToPay = card.twoHouses;
+      } else if (card.houses === 3) {
+        amountToPay = card.threeHouses;
+      } else if (card.houses === 4) {
+        amountToPay = card.fourHouses;
+      }
+    } else if (currTile.type === 'utility') {
+      const quantityOfCards =
+        this.board.players[ownerIdx].utilitiesCards.length;
+
+      if (quantityOfCards === 1) {
+        return this.payByDice(4, this.board.players[ownerIdx]);
+      } else {
+        return this.payByDice(10, this.board.players[ownerIdx]);
+      }
+    }
+
+    this.board.players[playerIdx].balance -= amountToPay;
+    this.board.players[ownerIdx].balance += amountToPay;
+
+    return amountToPay;
+  }
 }
 
 export default Game;
