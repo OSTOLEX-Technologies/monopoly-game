@@ -1,9 +1,11 @@
 import {Mesh} from "three";
 import React from "react";
 import { Canvas, useFrame } from '@react-three/fiber'
+import tests from "./game/test";
 
 
 function MyRotatingBox(props: {args: Array<number>}) {
+    tests();
     const myMesh = React.useRef<Mesh>() as React.RefObject<Mesh>;
 
     useFrame(({ clock }) => {

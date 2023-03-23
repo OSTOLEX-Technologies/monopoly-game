@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@react-three/fiber": "^8.12.0",
+    "events": "^3.3.0",
+    "monopolygame": "^0.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-three": "^0.9.7",
