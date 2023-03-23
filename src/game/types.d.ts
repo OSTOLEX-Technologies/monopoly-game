@@ -1,3 +1,4 @@
+/*
 declare module 'monopolygame' {
   export default Monopoly;
 }
@@ -42,3 +43,4 @@ class Movement {
   target: any;
   next: any;
 }
+ */
