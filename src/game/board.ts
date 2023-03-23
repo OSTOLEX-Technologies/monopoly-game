@@ -3,6 +3,7 @@ class Board {
   houses: number;
   hotels: number;
   doubleCount: any;
+  currentDice: any;
   cards: any;
   currentPlayer: any | null;
   players: any;
