@@ -726,6 +726,11 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==
 
+events@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
+
 fbjs@^0.8.0:
   version "0.8.18"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.18.tgz#9835e0addb9aca2eff53295cd79ca1cfc7c9662a"
@@ -890,6 +895,11 @@ mmd-parser@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mmd-parser/-/mmd-parser-1.0.4.tgz#87cc05782cb5974ca854f0303fc5147bc9d690e7"
   integrity sha512-Qi0VCU46t2IwfGv5KF0+D/t9cizcDug7qnNoy9Ggk7aucp0tssV8IwTMkBlDbm+VqAf3cdQHTCARKSsuS2MYFg==
+
+monopolygame@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/monopolygame/-/monopolygame-0.1.1.tgz#43bb9470a1dd0a5f6b060ba0814ff10089e6932d"
+  integrity sha512-t4qcwVnQYxM96sB0RBhuKdPju0ucp5Rj9zjiJMs8B+zlje+8CrnTK+uzeaPdod0Kn2hITlgcSR7LrwSN/N0vlg==
 
 ms@2.1.2:
   version "2.1.2"

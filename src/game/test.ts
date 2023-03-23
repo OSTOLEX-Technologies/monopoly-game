@@ -1,11 +1,11 @@
-import GameController from "./game_controller";
+import Game from "./game";
 
 const tests = () => {
   testConstructor()
 }
 
 const testConstructor = () => {
-  let gameController = new GameController();
+  let game = new Game({}, 2, 1);
 }
 
 export default tests;

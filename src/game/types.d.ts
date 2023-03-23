@@ -7,7 +7,7 @@ class Monopoly {
   teams: Array<Team>;
   currentAction: any;
 
-  constructor(options: { teams: number; board: {} });
+  constructor(options: { board: Board | any, teams: number; });
   payment(payingTeam: any, targetTeam: any, amount: any);
   action(actionRecord: any, team: any);
   nextActions(actions: any);

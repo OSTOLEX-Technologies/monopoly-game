@@ -2,9 +2,11 @@ import * as THREE from "three";
 import React from "react";
 import {OrbitControls} from '@react-three/drei';
 import {Board, CellsLines} from "./Board";
+import tests from "./game/test";
 
 
 export function Scene() {
+  tests()
     return (
         <>
             <OrbitControls/>
