@@ -1,10 +1,12 @@
+import PropertyCard from "./cards/property-card";
+
 class Player {
   id: string;
   name: string;
   balance: number;
   position: number;
   isInJail: number;
-  propertyCards: Array<any>;
+  propertyCards: Array<PropertyCard>;
   railroadsCards: Array<any>;
   utilitiesCards: Array<any>;
   chanceCards: Array<any>;
@@ -17,7 +19,7 @@ class Player {
     this.balance = balance;
     this.position = position;
     this.isInJail = 0;
-    this.propertyCards = new Array<any>();
+    this.propertyCards = new Array<PropertyCard>();
     this.railroadsCards = new Array<any>();
     this.utilitiesCards = new Array<any>();
     this.chanceCards = new Array<any>();
