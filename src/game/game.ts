@@ -3,13 +3,14 @@ import Player from "./player";
 
 class Game {
   board: Board;
-  currentDice: any;
+  currentDice: Array<number> | null;
 
-  constructor(players: any) {
+  constructor(players: Array<Player>) {
     this.board = new Board(players);
+    this.currentDice = null;
   }
 
-  doSteps(newPosition: any, currentDice: any, playerIdx: number) {
+  doSteps(newPosition: number, currentDice: Array<number>, playerIdx: number) {
     let currPosition = this.board.currentPlayer.position;
     let playerToStep = this.board.currentPlayer;
     const isInJail = this.board.players[playerIdx].isInJail;
@@ -43,7 +44,7 @@ class Game {
     // Remove player from last pos:
     this.board.tiles[currPosition].players = this.board.tiles[
       currPosition
-      ].players.filter((player: Player) => playerToStep._id !== player.id);
+      ].players.filter((player: Player) => playerToStep.id !== player.id);
 
     playerToStep.position = newPosition;
 
@@ -85,7 +86,7 @@ class Game {
     this.board.players[playerIdx].propertyCards.push(...cardToBuy);
     this.board.tiles[playerPos].owner = {
       name: this.board.currentPlayer.name,
-      _id: this.board.currentPlayer._id,
+      id: this.board.currentPlayer.id,
     };
   }
 
@@ -127,11 +128,11 @@ class Game {
     const amount = (this.board.currentDice[0] + this.board.currentDice[1]) * times
     this.board.players[currPlayerIdx].balance -= amount
     this.board.players[playerToPayIdx].balance += amount
-    this.board.currentPlayer.isNextPayByDice = {}
+    this.board.currentPlayer.isNextPayByDice = {isTrue: false, payTo: null};
     return amount;
   }
 
-  doChanceTask(card: any, currentDice: any, playerIdx: number) {
+  doChanceTask(card: any, currentDice: Array<number>, playerIdx: number) {
     let newPosition;
     let currPosition;
 
@@ -152,7 +153,7 @@ class Game {
         currPosition = this.board.currentPlayer.position;
         if (currPosition === 7) {
           newPosition = 12;
-        } else if (currPosition === 22) {
+        } else {
           newPosition = 28;
         }
         this.doSteps(newPosition, currentDice, playerIdx);
@@ -164,7 +165,7 @@ class Game {
           newPosition = 15;
         } else if (currPosition === 22) {
           newPosition = 25;
-        } else if (currPosition === 36) {
+        } else {
           newPosition = 5;
         }
         this.doSteps(newPosition, currentDice, playerIdx);
@@ -234,7 +235,7 @@ class Game {
     }
   }
 
-  doCommunityTask(card: any, currentDice: any) {
+  doCommunityTask(card: any, currentDice: Array<number>) {
     const playerId = this.board.currentPlayer.id;
     const playerIdx = this.board.players.findIndex(
       (player: Player) => player.id === playerId
@@ -281,7 +282,7 @@ class Game {
       case 'community-111': // Collect $50 from every player for opening night seats
         const currPlayer = this.board.players[playerIdx];
         this.board.players.forEach((player: Player) => {
-          if (player.id !== currPlayer._id) {
+          if (player.id !== currPlayer.id) {
             player.balance -= 50;
             this.board.players[playerIdx].balance += 50;
           }

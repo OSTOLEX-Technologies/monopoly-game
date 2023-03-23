@@ -1,3 +1,5 @@
+import Player from "./player";
+
 class Board {
   tokens: any;
   houses: number;
@@ -5,12 +7,12 @@ class Board {
   doubleCount: any;
   currentDice: any;
   cards: any;
-  currentPlayer: any | null;
-  players: any;
+  currentPlayer: Player;
+  players: Array<Player>;
   tiles: any;
   cmpsOrder: any;
 
-  constructor(players: any) {
+  constructor(players: Array<Player>) {
     this.tokens =  [
       {
         name: 'Scottish Terrier',
@@ -431,7 +433,6 @@ class Board {
         houses: 0,
         hotels: 0,
       },
-
       {
         _id: 'property-103',
         title: 'Oriental Avenue',
@@ -794,7 +795,6 @@ class Board {
         houses: 0,
         hotels: 0,
       },
-
       {
         _id: 'property-121',
         title: 'Park Place',
@@ -1159,7 +1159,8 @@ class Board {
     this.houses = 32;
     this.hotels = 12;
     this.doubleCount = 0;
-    this.currentPlayer = players[0] || null;
+    this.currentPlayer = players[0];
+    this.players = players;
   }
 }
 
