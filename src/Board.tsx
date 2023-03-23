@@ -1,15 +1,20 @@
 import * as THREE from "three";
+import {ThreeEvent} from "@react-three/fiber";
 
-export function Board() {
+export type BoardProps = {
+    onClick?: (e: ThreeEvent<MouseEvent>) => void
+}
+
+export function Board({onClick = (e) => {}}: BoardProps) {
     return (
-        <mesh position={[0, 0, 0]} scale={[11, 11, 11]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh onClick={onClick} position={[0, 0, 0]} scale={[11, 11, 11]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeBufferGeometry />
             <meshPhongMaterial color="white" />
         </mesh>
     )
 }
 
-export function Cells() {
+export function CellsLines() {
     // draw monopoly cells using tubular geometry
     const innerLine = new THREE.CurvePath();
     const cellsLines: Array<THREE.CatmullRomCurve3> = [];

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import React from "react";
 import {OrbitControls} from '@react-three/drei';
-import {Board, Cells} from "./Board";
+import {Board, CellsLines} from "./Board";
 
 
 export function Scene() {
@@ -9,8 +9,8 @@ export function Scene() {
         <>
             <OrbitControls/>
             <primitive object={new THREE.AxesHelper(11)}/>
-            <Board/>
-            <Cells/>
+            <Board />
+            <CellsLines/>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
             <directionalLight color="red" position={[0, 0, 5]}/>
         </>
