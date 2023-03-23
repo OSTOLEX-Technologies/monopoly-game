@@ -1,35 +1,18 @@
-import {Mesh} from "three";
+import * as THREE from "three";
 import React from "react";
-import { Canvas, useFrame } from '@react-three/fiber'
-import tests from "./game/test";
-
-
-function MyRotatingBox(props: {args: Array<number>}) {
-    tests();
-    const myMesh = React.useRef<Mesh>() as React.RefObject<Mesh>;
-
-    useFrame(({ clock }) => {
-        const a = clock.getElapsedTime();
-        if (myMesh.current) {
-            myMesh.current.rotation.x = a;
-        }
-    });
-
-    return (
-        <mesh ref={myMesh}>
-            <boxBufferGeometry args={props.args}/>
-            <meshPhongMaterial color="royalblue" />
-        </mesh>
-    );
-}
+import {OrbitControls} from '@react-three/drei';
+import {Board, Cells} from "./Board";
 
 
 export function Scene() {
     return (
-        <Canvas>
-            <MyRotatingBox args={[3, 3, 3]}/>
-            <ambientLight intensity={0.4} />
-            <directionalLight color="red" position={[0, 0, 5]} />
-        </Canvas>
+        <>
+            <OrbitControls/>
+            <primitive object={new THREE.AxesHelper(11)}/>
+            <Board/>
+            <Cells/>
+            <ambientLight intensity={1} position={[0, 10, 0]}/>
+            <directionalLight color="red" position={[0, 0, 5]}/>
+        </>
     )
 }

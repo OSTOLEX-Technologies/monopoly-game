@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.58.1",
     "@react-three/fiber": "^8.12.0",
     "events": "^3.3.0",
     "monopolygame": "^0.1.1",
