@@ -52,6 +52,12 @@ class Game {
     this.board.players[playerIdx].position = newPosition;
   }
 
+  goToJail(playerIdx: number) {
+      this.board.currentDice = null;
+      this.board.doubleCount = 0;
+      this.board.players[playerIdx].isInJail = 3
+  }
+
   getOutOfJail(playerIdx: number) {
     this.board.doubleCount = 0
     this.board.players[playerIdx].isInJail = 0
@@ -69,7 +75,7 @@ class Game {
     this.board.players[playerIdx].balance -= pay
   }
 
-  async buyPropertyCard(cardId: string, playerIdx: number) {
+  buyPropertyCard(cardId: string, playerIdx: number) {
     const playerPos = this.board.currentPlayer.position;
     const cardIdx = this.board.cards.propertyCards.findIndex(
       (card: any) => card.id === cardId
@@ -125,7 +131,7 @@ class Game {
     return amount;
   }
 
-  async doChanceTask(card: any, currentDice: any, playerIdx: number) {
+  doChanceTask(card: any, currentDice: any, playerIdx: number) {
     let newPosition;
     let currPosition;
 
@@ -179,7 +185,7 @@ class Game {
         this.doSteps(posBack, currentDice, playerIdx);
         break;
       case 'chance-209': // Go to Jail
-        this.getOutOfJail(playerIdx);
+        this.goToJail(playerIdx);
         break;
       case 'chance-210': // Make general repairs on all your property
         let homeCount = 0;
@@ -225,6 +231,86 @@ class Game {
         break;
       default:
         console.log("Chance card not found");
+    }
+  }
+
+  doCommunityTask(card: any, currentDice: any) {
+    const playerId = this.board.currentPlayer.id;
+    const playerIdx = this.board.players.findIndex(
+      (player: Player) => player.id === playerId
+    );
+
+    switch (card.id) {
+      case 'community-101': // Advance to "Go". (Collect $200)
+        this.doSteps(0, currentDice, playerIdx);
+        break;
+      case 'community-102': // Collect $100
+        this.collectMoney(playerIdx, 100);
+        break;
+      case 'community-103': // Get Out of Jail Free
+        const cardIdx = this.board.cards.communityChestCards.findIndex(
+          (c: any) => c.id === card.id
+        );
+        let cardToSave = this.board.cards.communityChestCards.splice(
+          cardIdx,
+          1
+        );
+        this.board.players[playerIdx].communityChestCards.push(...cardToSave);
+        break;
+      case 'community-104': // Collect $10
+        this.collectMoney(playerIdx, 10);
+        break
+      case 'community-105': // Collect $200
+        this.collectMoney(playerIdx, 200);
+        break;
+      case 'community-106': // get $50
+        this.collectMoney(playerIdx, 50);
+        break
+      case 'community-107': // Collect $20
+        this.collectMoney(playerIdx, 20);
+        break
+      case 'community-108': // Receive for services $25.
+        this.collectMoney(playerIdx, 25);
+        break;
+      case 'community-109': // You inherit $100
+        this.collectMoney(playerIdx, 100);
+        break;
+      case 'community-110': // Collect $100
+        this.collectMoney(playerIdx, 100);
+        break;
+      case 'community-111': // Collect $50 from every player for opening night seats
+        const currPlayer = this.board.players[playerIdx];
+        this.board.players.forEach((player: Player) => {
+          if (player.id !== currPlayer._id) {
+            player.balance -= 50;
+            this.board.players[playerIdx].balance += 50;
+          }
+        });
+        break;
+      case 'community-112': // Pay $50
+        this.payMoney(playerIdx, 50);
+        break;
+      case 'community-113': // Pay hospital $100
+        this.payMoney(playerIdx, 100);
+        break;
+      case 'community-114': // Pay school tax of $150
+        this.payMoney(playerIdx, 150);
+        break;
+      case 'community-115': // You are assessed for street repairs: Pay $40 per house and $115 per hotel you own
+        let homeCount = 0;
+        let hotelCount = 0;
+        this.board.players[playerIdx].propertyCards.forEach((card: any) => {
+          if (card.houses > 4) hotelCount++;
+          if (card.houses < 5) homeCount += card.houses;
+        })
+        this.board.players[playerIdx].balance -= homeCount * 40
+        this.board.players[playerIdx].balance -= hotelCount * 115
+        break;
+      case 'community-116': // Go to Jail
+        this.goToJail(playerIdx);
+        break;
+      default:
+        console.log("Community task card not found");
     }
   }
 }
