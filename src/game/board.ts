@@ -4,6 +4,17 @@ import UtilitiesCard from "./cards/utilities-card";
 import RailroadsCard from "./cards/railroads-card";
 import CommunityChestCard from "./cards/community-chest-card";
 import ChanceCard from "./cards/chance-card";
+import Tile from "./tiles/tile";
+import GoTile from "./tiles/go-tile";
+import CityTile from "./tiles/city-tile";
+import CommunityChestTile from "./tiles/community-chest-tile";
+import TaxTile from "./tiles/tax-tile";
+import RailroadTile from "./tiles/railroad-tile";
+import ChanceTile from "./tiles/chance-tile";
+import VisitTile from "./tiles/visit-tile";
+import UtilityTile from "./tiles/utility-tile";
+import ParkingTile from "./tiles/parking-tile";
+import JailTile from "./tiles/jail-tile";
 
 class Board {
   tokens: Array<{name: string}>;
@@ -18,7 +29,7 @@ class Board {
   railroadsCards: Array<RailroadsCard>;
   communityChestCards: Array<CommunityChestCard>;
   chanceCards: Array<ChanceCard>;
-  tiles: Array<any>;
+  tiles: Array<Tile>;
   cmpsOrder: Array<string>;
 
   constructor(players: Array<Player>) {
@@ -49,315 +60,237 @@ class Board {
       },
     ];
     this.tiles = [
-      {
-        name: 'Go',
+      new GoTile(
+        'Go',
         players,
-        owner: null,
-        price: 60,
-        type: 'go',
-      },
-      {
-        name: 'Mediterranean Avenue',
-        players: [],
-        owner: null,
-        color: '#562e22',
-        price: 60,
-        type: 'city',
-      },
-      {
-        name: 'Community chest',
-        players: [],
-        owner: null,
-        color: '',
-        type: 'communityChest',
-      },
-      {
-        name: 'Baltic Avenue',
-        players: [],
-        owner: null,
-        color: '#562e22',
-        price: 60,
-        type: 'city',
-      },
-      {
-        name: 'Income tax',
-        players: [],
-        owner: null,
-        color: '',
-        price: 200,
-        type: 'tax',
-      },
-      {
-        name: 'Reading Railroad',
-        players: [],
-        owner: null,
-        color: '',
-        price: 200,
-        type: 'railroad',
-      },
-      {
-        name: 'Oriental Avenue',
-        players: [],
-        owner: null,
-        color: '#95b8cb',
-        price: 100,
-        type: 'city',
-      },
-      {
-        name: 'Chance',
-        players: [],
-        owner: null,
-        type: 'chance',
-      },
-      {
-        name: 'Vermont Avenue',
-        players: [],
-        owner: null,
-        color: '#95b8cb',
-        price: 100,
-        type: 'city',
-      },
-      {
-        name: 'Connecticut Avenue',
-        players: [],
-        owner: null,
-        color: '#95b8cb',
-        price: 120,
-        type: 'city',
-      },
-      {
-        name: 'jail',
-        players: [],
-        owner: null,
-        type: 'visit',
-      },
-      {
-        name: 'St. Charles Place',
-        players: [],
-        owner: null,
-        color: '#cb5382',
-        price: 140,
-        type: 'city',
-      },
-      {
-        name: 'Electric Company',
-        players: [],
-        owner: null,
-        color: '',
-        price: 140,
-        type: 'utility',
-      },
-      {
-        name: 'States Avenue',
-        players: [],
-        owner: null,
-        color: '#cb5382',
-        price: 140,
-        type: 'city',
-      },
-      {
-        name: 'Virginia Avenue',
-        players: [],
-        owner: null,
-        color: '#cb5382',
-        price: 160,
-        type: 'city',
-      },
-      {
-        name: 'Pennsylvania Railroad',
-        players: [],
-        owner: null,
-        color: '',
-        price: 200,
-        type: 'railroad',
-      },
-      {
-        name: 'St. James Place',
-        players: [],
-        owner: null,
-        color: '#ffa600',
-        price: 100,
-        type: 'city',
-      },
-      {
-        name: 'Community chest',
-        players: [],
-        owner: null,
-        type: 'communityChest',
-      },
-      {
-        name: 'Tennessee Avenue',
-        players: [],
-        owner: null,
-        color: '#ffa600',
-        price: 180,
-        type: 'city',
-      },
-      {
-        name: 'New York Avenue',
-        players: [],
-        owner: null,
-        color: '#ffa600',
-        price: 200,
-        type: 'city',
-      },
-
-      {
-        name: 'Parking',
-        players: [],
-        owner: null,
-        color: '',
-        type: 'parking',
-      },
-      {
-        name: 'Kentucky Avenue',
-        players: [],
-        owner: null,
-        color: '#cf3b30',
-        price: 220,
-        type: 'city',
-      },
-      {
-        name: 'Chance',
-        players: [],
-        owner: null,
-        color: '',
-        type: 'chance',
-      },
-      {
-        name: 'Indiana Avenue',
-        players: [],
-        owner: null,
-        color: '#cf3b30',
-        price: 220,
-        type: 'city',
-      },
-      {
-        name: 'Illinois Avenue',
-        players: [],
-        owner: null,
-        color: '#cf3b30',
-        price: 240,
-        type: 'city',
-      },
-      {
-        name: 'B. & O. Railroad',
-        players: [],
-        owner: null,
-        color: '',
-        price: 200,
-        type: 'railroad',
-      },
-      {
-        name: 'Atlantic Avenue',
-        players: [],
-        owner: null,
-        color: '#d3c11b',
-        price: 260,
-        type: 'city',
-      },
-      {
-        name: 'Ventnor Avenue',
-        players: [],
-        owner: null,
-        color: '#d3c11b',
-        price: 260,
-        type: 'city',
-      },
-      {
-        name: 'Water  Works',
-        players: [],
-        owner: null,
-        color: '',
-        price: 100,
-        type: 'utility',
-      },
-
-      {
-        name: 'Marvin Gardens',
-        players: [],
-        owner: null,
-        color: '#d3c11b',
-        price: 280,
-        type: 'city',
-      },
-      {
-        name: 'Send To Jail',
-        players: [],
-        owner: null,
-        color: '',
-        type: 'jail',
-      },
-      {
-        name: 'Pacific Avenue',
-        players: [],
-        owner: null,
-        color: '#0ab842',
-        price: 300,
-        type: 'city',
-      },
-      {
-        name: 'North Carolina Avenue',
-        players: [],
-        owner: null,
-        color: '#0ab842',
-        price: 300,
-        type: 'city',
-      },
-      {
-        name: 'Community chest',
-        players: [],
-        owner: null,
-        color: '',
-        type: 'communityChest',
-      },
-      {
-        name: 'Pennsylvania Avenue',
-        players: [],
-        owner: null,
-        color: '#0ab842',
-        price: 320,
-        type: 'city',
-      },
-      {
-        name: 'Short Line',
-        players: [],
-        owner: null,
-        color: '',
-        price: 200,
-        type: 'railroad',
-      },
-      {
-        name: 'Chance',
-        players: [],
-        owner: null,
-        color: '',
-        type: 'chance',
-      },
-      {
-        name: 'Park Place',
-        players: [],
-        owner: null,
-        color: '#2863ad',
-        price: 350,
-        type: 'city',
-      },
-      {
-        name: 'Luxury Tax',
-        players: [],
-        owner: null,
-        color: '',
-        price: 75,
-        type: 'tax',
-      },
-      {
-        name: 'Boardwalk',
-        players: [],
-        owner: null,
-        color: '#2863ad',
-        price: 400,
-        type: 'city',
-      },
+        null,
+        60,
+      ),
+      new CityTile(
+        'Mediterranean Avenue',
+        [],
+        null,
+        60,
+      ),
+      new CommunityChestTile(
+        'Community chest',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Baltic Avenue',
+        [],
+        null,
+        60,
+      ),
+      new TaxTile(
+        'Income tax',
+        [],
+        null,
+        200,
+      ),
+      new RailroadTile(
+        'Reading Railroad',
+        [],
+        null,
+        200,
+      ),
+      new CityTile(
+        'Oriental Avenue',
+        [],
+        null,
+        100,
+      ),
+      new ChanceTile(
+        'Chance',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Vermont Avenue',
+        [],
+        null,
+        100,
+      ),
+      new CityTile(
+        'Connecticut Avenue',
+        [],
+        null,
+        120,
+      ),
+      new VisitTile(
+        'jail',
+        [],
+        null,
+      ),
+      new CityTile(
+        'St. Charles Place',
+        [],
+        null,
+        140,
+      ),
+      new UtilityTile(
+        'Electric Company',
+        [],
+        null,
+        140,
+      ),
+      new CityTile(
+        'States Avenue',
+        [],
+        null,
+        140,
+      ),
+      new CityTile(
+        'Virginia Avenue',
+        [],
+        null,
+        160,
+      ),
+      new RailroadTile(
+        'Pennsylvania Railroad',
+        [],
+        null,
+        200,
+      ),
+      new CityTile(
+        'St. James Place',
+        [],
+        null,
+        100,
+      ),
+      new CommunityChestTile(
+        'Community chest',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Tennessee Avenue',
+        [],
+        null,
+        180,
+      ),
+      new CityTile(
+        'New York Avenue',
+        [],
+        null,
+        200,
+      ),
+      new ParkingTile(
+        'Parking',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Kentucky Avenue',
+        [],
+        null,
+        220,
+      ),
+      new ChanceTile(
+        'Chance',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Indiana Avenue',
+        [],
+        null,
+        220,
+      ),
+      new CityTile(
+        'Illinois Avenue',
+        [],
+        null,
+        240,
+      ),
+      new RailroadTile(
+        'B. & O. Railroad',
+        [],
+        null,
+        200,
+      ),
+      new CityTile(
+        'Atlantic Avenue',
+        [],
+        null,
+        260,
+      ),
+      new CityTile(
+        'Ventnor Avenue',
+        [],
+        null,
+        260,
+      ),
+      new UtilityTile(
+        'Water  Works',
+        [],
+        null,
+        100,
+      ),
+      new CityTile(
+        'Marvin Gardens',
+        [],
+        null,
+        280,
+      ),
+      new JailTile(
+        'Send To Jail',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Pacific Avenue',
+        [],
+        null,
+        300,
+      ),
+      new CityTile(
+        'North Carolina Avenue',
+        [],
+        null,
+        300,
+      ),
+      new CommunityChestTile(
+        'Community chest',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Pennsylvania Avenue',
+        [],
+        null,
+        320,
+      ),
+      new RailroadTile(
+        'Short Line',
+        [],
+        null,
+        200,
+      ),
+      new ChanceTile(
+        'Chance',
+        [],
+        null,
+      ),
+      new CityTile(
+        'Park Place',
+        [],
+        null,
+        350,
+      ),
+      new TaxTile(
+        'Luxury Tax',
+        [],
+        null,
+        75,
+      ),
+      new CityTile(
+        'Boardwalk',
+        [],
+        null,
+        400,
+      ),
     ];
     this.cmpsOrder =  [
       'startCmp',
@@ -1149,6 +1082,20 @@ class Board {
     this.currentPlayer = players[0];
     this.players = players;
     this.currentDice = new Array<number>();
+  }
+
+  public getCurrentPlayer() : Player {
+    return this.getPlayerById(this.currentPlayer.id);
+  }
+
+  public getPlayerById(playerId: string): Player {
+    let result = this.players.find((x) => x.id == playerId);
+
+    if (result != undefined) {
+      return result;
+    }
+
+    throw new Error("Player with id " + playerId + " not found");
   }
 }
 

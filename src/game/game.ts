@@ -6,6 +6,10 @@ import ChanceCard from "./cards/chance-card";
 import UtilitiesCard from "./cards/utilities-card";
 import RailroadsCard from "./cards/railroads-card";
 import propertyCard from "./cards/property-card";
+import Tile from "./tiles/tile";
+import RailroadTile from "./tiles/railroad-tile";
+import CityTile from "./tiles/city-tile";
+import UtilityTile from "./tiles/utility-tile";
 
 class Game {
   board: Board;
@@ -90,10 +94,7 @@ class Game {
     let cardToBuy = this.board.propertyCards.splice(cardIdx, 1);
     this.board.players[playerIdx].balance -= cardToBuy[0].price;
     this.board.players[playerIdx].propertyCards.push(...cardToBuy);
-    this.board.tiles[playerPos].owner = {
-      name: this.board.currentPlayer.name,
-      id: this.board.currentPlayer.id,
-    };
+    this.board.tiles[playerPos].owner = this.board.getCurrentPlayer();
   }
 
   buyRailroadCard(cardId: string, playerIdx: number) {
@@ -104,10 +105,7 @@ class Game {
     let cardToBuy = this.board.railroadsCards.splice(cardIdx, 1);
     this.board.players[playerIdx].balance -= cardToBuy[0].price;
     this.board.players[playerIdx].railroadsCards.push(...cardToBuy);
-    this.board.tiles[position].owner = {
-      name: this.board.currentPlayer.name,
-      _id: this.board.currentPlayer.id,
-    };
+    this.board.tiles[position].owner = this.board.getCurrentPlayer();
   }
 
   buyUtilityCard(cardId: string, playerIdx: number) {
@@ -118,10 +116,7 @@ class Game {
     let cardToBuy = this.board.utilitiesCards.splice(cardIdx, 1);
     this.board.players[playerIdx].balance -= cardToBuy[0].price;
     this.board.players[playerIdx].utilitiesCards.push(...cardToBuy);
-    this.board.tiles[position].owner = {
-      name: this.board.currentPlayer.name,
-      _id: this.board.currentPlayer.id,
-    };
+    this.board.tiles[position].owner = this.board.getCurrentPlayer();
   }
 
   payByDice(times: number, payTo: Player): number {
@@ -339,24 +334,26 @@ class Game {
     cardPlayer.houses++;
   }
 
-  payRent(currTile: any) {
-    const ownerId = currTile.owner.id;
+  payRent(currTile: Tile) {
+    const ownerId = currTile.getOwnerId();
     const ownerIdx = this.board.players.findIndex(
       (player: Player) => player.id === ownerId
     );
+
     let playerId = this.board.currentPlayer.id;
     const playerIdx = this.board.players.findIndex(
       (player: Player) => player.id === playerId
     );
-    let amountToPay;
+
+    let amountToPay = 0;
     let card;
 
-    if (currTile.type === 'railroad') {
+    if (currTile instanceof RailroadTile) {
       const cardIdx = this.board.players[ownerIdx].railroadsCards.findIndex(
         (card: RailroadsCard) => {
           return card.title === currTile.name;
         }
-      )
+      );
       const quantityOfCards =
         this.board.players[ownerIdx].railroadsCards.length;
       card = this.board.players[ownerIdx].railroadsCards[cardIdx];
@@ -366,11 +363,11 @@ class Game {
       } else if (quantityOfCards === 2) {
         amountToPay = card.ifTwoCards;
       } else if (quantityOfCards === 3) {
-        amountToPay = card.ifthreeCards;
+        amountToPay = card.ifThreeCards;
       } else if (quantityOfCards === 4) {
         amountToPay = card.ifFourCards;
       }
-    } else if (currTile.type === 'city') {
+    } else if (currTile instanceof CityTile) {
       const cardIdx = this.board.players[ownerIdx].propertyCards.findIndex(
         (card: PropertyCard) => {
           return card.title === currTile.name;
@@ -389,7 +386,7 @@ class Game {
       } else if (card.houses === 4) {
         amountToPay = card.fourHouses;
       }
-    } else if (currTile.type === 'utility') {
+    } else if (currTile instanceof UtilityTile) {
       const quantityOfCards =
         this.board.players[ownerIdx].utilitiesCards.length;
 
