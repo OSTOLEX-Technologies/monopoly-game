@@ -1,6 +1,7 @@
-import Card from "./card";
+import {Card} from "./Card";
+import {IRentPayable} from "./IRentPayable";
 
-class RailroadsCard extends Card {
+export class RailroadsCard extends Card {
   color: string;
   price: number;
   rent: number;
@@ -31,5 +32,3 @@ class RailroadsCard extends Card {
     this.mortgage = mortgage;
   }
 }
-
-export default RailroadsCard;

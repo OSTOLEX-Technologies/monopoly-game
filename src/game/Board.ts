@@ -1,22 +1,22 @@
-import Player from "./player";
-import PropertyCard from "./cards/property-card";
-import UtilitiesCard from "./cards/utilities-card";
-import RailroadsCard from "./cards/railroads-card";
-import CommunityChestCard from "./cards/community-chest-card";
-import ChanceCard from "./cards/chance-card";
-import Tile from "./tiles/tile";
-import GoTile from "./tiles/go-tile";
-import CityTile from "./tiles/city-tile";
-import CommunityChestTile from "./tiles/community-chest-tile";
-import TaxTile from "./tiles/tax-tile";
-import RailroadTile from "./tiles/railroad-tile";
-import ChanceTile from "./tiles/chance-tile";
-import VisitTile from "./tiles/visit-tile";
-import UtilityTile from "./tiles/utility-tile";
-import ParkingTile from "./tiles/parking-tile";
-import JailTile from "./tiles/jail-tile";
+import {Player} from "./Player";
+import {PropertyCard} from "./Cards/PropertyCard";
+import {UtilitiesCard} from "./Cards/UtilitiesCard";
+import {RailroadsCard} from "./Cards/RailroadsCard";
+import {CommunityChestCard} from "./Cards/CommunityChest-card";
+import {ChanceCard} from "./Cards/ChanceCard";
+import {Tile} from "./Tiles/Tile";
+import {GoTile} from "./Tiles/GoTile";
+import {CityTile} from "./Tiles/CityTile";
+import {CommunityChestTile} from "./Tiles/CommunityChest-tile";
+import {TaxTile} from "./Tiles/TaxTile";
+import {RailroadTile} from "./Tiles/RailroadTile";
+import {ChanceTile} from "./Tiles/ChanceTile";
+import {VisitTile} from "./Tiles/VisitTile";
+import {UtilityTile} from "./Tiles/UtilityTile";
+import {ParkingTile} from "./Tiles/ParkingTile";
+import {JailTile} from "./Tiles/JailTile";
 
-class Board {
+export class Board {
   tokens: Array<{name: string}>;
   houses: number;
   hotels: number;
@@ -1098,5 +1098,3 @@ class Board {
     throw new Error("Player with id " + playerId + " not found");
   }
 }
-
-export default Board;

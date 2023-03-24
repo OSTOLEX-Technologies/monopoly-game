@@ -1,6 +1,7 @@
-import Card from "./card";
+import {Card} from "./Card";
+import {IRentPayable} from "./IRentPayable";
 
-class PropertyCard extends Card {
+export class PropertyCard extends Card {
   color: string;
   price: number;
   rent: number;
@@ -55,5 +56,3 @@ class PropertyCard extends Card {
     this.hotels = hotels;
   }
 }
-
-export default PropertyCard;

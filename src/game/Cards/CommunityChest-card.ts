@@ -1,6 +1,6 @@
-import Card from "./card";
+import {Card} from "./Card";
 
-class CommunityChestCard extends Card {
+export class CommunityChestCard extends Card {
   description: string;
   background: string;
 
@@ -11,5 +11,3 @@ class CommunityChestCard extends Card {
     this.background = background;
   }
 }
-
-export default CommunityChestCard;

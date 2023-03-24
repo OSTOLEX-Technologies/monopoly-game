@@ -1,7 +1,7 @@
-import Player from "../player";
-import Tile from "./tile";
+import {Tile} from "./Tile";
+import {Player} from "../Player";
 
-class CityTile extends Tile {
+export class GoTile extends Tile {
   price: number;
 
   constructor(name: string, players: Array<Player>, owner: Player | null, price: number) {
@@ -10,5 +10,3 @@ class CityTile extends Tile {
     this.price = price;
   }
 }
-
-export default CityTile;

@@ -1,6 +1,6 @@
-import Card from "./card";
+import {Card} from "./Card";
 
-class ChanceCard extends Card {
+export class ChanceCard extends Card {
   description: string;
   background: string;
 
@@ -11,5 +11,3 @@ class ChanceCard extends Card {
     this.background = background;
   }
 }
-
-export default ChanceCard;

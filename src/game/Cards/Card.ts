@@ -1,4 +1,4 @@
-class Card {
+export class Card {
   id: string;
   title: string;
   type: string;
@@ -9,5 +9,3 @@ class Card {
     this.type = type;
   }
 }
-
-export default Card;

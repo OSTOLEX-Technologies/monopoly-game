@@ -1,10 +1,9 @@
-import player from "../player";
-import Player from "../player";
+import {Player} from "../Player";
 
-class Tile {
+export class Tile {
   name: string;
   owner: Player | null;
-  players: Array<player>;
+  players: Array<Player>;
 
   constructor(name: string, owner: Player | null, players: Array<Player>) {
     this.name = name;
@@ -20,5 +19,3 @@ class Tile {
     throw new Error("Tile hasn't owner");
   }
 }
-
-export default Tile;

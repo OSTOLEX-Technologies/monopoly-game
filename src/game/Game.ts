@@ -1,17 +1,16 @@
-import Board from "./board";
-import Player from "./player";
-import PropertyCard from "./cards/property-card";
-import CommunityChestCard from "./cards/community-chest-card";
-import ChanceCard from "./cards/chance-card";
-import UtilitiesCard from "./cards/utilities-card";
-import RailroadsCard from "./cards/railroads-card";
-import propertyCard from "./cards/property-card";
-import Tile from "./tiles/tile";
-import RailroadTile from "./tiles/railroad-tile";
-import CityTile from "./tiles/city-tile";
-import UtilityTile from "./tiles/utility-tile";
+import {Board} from "./Board";
+import {Player} from "./Player";
+import {PropertyCard} from "./Cards/PropertyCard";
+import {CommunityChestCard} from "./Cards/CommunityChest-card";
+import {ChanceCard} from "./Cards/ChanceCard";
+import {UtilitiesCard} from "./Cards/UtilitiesCard";
+import {RailroadsCard} from "./Cards/RailroadsCard";
+import {Tile} from "./Tiles/Tile";
+import {RailroadTile} from "./Tiles/RailroadTile";
+import {CityTile} from "./Tiles/CityTile";
+import {UtilityTile} from "./Tiles/UtilityTile";
 
-class Game {
+export class Game {
   board: Board;
   currentDice: Array<number> | null;
 
@@ -318,7 +317,7 @@ class Game {
 
   buyHouse(cardId: string, playerIdx: number) {
     const cardIdx = this.board.players[playerIdx].propertyCards.findIndex(
-      (card: propertyCard) => cardId === card.id
+      (card: PropertyCard) => cardId === card.id
     );
     const cardPlayer = this.board.players[playerIdx].propertyCards[cardIdx];
     const hasHotel = cardPlayer.houses === 5;
@@ -403,5 +402,3 @@ class Game {
     return amountToPay;
   }
 }
-
-export default Game;

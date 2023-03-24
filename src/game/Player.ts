@@ -1,10 +1,10 @@
-import PropertyCard from "./cards/property-card";
-import RailroadsCard from "./cards/railroads-card";
-import UtilitiesCard from "./cards/utilities-card";
-import ChanceCard from "./cards/chance-card";
-import CommunityChestCard from "./cards/community-chest-card";
+import {PropertyCard} from "./Cards/PropertyCard";
+import {RailroadsCard} from "./Cards/RailroadsCard";
+import {UtilitiesCard} from "./Cards/UtilitiesCard";
+import {ChanceCard} from "./Cards/ChanceCard";
+import {CommunityChestCard} from "./Cards/CommunityChest-card";
 
-class Player {
+export class Player {
   id: string;
   name: string;
   balance: number;
@@ -31,5 +31,3 @@ class Player {
     this.isNextPayByDice = {isTrue: false, payTo: null};
   }
 }
-
-export default Player;
