@@ -9,10 +9,9 @@ export function Scene() {
         <>
             <OrbitControls/>
             <primitive object={new THREE.AxesHelper(11)}/>
-            <Board />
+            <Board/>
             <CellsLines/>
-            <ambientLight intensity={1} position={[0, 10, 0]}/>
-            <directionalLight color="red" position={[0, 0, 5]}/>
+            <ambientLight intensity={2} position={[0, 5, 0]}/>
         </>
     )
 }

@@ -1,12 +1,47 @@
+import * as THREE from "three";
 import {Vector2, Vector3} from "three";
 
 
+export enum PieceColor {
+    Pink = "pink",
+    Green = "green",
+    Yellow = "yellow",
+    Blue = "blue",
+    Orange = "orange",
+    LightBlue = "lightblue",
+    Red = "red",
+    White = "white",
+}
+
+export class PieceDomain {
+    public object3D?: THREE.Object3D;
+    constructor(public color: PieceColor) {
+    }
+}
+
 class Cell {
     public index: number;
+    private pieces: [PieceDomain?] = [];
     constructor(index: number) {
         if (index < 0 || index > 39)
             throw new Error("Cell index must be between 0 and 39");
         this.index = index;
+    }
+
+    public setPiece(piece: PieceDomain): void {
+        this.pieces.push(piece);
+    }
+
+    public getPieces(): [PieceDomain?] {
+        return this.pieces;
+    }
+
+    public removePiece(piece: PieceDomain): void {
+        const index = this.pieces.indexOf(piece);
+        if (index == -1) {
+            throw new Error("Piece not found in cell");
+        }
+        this.pieces.splice(index, 1);
     }
 
     public getCenter3(): Vector3 {
@@ -43,6 +78,10 @@ class Cell {
             new Vector3(center.x + 0.5, center.y, center.z + 0.5),
         ];
     }
+
+    public getPiecePosition(piece: PieceDomain): Vector3 {
+        return this.getCenter3()
+    }
 }
 
 export class BoardView {
@@ -70,5 +109,11 @@ export class BoardView {
         if (index < 0 || index > 39)
             throw new Error("Cell index must be between 0 and 39");
         return this.cells[index];
+    }
+
+    public addPiece(index: number, color: PieceColor): void {
+        const cell = this.getCell(index);
+        const piece = new PieceDomain(color);
+        cell.setPiece(piece);
     }
 }
