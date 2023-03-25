@@ -3,7 +3,7 @@ import {ThreeEvent, useLoader} from "@react-three/fiber";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three/examples/jsm/loaders/MTLLoader";
 import {boardView} from "../viewGlobals";
-import {PieceColor, PieceDomain} from "../boardUtils";
+import {PieceColor, PiecePresenter} from "../board";
 import * as THREE from "three";
 
 
@@ -45,17 +45,17 @@ const PieceColorsMapping = Object.freeze({
 
 export type PieceProps = {
     cellIndex: number,
-    pieceDomain: PieceDomain,
+    piecePresenter: PiecePresenter,
 }
 
 export function Piece(props: PieceProps) {
-    const mtl = useLoader(MTLLoader, PieceColorsMapping[props.pieceDomain.color].mtl);
-    const obj = useLoader(OBJLoader, PieceColorsMapping[props.pieceDomain.color].obj, (loader) => {
+    const mtl = useLoader(MTLLoader, PieceColorsMapping[props.piecePresenter.color].mtl);
+    const obj = useLoader(OBJLoader, PieceColorsMapping[props.piecePresenter.color].obj, (loader) => {
         mtl.preload();
         loader.setMaterials(mtl);
     });
     const new_obj = obj.clone();
-    props.pieceDomain.object3D = new_obj;
+    props.piecePresenter.object3D = new_obj;
     return (
         <primitive object={new_obj} position={boardView.getCell(props.cellIndex).getCenter3()}
             scale={[1, 1, 1]}/>

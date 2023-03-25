@@ -12,14 +12,14 @@ export function Board({children = [], onClick = (e) => {}}: React.PropsWithChild
     return (
         <>
             <mesh onClick={onClick} position={[0, 0, 0]} scale={[11, 11, 11]} rotation={[-Math.PI / 2, 0, 0]}>
-                <planeBufferGeometry />
+                <planeGeometry />
                 <meshPhongMaterial color="white" />
             </mesh>
             {boardView.cells.map((cell, i) => {
                 if (cell.getPieces().length > 0) return (
                     <React.Fragment key={i}>
                         {cell.getPieces().filter(piece => piece).map((piece, j) => (
-                                <Piece pieceDomain={piece!} key={`${i}-${j}`} cellIndex={i}/>
+                                <Piece piecePresenter={piece!} key={`${i}-${j}`} cellIndex={i}/>
                             )
                         )}
                     </React.Fragment>
@@ -32,23 +32,31 @@ export function Board({children = [], onClick = (e) => {}}: React.PropsWithChild
 
 export function CellsLines() {
     // draw monopoly cells using tubular geometry
-    const innerLine = new THREE.CurvePath();
+    const innerLine: Array<THREE.CatmullRomCurve3> = [];
     const cellsLines: Array<THREE.CatmullRomCurve3> = [];
-    innerLine.add(new THREE.LineCurve3(
-        new THREE.Vector3(-4.5, 0, -4.5),
-        new THREE.Vector3(-4.5, 0, 4.5)
+    innerLine.push(new THREE.CatmullRomCurve3(
+        [
+            new THREE.Vector3(-4.5, 0, -4.5),
+            new THREE.Vector3(-4.5, 0, 4.5)
+        ]
     ));
-    innerLine.add(new THREE.LineCurve3(
-        new THREE.Vector3(-4.5, 0, 4.5),
-        new THREE.Vector3(4.5, 0, 4.5)
+    innerLine.push(new THREE.CatmullRomCurve3(
+        [
+            new THREE.Vector3(-4.5, 0, 4.5),
+            new THREE.Vector3(4.5, 0, 4.5)
+        ]
     ));
-    innerLine.add(new THREE.LineCurve3(
-        new THREE.Vector3(4.5, 0, 4.5),
-        new THREE.Vector3(4.5, 0, -4.5)
+    innerLine.push(new THREE.CatmullRomCurve3(
+        [
+            new THREE.Vector3(4.5, 0, 4.5),
+            new THREE.Vector3(4.5, 0, -4.5)
+        ]
     ));
-    innerLine.add(new THREE.LineCurve3(
-        new THREE.Vector3(4.5, 0, -4.5),
-        new THREE.Vector3(-4.5, 0, -4.5)
+    innerLine.push(new THREE.CatmullRomCurve3(
+        [
+            new THREE.Vector3(4.5, 0, -4.5),
+            new THREE.Vector3(-4.5, 0, -4.5)
+        ]
     ));
     for (let i = -4.5; i <= 4.5; i += 1) {
         cellsLines.push(new THREE.CatmullRomCurve3([
@@ -70,13 +78,15 @@ export function CellsLines() {
     }
     return (
         <group>
-            <mesh>
-                <tubeBufferGeometry args={[innerLine, 4, 0.01, 100, false]}/>
-                <meshBasicMaterial color="black"/>
-            </mesh>
+            {innerLine.map((curve, index) => (
+                <mesh key={index}>
+                    <tubeGeometry args={[curve, 4, 0.01, 100, false]}/>
+                    <meshBasicMaterial color="black"/>
+                </mesh>
+            ))}
             {cellsLines.map((line, index) => (
                 <mesh key={index}>
-                    <tubeBufferGeometry args={[line, 1, 0.01, 8, false]}/>
+                    <tubeGeometry args={[line, 1, 0.01, 8, false]}/>
                     <meshBasicMaterial color="black"/>
                 </mesh>
             ))}

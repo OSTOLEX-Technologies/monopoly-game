@@ -13,30 +13,30 @@ export enum PieceColor {
     White = "white",
 }
 
-export class PieceDomain {
+export class PiecePresenter {
     public object3D?: THREE.Object3D;
     constructor(public color: PieceColor) {
     }
 }
 
-class Cell {
+export class CellPresenter {
     public index: number;
-    private pieces: [PieceDomain?] = [];
+    private pieces: [PiecePresenter?] = [];
     constructor(index: number) {
         if (index < 0 || index > 39)
             throw new Error("Cell index must be between 0 and 39");
         this.index = index;
     }
 
-    public setPiece(piece: PieceDomain): void {
+    public setPiece(piece: PiecePresenter): void {
         this.pieces.push(piece);
     }
 
-    public getPieces(): [PieceDomain?] {
+    public getPieces(): [PiecePresenter?] {
         return this.pieces;
     }
 
-    public removePiece(piece: PieceDomain): void {
+    public removePiece(piece: PiecePresenter): void {
         const index = this.pieces.indexOf(piece);
         if (index == -1) {
             throw new Error("Piece not found in cell");
@@ -79,18 +79,18 @@ class Cell {
         ];
     }
 
-    public getPiecePosition(piece: PieceDomain): Vector3 {
+    public getPiecePosition(piece: PiecePresenter): Vector3 {
         return this.getCenter3()
     }
 }
 
-export class BoardView {
-    public cells: Cell[];
+export class BoardPresenter {
+    public cells: CellPresenter[];
     constructor() {
-        this.cells = Array.from(Array(40).keys()).map((i) => new Cell(i));
+        this.cells = Array.from(Array(40).keys()).map((i) => new CellPresenter(i));
     }
 
-    public getCellByUV(uv: Vector2): Cell | null {
+    public getCellByUV(uv: Vector2): CellPresenter | null {
         const col = Math.floor(uv.x * 11); // counting from right
         const row = Math.floor(uv.y * 11); // counting from top
         if (row == 10) { // index between 0 and 10
@@ -105,15 +105,20 @@ export class BoardView {
         return null;
     }
 
-    public getCell(index: number): Cell {
+    public getCell(index: number): CellPresenter {
         if (index < 0 || index > 39)
             throw new Error("Cell index must be between 0 and 39");
         return this.cells[index];
     }
 
-    public addPiece(index: number, color: PieceColor): void {
+    public addPiece(index: number, color: PieceColor): PiecePresenter {
         const cell = this.getCell(index);
-        const piece = new PieceDomain(color);
+        const piece = new PiecePresenter(color);
         cell.setPiece(piece);
+        return piece;
+    }
+
+    // TODO: implement piece movement with animation and safe data updating
+    public async movePiece(piece: PiecePresenter, from: CellPresenter, to: CellPresenter): Promise<void> {
     }
 }
