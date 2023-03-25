@@ -1,25 +1,26 @@
 import * as THREE from "three";
 import {ThreeEvent} from "@react-three/fiber";
-import React from "react";
-import {boardView} from "../viewGlobals";
+import React, {useContext} from "react";
 import {Piece} from "./Piece";
+import {CellsContext} from "./Scene";
 
 export type BoardProps = {
     onClick?: (e: ThreeEvent<MouseEvent>) => void
 }
 
 export function Board({children = [], onClick = (e) => {}}: React.PropsWithChildren<BoardProps>) {
+    const cells = useContext(CellsContext)
     return (
         <>
             <mesh onClick={onClick} position={[0, 0, 0]} scale={[11, 11, 11]} rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry />
                 <meshPhongMaterial color="#272a30" />
             </mesh>
-            {boardView.cells.map((cell, i) => {
+            {cells.map((cell, i) => {
                 if (cell.getPieces().length > 0) return (
                     <React.Fragment key={i}>
                         {cell.getPieces().filter(piece => piece).map((piece, j) => (
-                                <Piece piecePresenter={piece!} key={`${i}-${j}`} cellIndex={i}/>
+                                <Piece piecePresenter={piece!} key={`${i}-${piece!.object3D?.uuid}`} cellIndex={i}/>
                             )
                         )}
                     </React.Fragment>

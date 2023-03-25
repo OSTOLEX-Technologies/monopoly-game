@@ -57,7 +57,7 @@ export function Piece(props: PieceProps) {
     const new_obj = obj.clone();
     props.piecePresenter.object3D = new_obj;
     return (
-        <primitive object={new_obj} position={boardView.getCell(props.cellIndex).getCenter3()}
+        <primitive object={new_obj} position={boardView.getCell(props.cellIndex).getPiecePosition(props.piecePresenter)}
             scale={[1, 1, 1]}/>
     )
 }

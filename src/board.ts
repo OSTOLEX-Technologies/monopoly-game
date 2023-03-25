@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import {Vector2, Vector3} from "three";
+import {PieceMoveAnimationRenderer} from "./animationsRenderers";
+import {animationRenderersManager, boardView} from "./viewGlobals";
 
 
 export enum PieceColor {
@@ -86,6 +88,7 @@ export class CellPresenter {
 
 export class BoardPresenter {
     public cells: CellPresenter[];
+    public setCells: (cells: CellPresenter[]) => void = (cells) => {};
     constructor() {
         this.cells = Array.from(Array(40).keys()).map((i) => new CellPresenter(i));
     }
@@ -118,7 +121,39 @@ export class BoardPresenter {
         return piece;
     }
 
+    public removePiece(piece: PiecePresenter): void {
+        for (const cell of this.cells) {
+            if (cell.getPieces().indexOf(piece) != -1) {
+                cell.removePiece(piece);
+                this.setCells([...this.cells])
+                return;
+            }
+        }
+        throw new Error("Piece not found on board");
+    }
+
     // TODO: implement piece movement with animation and safe data updating
-    public async movePiece(piece: PiecePresenter, from: CellPresenter, to: CellPresenter): Promise<void> {
+    public async movePiece(piece: PiecePresenter, to: CellPresenter): Promise<void> {
+        const from = this.cells.find((cell) => cell.getPieces().indexOf(piece) != -1);
+        if (!from) {
+            throw new Error("Piece not found on board");
+        }
+        return new Promise(
+            resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
+            piece,
+            from.getPiecePosition(piece),
+            to.getCenter3(),
+            0.01,
+            () => {
+                from.removePiece(piece);
+                to.setPiece(piece);
+                resolve();
+            }))
+        )
+
+    }
+
+    public async movePieceToIndex(piece: PiecePresenter, to: number): Promise<void> {
+
     }
 }

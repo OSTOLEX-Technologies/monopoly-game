@@ -49,30 +49,24 @@ export class AnimationRenderersManager {
 
 
 export class PieceMoveAnimationRenderer extends AnimationRenderer {
-    private readonly interval: number;
-    private readonly distance: number;
+    private readonly diff: THREE.Vector3;
     private readonly movement: THREE.Vector3;
 
     constructor(
         private piece: PiecePresenter,
-        private from: CellPresenter,
-        private to: CellPresenter,
-        private duration: number = 1000,
+        private startCord: THREE.Vector3,
+        private endCord: THREE.Vector3,
+        private interval: number = 0.01,
         private callback: () => void = () => {}
     ) {
         super();
-        const frameMs = 1000 / 60;
-        const diff = to.getCenter3().sub(from.getPiecePosition(piece));
-        this.distance = diff.length();
-        this.interval = this.distance / (duration * 10 / frameMs);
-        this.movement = new THREE.Vector3(diff.x * this.interval, diff.y, diff.z * this.interval);
-        console.log("PieceMoveAnimationRenderer", this.interval, this.distance, this.movement)
+        this.diff = endCord.clone().sub(startCord);
+        this.movement = new THREE.Vector3(this.diff.x * this.interval, this.diff.y, this.diff.z * this.interval);
     }
 
     draw(rootState: RootState): void {
-        const startCoord = this.piece.object3D!.position;
-        const endCoord = this.to.getCenter3();
-        if (endCoord.distanceTo(startCoord) <= this.interval) {
+        if (this.endCord.distanceTo(this.piece.object3D!.position) <= this.interval) {
+            this.piece.object3D!.position.set(this.endCord.x, this.endCord.y, this.endCord.z);
             this.setDrawn()
             this.callback();
             return;
