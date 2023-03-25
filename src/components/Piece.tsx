@@ -16,10 +16,6 @@ const PieceColorsMapping = Object.freeze({
         mtl: import.meta.env.BASE_URL + 'models/chipgreen.mtl',
         obj: import.meta.env.BASE_URL + 'models/chipgreen.obj'
     },
-    [PieceColor.Red]: {
-        mtl: import.meta.env.BASE_URL + 'models/chipred.mtl',
-        obj: import.meta.env.BASE_URL + 'models/chipred.obj'
-    },
     [PieceColor.Yellow]: {
         mtl: import.meta.env.BASE_URL + 'models/chipyellow.mtl',
         obj: import.meta.env.BASE_URL + 'models/chipyellow.obj'
@@ -36,9 +32,13 @@ const PieceColorsMapping = Object.freeze({
         mtl: import.meta.env.BASE_URL + 'models/chipwhite.mtl',
         obj: import.meta.env.BASE_URL + 'models/chipwhite.obj'
     },
-    [PieceColor.LightBlue]: {
-        mtl: import.meta.env.BASE_URL + 'models/chiplightblue.mtl',
-        obj: import.meta.env.BASE_URL + 'models/chiplightblue.obj'
+    [PieceColor.Purple]: {
+        mtl: import.meta.env.BASE_URL + 'models/chippurple.mtl',
+        obj: import.meta.env.BASE_URL + 'models/chippurple.obj'
+    },
+    [PieceColor.Navyblue]: {
+        mtl: import.meta.env.BASE_URL + 'models/chipnavyblue.mtl',
+        obj: import.meta.env.BASE_URL + 'models/chipnavyblue.obj'
     }
 })
 

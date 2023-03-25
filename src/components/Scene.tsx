@@ -13,7 +13,7 @@ export function Scene() {
             <Animator/>
             <Board/>
             <CellsLines/>
-            <ambientLight intensity={2} position={[0, 5, 0]}/>
+            <ambientLight intensity={1} position={[0, 10, 0]}/>
         </>
     )
 }

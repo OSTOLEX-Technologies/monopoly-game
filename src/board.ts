@@ -4,12 +4,12 @@ import {Vector2, Vector3} from "three";
 
 export enum PieceColor {
     Pink = "pink",
+    Purple = "purple",
     Green = "green",
     Yellow = "yellow",
     Blue = "blue",
     Orange = "orange",
-    LightBlue = "lightblue",
-    Red = "red",
+    Navyblue = "navyblue",
     White = "white",
 }
 

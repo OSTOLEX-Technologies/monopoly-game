@@ -13,7 +13,7 @@ export function Board({children = [], onClick = (e) => {}}: React.PropsWithChild
         <>
             <mesh onClick={onClick} position={[0, 0, 0]} scale={[11, 11, 11]} rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry />
-                <meshPhongMaterial color="white" />
+                <meshPhongMaterial color="#272a30" />
             </mesh>
             {boardView.cells.map((cell, i) => {
                 if (cell.getPieces().length > 0) return (
@@ -81,13 +81,13 @@ export function CellsLines() {
             {innerLine.map((curve, index) => (
                 <mesh key={index}>
                     <tubeGeometry args={[curve, 4, 0.01, 100, false]}/>
-                    <meshBasicMaterial color="black"/>
+                    <meshBasicMaterial color="white"/>
                 </mesh>
             ))}
             {cellsLines.map((line, index) => (
                 <mesh key={index}>
                     <tubeGeometry args={[line, 1, 0.01, 8, false]}/>
-                    <meshBasicMaterial color="black"/>
+                    <meshBasicMaterial color="white"/>
                 </mesh>
             ))}
         </group>
