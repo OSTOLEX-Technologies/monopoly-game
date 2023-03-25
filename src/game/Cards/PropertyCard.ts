@@ -1,8 +1,6 @@
 import {Card} from "./Card";
-import {IRentPayable} from "./IRentPayable";
 
 export class PropertyCard extends Card {
-  color: string;
   price: number;
   rent: number;
   oneHouse: number;
@@ -21,7 +19,6 @@ export class PropertyCard extends Card {
   constructor(
     id: string,
     title: string,
-    color: string,
     price: number,
     rent: number,
     oneHouse: number,
@@ -33,13 +30,11 @@ export class PropertyCard extends Card {
     houseCost: number,
     hotelCost: number,
     hotelCostNotCalc: number,
-    type: string,
     quantity: number,
     houses: number,
     hotels: number) {
-    super(id, title, type);
+    super(id, title);
 
-    this.color = color;
     this.price = price;
     this.rent = rent;
     this.oneHouse = oneHouse;

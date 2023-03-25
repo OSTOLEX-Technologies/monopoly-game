@@ -1,13 +1,11 @@
 import {Card} from "./Card";
 
 export class ChanceCard extends Card {
-  description: string;
-  background: string;
+  private description: string;
 
-  constructor(id: string, title: string, description: string, background: string, type: string) {
-    super(id, title, type);
+  constructor(id: string, title: string, description: string) {
+    super(id, title);
 
     this.description = description;
-    this.background = background;
   }
 }

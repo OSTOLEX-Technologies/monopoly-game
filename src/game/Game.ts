@@ -88,7 +88,7 @@ export class Game {
   buyPropertyCard(cardId: string, playerIdx: number) {
     const playerPos = this.board.currentPlayer.position;
     const cardIdx = this.board.propertyCards.findIndex(
-      (card: PropertyCard) => card.id === cardId
+      (card: PropertyCard) => card.getId() == cardId
     );
     let cardToBuy = this.board.propertyCards.splice(cardIdx, 1);
     this.board.players[playerIdx].balance -= cardToBuy[0].price;
@@ -99,7 +99,7 @@ export class Game {
   buyRailroadCard(cardId: string, playerIdx: number) {
     const position = this.board.currentPlayer.position;
     const cardIdx = this.board.railroadsCards.findIndex(
-      (card: RailroadsCard) => card.id === cardId
+      (card: RailroadsCard) => card.getId() === cardId
     );
     let cardToBuy = this.board.railroadsCards.splice(cardIdx, 1);
     this.board.players[playerIdx].balance -= cardToBuy[0].price;
@@ -110,7 +110,7 @@ export class Game {
   buyUtilityCard(cardId: string, playerIdx: number) {
     const position = this.board.currentPlayer.position;
     const cardIdx = this.board.utilitiesCards.findIndex(
-      (card: UtilitiesCard) => card.id === cardId
+      (card: UtilitiesCard) => card.getId() == cardId
     );
     let cardToBuy = this.board.utilitiesCards.splice(cardIdx, 1);
     this.board.players[playerIdx].balance -= cardToBuy[0].price;
@@ -136,7 +136,7 @@ export class Game {
     let newPosition;
     let currPosition;
 
-    switch (card.id) {
+    switch (card.getId()) {
       case 'chance-201': // Advance to "Go". (Collect $200)
         this.doSteps(0, currentDice, playerIdx);
         break;
@@ -176,7 +176,7 @@ export class Game {
         break;
       case 'chance-207': // Get out of Jail Free
         const cardIdx = this.board.chanceCards.findIndex(
-          (c: ChanceCard) => c.id === card.id
+          (c: ChanceCard) => c.getId() == card.getId()
         );
         let cardToSave = this.board.chanceCards.splice(cardIdx, 1);
         this.board.players[playerIdx].chanceCards.push(...cardToSave);
@@ -241,7 +241,7 @@ export class Game {
       (player: Player) => player.id === playerId
     );
 
-    switch (card.id) {
+    switch (card.getId()) {
       case 'community-101': // Advance to "Go". (Collect $200)
         this.doSteps(0, currentDice, playerIdx);
         break;
@@ -250,7 +250,7 @@ export class Game {
         break;
       case 'community-103': // Get Out of Jail Free
         const cardIdx = this.board.communityChestCards.findIndex(
-          (c: CommunityChestCard) => c.id === card.id
+          (c: CommunityChestCard) => c.getId() == card.getId()
         );
         let cardToSave = this.board.communityChestCards.splice(
           cardIdx,
@@ -317,7 +317,7 @@ export class Game {
 
   buyHouse(cardId: string, playerIdx: number) {
     const cardIdx = this.board.players[playerIdx].propertyCards.findIndex(
-      (card: PropertyCard) => cardId === card.id
+      (card: PropertyCard) => cardId === card.getId()
     );
     const cardPlayer = this.board.players[playerIdx].propertyCards[cardIdx];
     const hasHotel = cardPlayer.houses === 5;
@@ -350,7 +350,7 @@ export class Game {
     if (currTile instanceof RailroadTile) {
       const cardIdx = this.board.players[ownerIdx].railroadsCards.findIndex(
         (card: RailroadsCard) => {
-          return card.title === currTile.name;
+          return card.getTitle() == currTile.name;
         }
       );
       const quantityOfCards =
@@ -369,7 +369,7 @@ export class Game {
     } else if (currTile instanceof CityTile) {
       const cardIdx = this.board.players[ownerIdx].propertyCards.findIndex(
         (card: PropertyCard) => {
-          return card.title === currTile.name;
+          return card.getTitle() == currTile.name;
         }
       );
       card = this.board.players[ownerIdx].propertyCards[cardIdx];

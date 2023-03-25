@@ -1,11 +1,17 @@
-export class Card {
-  id: string;
-  title: string;
-  type: string;
+export abstract class Card {
+  private id: string;
+  private title: string;
 
-  constructor(id: string, title: string, type: string) {
+  protected constructor(id: string, title: string) {
     this.id = id;
     this.title = title;
-    this.type = type;
+  }
+
+  public getId(): string {
+    return this.id;
+  }
+
+  public getTitle(): string {
+    return this.title;
   }
 }
