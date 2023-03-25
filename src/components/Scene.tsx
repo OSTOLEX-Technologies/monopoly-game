@@ -8,16 +8,15 @@ import {boardView} from "../viewGlobals";
 export const CellsContext = React.createContext(boardView.cells)
 
 export function Scene() {
-    const [cells, setCells] = React.useState(boardView.cells);
-    boardView.setCells = setCells;
+    // boardView.setCells = setCells;
     return (
         <>
             <OrbitControls/>
             <primitive object={new THREE.AxesHelper(11)}/>
             <Animator/>
-            <CellsContext.Provider value={cells}>
+            {/*<CellsContext.Provider value={cells}>*/}
                 <Board/>
-            </CellsContext.Provider>
+            {/*</CellsContext.Provider>*/}
             <CellsLines/>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
         </>

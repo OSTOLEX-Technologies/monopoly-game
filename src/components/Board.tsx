@@ -1,29 +1,30 @@
 import * as THREE from "three";
 import {ThreeEvent} from "@react-three/fiber";
-import React, {useContext} from "react";
+import {PropsWithChildren, Fragment} from "react";
 import {Piece} from "./Piece";
-import {CellsContext} from "./Scene";
+import {useCells} from "../hooks";
 
 export type BoardProps = {
     onClick?: (e: ThreeEvent<MouseEvent>) => void
 }
 
-export function Board({children = [], onClick = (e) => {}}: React.PropsWithChildren<BoardProps>) {
-    const cells = useContext(CellsContext)
+export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<BoardProps>) {
+    const cells = useCells();
+
     return (
         <>
             <mesh onClick={onClick} position={[0, 0, 0]} scale={[11, 11, 11]} rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry />
-                <meshPhongMaterial color="#272a30" />
+                <meshPhongMaterial color="#484343" />
             </mesh>
             {cells.map((cell, i) => {
                 if (cell.getPieces().length > 0) return (
-                    <React.Fragment key={i}>
+                    <Fragment key={i}>
                         {cell.getPieces().filter(piece => piece).map((piece, j) => (
-                                <Piece piecePresenter={piece!} key={`${i}-${piece!.object3D?.uuid}`} cellIndex={i}/>
+                                <Piece piecePresenter={piece!} key={`${i}-${piece!.uuid}`} cellIndex={i}/>
                             )
                         )}
-                    </React.Fragment>
+                    </Fragment>
                 )
             })}
             {children}

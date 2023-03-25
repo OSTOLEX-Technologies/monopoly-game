@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import {Vector2, Vector3} from "three";
 import {PieceMoveAnimationRenderer} from "./animationsRenderers";
-import {animationRenderersManager, boardView} from "./viewGlobals";
+import {animationRenderersManager, boardView, keepReactCellsUpdated} from "./viewGlobals";
 
 
 export enum PieceColor {
@@ -17,13 +17,15 @@ export enum PieceColor {
 
 export class PiecePresenter {
     public object3D?: THREE.Object3D;
+    public readonly uuid: string;
     constructor(public color: PieceColor) {
+        this.uuid = THREE.MathUtils.generateUUID();
     }
 }
 
 export class CellPresenter {
     public index: number;
-    private pieces: [PiecePresenter?] = [];
+    private pieces: Array<PiecePresenter> = [];
     constructor(index: number) {
         if (index < 0 || index > 39)
             throw new Error("Cell index must be between 0 and 39");
@@ -34,7 +36,7 @@ export class CellPresenter {
         this.pieces.push(piece);
     }
 
-    public getPieces(): [PiecePresenter?] {
+    public getPieces(): Array<PiecePresenter> {
         return this.pieces;
     }
 
@@ -88,7 +90,7 @@ export class CellPresenter {
 
 export class BoardPresenter {
     public cells: CellPresenter[];
-    public setCells: (cells: CellPresenter[]) => void = (cells) => {};
+
     constructor() {
         this.cells = Array.from(Array(40).keys()).map((i) => new CellPresenter(i));
     }
@@ -121,19 +123,18 @@ export class BoardPresenter {
         return piece;
     }
 
+    @keepReactCellsUpdated
     public removePiece(piece: PiecePresenter): void {
         for (const cell of this.cells) {
             if (cell.getPieces().indexOf(piece) != -1) {
                 cell.removePiece(piece);
-                this.setCells([...this.cells])
                 return;
             }
         }
         throw new Error("Piece not found on board");
     }
 
-    // TODO: implement piece movement with animation and safe data updating
-    public async movePiece(piece: PiecePresenter, to: CellPresenter): Promise<void> {
+    public movePiece(piece: PiecePresenter, to: CellPresenter): Promise<void> {
         const from = this.cells.find((cell) => cell.getPieces().indexOf(piece) != -1);
         if (!from) {
             throw new Error("Piece not found on board");
@@ -150,10 +151,6 @@ export class BoardPresenter {
                 resolve();
             }))
         )
-
-    }
-
-    public async movePieceToIndex(piece: PiecePresenter, to: number): Promise<void> {
 
     }
 }
