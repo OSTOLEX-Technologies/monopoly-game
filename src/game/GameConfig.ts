@@ -13,7 +13,7 @@ import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {RailroadsCard} from "./Cards/RailroadsCard";
-import {CommunityChestCard} from "./Cards/CommunityChest-card";
+import {CommunityChest} from "./Cards/CommunityChest";
 import {ChanceCard} from "./Cards/ChanceCard";
 
 export const tokens = Object.freeze( [
@@ -337,7 +337,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       30,
       50,
       210,
-      50,
       2,
       0,
       0)
@@ -355,7 +354,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       30,
       50,
       370,
-      50,
       2,
       0,
       0,
@@ -373,7 +371,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       50,
       50,
       450,
-      50,
       3,
       0,
       0,
@@ -391,7 +388,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       50,
       50,
       450,
-      50,
       3,
       0,
       0,
@@ -409,7 +405,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       60,
       50,
       500,
-      50,
       3,
       0,
       0,
@@ -427,7 +422,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       70,
       100,
       725,
-      50,
       3,
       0,
       0,
@@ -445,7 +439,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       70,
       100,
       725,
-      50,
       3,
       0,
       0,
@@ -463,7 +456,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       80,
       100,
       800,
-      50,
       3,
       0,
       0,
@@ -481,7 +473,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       90,
       100,
       850,
-      50,
       3,
       0,
       0,
@@ -499,7 +490,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       90,
       100,
       850,
-      50,
       3,
       0,
       0,
@@ -517,7 +507,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       100,
       100,
       900,
-      50,
       3,
       0,
       0,
@@ -535,7 +524,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       110,
       150,
       1025,
-      150,
       3,
       0,
       0,
@@ -553,7 +541,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       110,
       150,
       1025,
-      150,
       3,
       0,
       0,
@@ -571,7 +558,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       120,
       150,
       1075,
-      150,
       3,
       0,
       0,
@@ -589,7 +575,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       130,
       150,
       1125,
-      150,
       3,
       0,
       0,
@@ -607,7 +592,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       130,
       150,
       1125,
-      150,
       3,
       0,
       0,
@@ -625,7 +609,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       140,
       150,
       1175,
-      150,
       3,
       0,
       0,
@@ -643,7 +626,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       150,
       200,
       1300,
-      200,
       3,
       0,
       0,
@@ -661,7 +643,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       150,
       200,
       1300,
-      200,
       3,
       0,
       0,
@@ -679,7 +660,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       160,
       200,
       1400,
-      200,
       3,
       0,
       0,
@@ -697,7 +677,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       170,
       200,
       1500,
-      200,
       2,
       0,
       0,
@@ -715,7 +694,6 @@ export function getPropertyCards(): Array<PropertyCard> {
       200,
       200,
       1900,
-      200,
       2,
       0,
       0,
@@ -772,84 +750,84 @@ export function getRailroadsCards(): Array<RailroadsCard> {
   ];
 }
 
-export function getCommunityChestCards(): Array<CommunityChestCard> {
+export function getCommunityChestCards(): Array<CommunityChest> {
   return  [
-    new CommunityChestCard(
+    new CommunityChest(
       'community-101',
       'Community Chest',
       'Advance to "Go". (Collect $200) ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-102',
       'Community Chest',
       'Life insurance matures - Collect $100',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-103',
       'Community Chest',
       'Get Out of Jail Free. ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-104',
       'Community Chest',
       'You have won second prize in a beauty contest. Collect $10.',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-105',
       'Community Chest',
       'Bank error in your favor. Collect $200. ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-106',
       'Community Chest',
       'From sale of stock you get $50.',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-107',
       'Community Chest',
       'Income tax refund. Collect $20. ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-108',
       'Community Chest',
       'Receive for services $25.',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-109',
       'Community Chest',
       'You inherit $100.',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-110',
       'Community Chest',
       'Holiday Fund matures. Collect $100. ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-111',
       'Community Chest',
       'Collect $50 from every player for opening night seats. ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-112',
       'Community Chest',
       "Doctor's fees. Pay $50.",
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-113',
       'Community Chest',
       'Pay hospital $100.',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-114',
       'Community Chest',
       'Pay school tax of $150',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-115',
       'Community Chest',
       'You are assessed for street repairs: Pay $40 per house and $115 per hotel you own. ',
     ),
-    new CommunityChestCard(
+    new CommunityChest(
       'community-116',
       'Community Chest',
       'Go to Jail. ',

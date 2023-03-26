@@ -1,7 +1,7 @@
 import {Card} from "./Card";
 
-export class CommunityChestCard extends Card {
-  description: string;
+export class CommunityChest extends Card {
+  private description: string;
 
   constructor(id: string, title: string, description: string) {
     super(id, title);

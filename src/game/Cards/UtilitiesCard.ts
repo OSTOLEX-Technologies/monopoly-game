@@ -1,10 +1,10 @@
 import {Card} from "./Card";
 
 export class UtilitiesCard extends Card {
-  price: number;
-  rent: string;
-  twoAreOwned: string;
-  mortgage: number;
+  private price: number;
+  private rent: string;
+  private twoAreOwned: string;
+  private mortgage: number;
 
   constructor(id: string, title: string, price: number, rent: string, twoAreOwned: string, mortgage: number) {
     super(id, title);
@@ -13,5 +13,9 @@ export class UtilitiesCard extends Card {
     this.rent = rent;
     this.twoAreOwned = twoAreOwned;
     this.mortgage = mortgage;
+  }
+
+  public getPrice() {
+    return this.price;
   }
 }

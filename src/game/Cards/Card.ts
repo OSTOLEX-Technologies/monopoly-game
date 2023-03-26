@@ -1,6 +1,6 @@
 export abstract class Card {
-  private id: string;
-  private title: string;
+  protected id: string;
+  protected title: string;
 
   protected constructor(id: string, title: string) {
     this.id = id;

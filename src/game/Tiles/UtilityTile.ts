@@ -2,7 +2,7 @@ import {Tile} from "./Tile";
 import {Player} from "../Player";
 
 export class UtilityTile extends Tile {
-  price: number;
+  private price: number;
 
   constructor(name: string, players: Array<Player>, owner: Player | null, price: number) {
     super(name, owner, players);
