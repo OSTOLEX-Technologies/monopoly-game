@@ -31,26 +31,26 @@ export function keepReactCellsUpdated(target: BoardPresenter, propertyKey: strin
     return descriptor
 }
 
-const piece = boardView.addPiece(0, PieceColor.Blue);
-boardView.addPiece(1, PieceColor.Green);
-boardView.addPiece(2, PieceColor.Pink);
-boardView.addPiece(3, PieceColor.Purple);
-boardView.addPiece(4, PieceColor.White);
-boardView.addPiece(5, PieceColor.Yellow);
-boardView.addPiece(6, PieceColor.Navyblue);
-boardView.addPiece(7, PieceColor.Orange);
+const piece1 = boardView.addPiece(0, PieceColor.Blue);
+const piece2 = boardView.addPiece(1, PieceColor.Green);
+const piece3 = boardView.addPiece(2, PieceColor.Pink);
+const piece4 = boardView.addPiece(3, PieceColor.Purple);
+const piece5 = boardView.addPiece(4, PieceColor.White);
+const piece6 = boardView.addPiece(5, PieceColor.Yellow);
+const piece7 = boardView.addPiece(6, PieceColor.Navyblue);
+const piece8 = boardView.addPiece(7, PieceColor.Orange);
 
 
 export const animationRenderersManager = new AnimationRenderersManager();
 
-boardView.movePiece(piece, boardView.getCell(4)).then(() => {
-    setTimeout(async () => {
-        await boardView.movePiece(piece, boardView.getCell(10));
-        boardView.removePiece(piece);
-        const newPiece = boardView.getCell(1).getPieces()[0];
-        console.log(newPiece)
-        await boardView.movePiece(newPiece, boardView.getCell(10));
-        await boardView.movePiece(newPiece, boardView.getCell(15));
-        boardView.removePiece(newPiece);
-    }, 1000);
-});
+// window.addEventListener('piecesLoaded', async ev => {
+//     await new Promise(resolve => setTimeout(resolve, 2000))
+//     await boardView.movePiece(piece1, boardView.getCell(15))
+//     await boardView.movePiece(piece2, boardView.getCell(15));
+//     await boardView.movePiece(piece3, boardView.getCell(15));
+//     await boardView.movePiece(piece4, boardView.getCell(15));
+//     await boardView.movePiece(piece5, boardView.getCell(15));
+//     await boardView.movePiece(piece6, boardView.getCell(15));
+//     await boardView.movePiece(piece7, boardView.getCell(15));
+//     await boardView.movePiece(piece8, boardView.getCell(15));
+// })

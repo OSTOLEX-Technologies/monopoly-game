@@ -1,6 +1,6 @@
 import {RootState} from "@react-three/fiber";
 import * as THREE from "three";
-import {PiecePresenter, CellPresenter} from "./board";
+import {PiecePresenter} from "./board";
 
 export abstract class AnimationRenderer {
     private drawn = false;
@@ -54,14 +54,14 @@ export class PieceMoveAnimationRenderer extends AnimationRenderer {
 
     constructor(
         private piece: PiecePresenter,
-        private startCord: THREE.Vector3,
         private endCord: THREE.Vector3,
         private interval: number = 0.01,
         private callback: () => void = () => {}
     ) {
         super();
+        const startCord = piece.object3D!.position.clone();
         this.diff = endCord.clone().sub(startCord);
-        this.movement = new THREE.Vector3(this.diff.x * this.interval, this.diff.y, this.diff.z * this.interval);
+        this.movement = new THREE.Vector3(this.diff.x * this.interval, this.diff.y * this.interval, this.diff.z * this.interval);
     }
 
     draw(rootState: RootState): void {

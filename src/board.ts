@@ -26,9 +26,9 @@ const piecesOnCellOffsets = Object.freeze({
     5: [
         new Vector3(-0.25, 0, 0.25),
         new Vector3(0.25, 0, 0.25),
-        new Vector3(0, 0, 0),
         new Vector3(-0.25, 0, -0.25),
         new Vector3(0.25, 0, -0.25),
+        new Vector3(0, 0, 0),
     ],
     6: [
         new Vector3(0.17, 0, 0.275),
@@ -42,10 +42,10 @@ const piecesOnCellOffsets = Object.freeze({
         new Vector3(0.155, 0, 0.275),
         new Vector3(0.3, 0, 0),
         new Vector3(0.155, 0, -0.275),
-        new Vector3(0, 0, 0),
         new Vector3(-0.155, 0, 0.275),
         new Vector3(-0.3, 0, 0),
         new Vector3(-0.155, 0, -0.275),
+        new Vector3(0, 0, 0),
     ],
     8: [
         new Vector3(0.3, 0, 0.3),
@@ -151,6 +151,10 @@ export class CellPresenter {
     public getFuturePiecePosition(piece: PiecePresenter): Vector3 {
         if (this.pieces.length + 1 > 8)
             throw new Error("Too many pieces on cell");
+        if (this.pieces.indexOf(piece) != -1) {
+            // @ts-ignore
+            return this.getCenter3().add(piecesOnCellOffsets[this.pieces.length + 1][this.pieces.indexOf(piece)])
+        }
         // @ts-ignore
         return this.getCenter3().add(piecesOnCellOffsets[this.pieces.length + 1][this.pieces.length]);
     }
@@ -184,6 +188,16 @@ export class BoardPresenter {
         return this.cells[index];
     }
 
+    public getPieceCell(piece: PiecePresenter): CellPresenter | null {
+        for (const cell of this.cells) {
+            if (cell.getPieces().indexOf(piece) != -1) {
+                return cell;
+            }
+        }
+        return null;
+    }
+
+    @keepReactCellsUpdated
     public addPiece(index: number, color: PieceColor): PiecePresenter {
         const cell = this.getCell(index);
         const piece = new PiecePresenter(color);
@@ -202,23 +216,81 @@ export class BoardPresenter {
         throw new Error("Piece not found on board");
     }
 
-    public movePiece(piece: PiecePresenter, to: CellPresenter): Promise<void> {
-        const from = this.cells.find((cell) => cell.getPieces().indexOf(piece) != -1);
+    public async movePiece(piece: PiecePresenter, to: CellPresenter) {
+        const from = this.getPieceCell(piece);
         if (!from) {
             throw new Error("Piece not found on board");
         }
-        return new Promise(
-            resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
-            piece,
-            from.getPiecePosition(piece),
-            to.getFuturePiecePosition(piece),
-            0.01,
-            () => {
-                from.removePiece(piece);
-                to.setPiece(piece);
-                resolve();
-            }))
-        )
+        if (from == to) {
+            return;
+        }
 
+        await this.movePieceUp(piece);
+        from.removePiece(piece);
+        await this.arrangePiecesOnCell(from);
+
+        let newPosition = to.getFuturePiecePosition(piece).add(new Vector3(0, 1, 0));
+        await new Promise<void>(
+            resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
+                piece,
+                newPosition,
+                0.01,
+                () => {
+                    resolve();
+                })));
+        await this.arrangePiecesOnCell(to, true)
+        to.setPiece(piece);
+        await this.movePieceDown(piece);
+    }
+
+    private movePieceUp(piece: PiecePresenter): Promise<Vector3> {
+        const cell = this.getPieceCell(piece);
+        if (!cell) {
+            throw new Error("Piece not found on board");
+        }
+        const futurePosition = cell.getCenter3().add(new Vector3(0, 1, 0));
+        return new Promise<Vector3>(
+            resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
+                    piece,
+                    futurePosition,
+                    0.04,
+                    () => {
+                        resolve(futurePosition);
+                    }))
+        )
+    }
+
+    private movePieceDown(piece: PiecePresenter): Promise<Vector3> {
+        const cell = this.getPieceCell(piece);
+        if (!cell) {
+            throw new Error("Piece not found on board");
+        }
+        const futurePosition = cell.getPiecePosition(piece);
+        return new Promise<Vector3>(
+            resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
+                    piece,
+                    futurePosition,
+                    0.04,
+                    () => {
+                        resolve(futurePosition);
+                    }))
+        )
+    }
+
+    private arrangePiecesOnCell(cell: CellPresenter, futurePositions = false): Promise<void> {
+        const pieces = cell.getPieces();
+        const promises = [];
+        for (const piece of pieces) {
+            promises.push(new Promise<void>(
+                resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
+                    piece,
+                    futurePositions ? cell.getFuturePiecePosition(piece) : cell.getPiecePosition(piece),
+                    0.05,
+                    () => {
+                        resolve();
+                    }))
+            ));
+        }
+        return Promise.all(promises).then(() => {});
     }
 }
