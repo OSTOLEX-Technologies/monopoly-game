@@ -4,6 +4,62 @@ import {PieceMoveAnimationRenderer} from "./animationsRenderers";
 import {animationRenderersManager, boardView, keepReactCellsUpdated} from "./viewGlobals";
 
 
+const piecesOnCellOffsets = Object.freeze({
+    1: [
+        new Vector3(0, 0, 0),
+    ],
+    2: [
+        new Vector3(0, 0, 0.25),
+        new Vector3(0, 0, -0.25)
+    ],
+    3: [
+        new Vector3(-0.25, 0, 0.25),
+        new Vector3(0.25, 0, 0),
+        new Vector3(-0.25, 0, -0.25),
+    ],
+    4: [
+        new Vector3(-0.25, 0, 0.25),
+        new Vector3(0.25, 0, 0.25),
+        new Vector3(-0.25, 0, -0.25),
+        new Vector3(0.25, 0, -0.25),
+    ],
+    5: [
+        new Vector3(-0.25, 0, 0.25),
+        new Vector3(0.25, 0, 0.25),
+        new Vector3(0, 0, 0),
+        new Vector3(-0.25, 0, -0.25),
+        new Vector3(0.25, 0, -0.25),
+    ],
+    6: [
+        new Vector3(0.17, 0, 0.275),
+        new Vector3(0.3, 0, 0),
+        new Vector3(0.17, 0, -0.275),
+        new Vector3(-0.17, 0, 0.275),
+        new Vector3(-0.3, 0, 0),
+        new Vector3(-0.17, 0, -0.275),
+    ],
+    7: [
+        new Vector3(0.155, 0, 0.275),
+        new Vector3(0.3, 0, 0),
+        new Vector3(0.155, 0, -0.275),
+        new Vector3(0, 0, 0),
+        new Vector3(-0.155, 0, 0.275),
+        new Vector3(-0.3, 0, 0),
+        new Vector3(-0.155, 0, -0.275),
+    ],
+    8: [
+        new Vector3(0.3, 0, 0.3),
+        new Vector3(0.3, 0, 0),
+        new Vector3(0.3, 0, -0.3),
+        new Vector3(0, 0, -0.3),
+        new Vector3(-0.3, 0, -0.3),
+        new Vector3(-0.3, 0, 0),
+        new Vector3(-0.3, 0, 0.3),
+        new Vector3(0, 0, 0.3),
+    ]
+})
+
+
 export enum PieceColor {
     Pink = "pink",
     Purple = "purple",
@@ -84,7 +140,19 @@ export class CellPresenter {
     }
 
     public getPiecePosition(piece: PiecePresenter): Vector3 {
-        return this.getCenter3()
+        if (this.pieces.indexOf(piece) == -1)
+            throw new Error("Piece not found in cell");
+        if (this.pieces.length > 8)
+            throw new Error("Too many pieces on cell");
+        // @ts-ignore
+        return this.getCenter3().add(piecesOnCellOffsets[this.pieces.length][this.pieces.indexOf(piece)]);
+    }
+
+    public getFuturePiecePosition(piece: PiecePresenter): Vector3 {
+        if (this.pieces.length + 1 > 8)
+            throw new Error("Too many pieces on cell");
+        // @ts-ignore
+        return this.getCenter3().add(piecesOnCellOffsets[this.pieces.length + 1][this.pieces.length]);
     }
 }
 
@@ -143,7 +211,7 @@ export class BoardPresenter {
             resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
             piece,
             from.getPiecePosition(piece),
-            to.getCenter3(),
+            to.getFuturePiecePosition(piece),
             0.01,
             () => {
                 from.removePiece(piece);
