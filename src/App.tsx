@@ -8,9 +8,9 @@ function App() {
     <div className="App">
         <Canvas shadows camera={{fov: 50,
             aspect: window.innerWidth / window.innerHeight,
-            near: 0.1, far: 20,
-            position: new Vector3(0, 10, -8.5)}}
-        dpr={window.devicePixelRatio}>
+            near: 0.1, far: 100,
+            position: new Vector3(0, 8, -7)}}
+            dpr={window.devicePixelRatio}>
             <Scene/>
         </Canvas>
     </div>

@@ -2,6 +2,7 @@ import * as THREE from "three";
 import {Vector2, Vector3} from "three";
 import {PieceMoveAnimationRenderer} from "./animationsRenderers";
 import {animationRenderersManager, boardView, keepReactCellsUpdated} from "./viewGlobals";
+import {CELLS_ON_BOARD, CELLS_ON_SIDE} from "./constants";
 
 
 const piecesOnCellOffsets = Object.freeze({
@@ -68,7 +69,7 @@ export enum PieceColor {
     Blue = "blue",
     Orange = "orange",
     Navyblue = "navyblue",
-    White = "white",
+    LightPink = "lightpink",
 }
 
 export class PiecePresenter {
@@ -83,7 +84,7 @@ export class CellPresenter {
     public index: number;
     private pieces: Array<PiecePresenter> = [];
     constructor(index: number) {
-        if (index < 0 || index > 39)
+        if (index < 0 || index > CELLS_ON_BOARD - 1)
             throw new Error("Cell index must be between 0 and 39");
         this.index = index;
     }
@@ -105,14 +106,15 @@ export class CellPresenter {
     }
 
     public getCenter3(): Vector3 {
-        if (this.index < 10) {
-            return new Vector3(this.index - 5, 0, -5);
-        } else if (this.index < 20) {
-            return new Vector3(5, 0, -5 + (this.index - 10));
-        } else if (this.index < 30) {
-            return new Vector3(5 - (this.index - 20), 0, 5);
+        const offset = Math.floor(CELLS_ON_SIDE / 2)
+        if (this.index < (CELLS_ON_SIDE - 1)) {
+            return new Vector3(this.index - offset, 0, -offset);
+        } else if (this.index < (CELLS_ON_SIDE - 1) * 2) {
+            return new Vector3(offset, 0, -offset + (this.index - offset * 2));
+        } else if (this.index < (CELLS_ON_SIDE - 1) * 3) {
+            return new Vector3(offset - (this.index - offset * 4), 0, offset);
         } else {
-            return new Vector3(-5, 0, 5 - (this.index - 30));
+            return new Vector3(-offset, 0, offset - (this.index - offset * 6));
         }
     }
 
@@ -164,20 +166,20 @@ export class BoardPresenter {
     public cells: CellPresenter[];
 
     constructor() {
-        this.cells = Array.from(Array(40).keys()).map((i) => new CellPresenter(i));
+        this.cells = Array.from(Array(CELLS_ON_BOARD).keys()).map((i) => new CellPresenter(i));
     }
 
     public getCellByUV(uv: Vector2): CellPresenter | null {
-        const col = Math.floor(uv.x * 11); // counting from right
-        const row = Math.floor(uv.y * 11); // counting from top
-        if (row == 10) { // index between 0 and 10
+        const col = Math.floor(uv.x * CELLS_ON_SIDE); // counting from right
+        const row = Math.floor(uv.y * CELLS_ON_SIDE); // counting from top
+        if (row == CELLS_ON_SIDE - 1) { // index between 0 and 8
             return this.cells[col];
-        } else if (col == 10) { // index between 10 and 20
-            return this.cells[20 - row];
-        } else if (row == 0) { // index between 20 and 30
-            return this.cells[30 - col];
-        } else if (col == 0) { // index between 30 and 39
-            return this.cells[30 + row];
+        } else if (col == CELLS_ON_SIDE - 1) { // index between 8 and 16
+            return this.cells[(CELLS_ON_SIDE - 1) * 2 - row];
+        } else if (row == 0) { // index between 16 and 24
+            return this.cells[(CELLS_ON_SIDE - 1) * 3 - col];
+        } else if (col == 0) { // index between 24 and 31
+            return this.cells[(CELLS_ON_SIDE - 1) * 3 + row];
         }
         return null;
     }

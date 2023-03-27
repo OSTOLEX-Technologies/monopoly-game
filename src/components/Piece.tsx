@@ -1,10 +1,9 @@
 import React from 'react';
-import {ThreeEvent, useLoader} from "@react-three/fiber";
+import {useLoader} from "@react-three/fiber";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three/examples/jsm/loaders/MTLLoader";
 import {boardView} from "../viewGlobals";
 import {PieceColor, PiecePresenter} from "../board";
-import * as THREE from "three";
 
 
 const PieceColorsMapping = Object.freeze({
@@ -28,9 +27,9 @@ const PieceColorsMapping = Object.freeze({
         mtl: import.meta.env.BASE_URL + 'models/chiporange.mtl',
         obj: import.meta.env.BASE_URL + 'models/chiporange.obj'
     },
-    [PieceColor.White]: {
-        mtl: import.meta.env.BASE_URL + 'models/chipwhite.mtl',
-        obj: import.meta.env.BASE_URL + 'models/chipwhite.obj'
+    [PieceColor.LightPink]: {
+        mtl: import.meta.env.BASE_URL + 'models/chiplightpink.mtl',
+        obj: import.meta.env.BASE_URL + 'models/chiplightpink.obj'
     },
     [PieceColor.Purple]: {
         mtl: import.meta.env.BASE_URL + 'models/chippurple.mtl',
