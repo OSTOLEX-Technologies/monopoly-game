@@ -1,26 +1,23 @@
 import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";
-import {UtilitiesCard} from "./Cards/UtilitiesCard";
-import {RailroadsCard} from "./Cards/RailroadsCard";
 import {CommunityChest} from "./Cards/CommunityChest";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {Tile} from "./Tiles/Tile";
 import {
   cmpsOrder, getChanceCards,
   getCommunityChestCards,
-  getPropertyCards,
-  getRailroadsCards,
-  getTiles,
-  getUtilitiesCards,
   tokens
 } from "./GameConfig";
 import {Bank} from "./Bank";
+import {Action} from "./Actions/Action";
+import {throwDice} from "./Utils";
+import {ErrorAction} from "./Actions/ErrorAction";
+import {MoveAction} from "./Actions/MoveAction";
+import {GetOutOfJailAction} from "./Actions/GetOutOfJailAction";
 
 export class Board {
   public tokens: ReadonlyArray<{ name: string }>;
   public cmpsOrder: ReadonlyArray<string>;
-  private doubleCount: number;
-  private currentDice: Array<number>;
   private currentPlayer: Player;
   private players: Array<Player>;
   private communityChestCards: Array<CommunityChest>;
@@ -34,81 +31,98 @@ export class Board {
     this.cmpsOrder = cmpsOrder;
     this.communityChestCards = getCommunityChestCards();
     this.chanceCards = getChanceCards();
-    this.doubleCount = 0;
     this.currentPlayer = players[0];
     this.players = players;
-    this.currentDice = new Array<number>();
     this.bank = bank;
   }
 
-  public doStep(newPosition: number, currentDice: Array<number>, playerIdx: number) {
-    let currPosition = this.currentPlayer.getPosition();
-    let playerToStep = this.currentPlayer;
-    const isInJail = this.players[playerIdx].getStepsInJail();
-    let isDouble;
-    if (currentDice?.length) {
-      isDouble = currentDice[0] === currentDice[1];
-    }
-
-    if (isInJail) {
-      this.players[playerIdx].increaseStepsInJail();
-      if (isDouble) {
-        this.getOutOfJail(playerIdx);
-        this.doStep(newPosition, currentDice, playerIdx);
-      }
-      return;
-    }
-
-    if (isDouble){
-      this.doubleCount++;
-    }
-
-    if (newPosition >= 0 && currPosition > newPosition) {
-      this.bank.collectMoney(playerIdx, 200);
-      currPosition = this.currentPlayer.getPosition();
-      playerToStep = this.currentPlayer;
-      playerIdx = this.players.findIndex(
-        (player: Player) => player.getId() == playerToStep.getId()
-      );
-    }
-
-    // Remove player from last pos:
-    this.tiles[currPosition].removePlayer(playerToStep.getId());
-
-    playerToStep.setPosition(newPosition);
-
-    // place player in new pos:
-    this.tiles[newPosition].addPlayer(playerToStep);
-    this.players[playerIdx].setPosition(newPosition);
+  public doStep(playerIdx: number): Array<Action> {
+    const dice = throwDice();
+    return this.applyDice(playerIdx, dice);
   }
 
-  goToJail(playerIdx: number) {
-    this.currentDice = new Array<number>();
-    this.doubleCount = 0;
+  private applyDice(playerIdx: number, dice: Array<number>): Array<Action> {
+    if (!this.isCurrentPlayer(playerIdx))
+      return [new ErrorAction()];
+
+    if (this.isInJail(playerIdx)) {
+      return this.increaseStepsInJail(playerIdx, dice);
+    }
+
+    this.movePlayerToNewTile(dice, playerIdx);
+
+    const currTile = this.tiles[this.currentPlayer.getPosition()];
+    return [];
+  }
+
+  private isCurrentPlayer(playerIdx: number): boolean {
+    return this.players[playerIdx].getId() == this.currentPlayer.getId();
+  }
+
+  private isInJail(playerIdx: number): boolean {
+    return this.players[playerIdx].getStepsInJail() != 0;
+  }
+
+  private increaseStepsInJail(playerIdx: number, dice: Array<number>): Array<Action> {
+    this.players[playerIdx].increaseStepsInJail();
+    const isDouble = dice[0] == dice[1];
+    let result = new Array<Action>();
+
+    if (isDouble) {
+      this.getOutOfJail(playerIdx);
+      result.push(new GetOutOfJailAction());
+      result.push(...this.applyDice(playerIdx, dice));
+    } else {
+      result.push(new MoveAction(dice));
+    }
+
+    return result;
+  }
+
+  private movePlayerToNewTile(dice: Array<number>, playerIdx: number) {
+    this.tiles[this.currentPlayer.getPosition()].removePlayer(this.currentPlayer.getId());
+    this.calculateNewPosition(dice, playerIdx);
+    this.tiles[this.currentPlayer.getPosition()].addPlayer(this.currentPlayer);
+  }
+  private calculateNewPosition(dice: Array<number>, playerIdx: number) {
+    const currPosition = this.currentPlayer.getPosition();
+    let newPosition =  + dice[0] + dice[1];
+
+    if (newPosition > 39){
+      newPosition -= 40;
+    }
+
+    if (currPosition > newPosition) {
+      this.bank.collectMoney(playerIdx, 200);
+    }
+
+    this.currentPlayer.setPosition(newPosition);
+  }
+
+  private goToJail(playerIdx: number) {
     this.players[playerIdx].setStepsInJail(3);
   }
 
-  getOutOfJail(playerIdx: number) {
-    this.doubleCount = 0;
+  private getOutOfJail(playerIdx: number) {
     this.players[playerIdx].setStepsInJail(0);
   }
 
-  doChanceTask(card: ChanceCard, currentDice: Array<number>, playerIdx: number) {
+  private doChanceTask(card: ChanceCard, dice: Array<number>, playerIdx: number) {
     let newPosition;
     let currPosition;
 
     switch (card.getId()) {
       case 'chance-201': // Advance to "Go". (Collect $200)
-        this.doStep(0, currentDice, playerIdx);
+        this.applyDice(playerIdx, dice);
         break;
       case 'chance-202': // Advance to Illinois Ave. {Avenue}. If you pass Go, collect $200.
-        this.doStep(24, currentDice, playerIdx);
+        this.applyDice(playerIdx, dice);
         break;
       case 'chance-203': // Advance to St. Charles Place. If you pass Go, collect $200
         if (this.currentPlayer.getPosition() > 35) {
           this.bank.collectMoney(playerIdx, 200);
         }
-        this.doStep(11, currentDice, playerIdx);
+        // this.doStep(11, dice, playerIdx);
         break;
       case 'chance-204': // Advance token to the nearest Utility
         currPosition = this.currentPlayer.getPosition();
@@ -117,7 +131,7 @@ export class Board {
         } else {
           newPosition = 28;
         }
-        this.doStep(newPosition, currentDice, playerIdx);
+        // this.doStep(newPosition, dice, playerIdx);
         this.currentPlayer.setIsNextPayByDice({ isTrue: true, payTo: null });
         break;
       case 'chance-205': // Advance to the nearest Railroad
@@ -129,7 +143,7 @@ export class Board {
         } else {
           newPosition = 5;
         }
-        this.doStep(newPosition, currentDice, playerIdx);
+        // this.doStep(newPosition, dice, playerIdx);
         this.currentPlayer.setIsNextPayByDice({ isTrue: true, payTo: null });
         break;
       case 'chance-206': // Bank pays you dividend of $50
@@ -144,7 +158,7 @@ export class Board {
         break;
       case 'chance-208': // Go Back 3 Spaces
         const posBack = this.currentPlayer.getPosition() - 3;
-        this.doStep(posBack, currentDice, playerIdx);
+        // this.doStep(posBack, dice, playerIdx);
         break;
       case 'chance-209': // Go to Jail
         this.goToJail(playerIdx);
@@ -170,10 +184,10 @@ export class Board {
         if (playerPos > 5) {
           this.players[playerIdx].increaseBalance(200);
         }
-        this.doStep(5, currentDice, playerIdx);
+        // this.doStep(5, dice, playerIdx);
         break;
       case 'chance-213': // Advance token to Boardwalk
-        this.doStep(39, currentDice, playerIdx);
+        // this.doStep(39, dice, playerIdx);
         break;
       case 'chance-214': // PAY EACH PLAYER $50
         const currPlayer = this.players[playerIdx];
@@ -195,15 +209,10 @@ export class Board {
     }
   }
 
-  doCommunityTask(card: CommunityChest, currentDice: Array<number>) {
-    const playerId = this.currentPlayer.getId();
-    const playerIdx = this.players.findIndex(
-      (player: Player) => player.getId() == playerId
-    );
+  private doCommunityTask(card: CommunityChest, currentDice: Array<number>, playerIdx: number) {
 
     switch (card.getId()) {
       case 'community-101': // Advance to "Go". (Collect $200)
-        this.doStep(0, currentDice, playerIdx);
         break;
       case 'community-102': // Collect $100
         this.bank.collectMoney(playerIdx, 100);
@@ -216,7 +225,7 @@ export class Board {
           cardIdx,
           1
         );
-        this.players[playerIdx].communityChestCards.push(...cardToSave);
+        this.currentPlayer.communityChestCards.push(...cardToSave);
         break;
       case 'community-104': // Collect $10
         this.bank.collectMoney(playerIdx, 10);
@@ -240,11 +249,10 @@ export class Board {
         this.bank.collectMoney(playerIdx, 100);
         break;
       case 'community-111': // Collect $50 from every player for opening night seats
-        const currPlayer = this.players[playerIdx];
         this.players.forEach((player: Player) => {
-          if (player.getId() != currPlayer.getId()) {
+          if (player.getId() != this.currentPlayer.getId()) {
             player.decreaseBalance(50);
-            this.players[playerIdx].increaseBalance(50);
+            this.currentPlayer.increaseBalance(50);
           }
         });
         break;
@@ -260,7 +268,7 @@ export class Board {
       case 'community-115': // You are assessed for street repairs: Pay $40 per house and $115 per hotel you own
         let homeCount = 0;
         let hotelCount = 0;
-        this.players[playerIdx].propertyCards.forEach((card: PropertyCard) => {
+        this.currentPlayer.propertyCards.forEach((card: PropertyCard) => {
           if (card.hasHotel()) {
             hotelCount++;
           }
@@ -268,8 +276,8 @@ export class Board {
             homeCount += card.getNumberOfHouses();
           }
         })
-        this.players[playerIdx].decreaseBalance(homeCount * 40);
-        this.players[playerIdx].decreaseBalance(hotelCount * 115);
+        this.currentPlayer.decreaseBalance(homeCount * 40);
+        this.currentPlayer.decreaseBalance(hotelCount * 115);
         break;
       case 'community-116': // Go to Jail
         this.goToJail(playerIdx);

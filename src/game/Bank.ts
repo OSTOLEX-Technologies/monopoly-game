@@ -1,4 +1,4 @@
-import {ITransaction} from "./Transaction/ITransaction";
+import {ITransaction} from "./Transactions/ITransaction";
 import {Tile} from "./Tiles/Tile";
 import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";

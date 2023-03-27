@@ -16,6 +16,7 @@ export class Game {
     this.currentDice = null;
   }
 
-  doSteps(newPosition: number, currentDice: Array<number>, playerIdx: number) {
+  public doSteps(playerIdx: number) {
+    this.board.doStep(playerIdx);
   }
 }

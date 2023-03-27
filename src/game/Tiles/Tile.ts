@@ -1,11 +1,11 @@
 import {Player} from "../Player";
 
-export class Tile {
+export abstract class Tile {
   private name: string;
   private owner: Player | null;
   private players: Array<Player>;
 
-  constructor(name: string, owner: Player | null, players: Array<Player>) {
+  protected constructor(name: string, owner: Player | null, players: Array<Player>) {
     this.name = name;
     this.owner = owner;
     this.players = players;
