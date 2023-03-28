@@ -32,13 +32,13 @@ export function keepReactCellsUpdated(target: BoardPresenter, propertyKey: strin
 }
 
 const piece1 = boardView.addPiece(0, PieceColor.Blue);
-const piece2 = boardView.addPiece(1, PieceColor.Green);
-const piece3 = boardView.addPiece(2, PieceColor.Pink);
-const piece4 = boardView.addPiece(3, PieceColor.Purple);
-const piece5 = boardView.addPiece(4, PieceColor.LightPink);
-const piece6 = boardView.addPiece(5, PieceColor.Yellow);
-const piece7 = boardView.addPiece(6, PieceColor.Navyblue);
-const piece8 = boardView.addPiece(7, PieceColor.Orange);
+const piece2 = boardView.addPiece(0, PieceColor.Green);
+const piece3 = boardView.addPiece(0, PieceColor.Pink);
+const piece4 = boardView.addPiece(0, PieceColor.Purple);
+const piece5 = boardView.addPiece(0, PieceColor.LightPink);
+const piece6 = boardView.addPiece(0, PieceColor.Yellow);
+const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
+const piece8 = boardView.addPiece(0, PieceColor.Orange);
 
 
 export const animationRenderersManager = new AnimationRenderersManager();

@@ -10,7 +10,7 @@ export type BoardProps = {
 }
 
 export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<BoardProps>) {
-    const colorMap = useLoader(TextureLoader, import.meta.env.BASE_URL + 'board.png')
+    const colorMap = useLoader(TextureLoader, import.meta.env.BASE_URL + 'board.jpg')
     const cells = useCells();
 
     return (

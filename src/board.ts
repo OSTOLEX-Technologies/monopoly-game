@@ -185,7 +185,7 @@ export class BoardPresenter {
     }
 
     public getCell(index: number): CellPresenter {
-        if (index < 0 || index > 39)
+        if (index < 0 || index > CELLS_ON_BOARD)
             throw new Error("Cell index must be between 0 and 39");
         return this.cells[index];
     }

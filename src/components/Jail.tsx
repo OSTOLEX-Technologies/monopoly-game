@@ -2,20 +2,20 @@ import {ThreeEvent, useLoader} from "@react-three/fiber";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three/examples/jsm/loaders/MTLLoader";
 
-type CardDeckProps = {
+type JailProps = {
     position?: [number, number, number];
     scale?: [number, number, number];
     rotation?: [number, number, number];
 }
 
-export function CardDeck(
+export function Jail(
     {
         position = [0, 0, 0],
         scale = [1, 1, 1],
         rotation = [0, 0, 0]
-    }: CardDeckProps) {
-    const mtl = useLoader(MTLLoader, import.meta.env.BASE_URL + 'models/card_deck.mtl');
-    const obj = useLoader(OBJLoader, import.meta.env.BASE_URL + 'models/card_deck.obj', (loader) => {
+    }: JailProps) {
+    const mtl = useLoader(MTLLoader, import.meta.env.BASE_URL + 'models/jail.mtl');
+    const obj = useLoader(OBJLoader, import.meta.env.BASE_URL + 'models/jail.obj', (loader) => {
         mtl.preload();
         loader.setMaterials(mtl);
     })
