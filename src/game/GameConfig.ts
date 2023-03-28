@@ -9,12 +9,12 @@ import {VisitTile} from "./Tiles/VisitTile";
 import {UtilityTile} from "./Tiles/UtilityTile";
 import {ParkingTile} from "./Tiles/ParkingTile";
 import {JailTile} from "./Tiles/JailTile";
-import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {RailroadsCard} from "./Cards/RailroadsCard";
 import {CommunityChest} from "./Cards/CommunityChest";
 import {ChanceCard} from "./Cards/ChanceCard";
+import {Player} from "./Player";
 
 export const tokens = Object.freeze( [
   {
@@ -87,10 +87,10 @@ export const cmpsOrder = Object.freeze([
 ]);
 
 export function getTiles(players: Array<Player>): Array<Tile> {
-  return  [
+  let result = [
     new GoTile(
       'Go',
-      players,
+      [],
       null,
       60,
     ),
@@ -320,6 +320,12 @@ export function getTiles(players: Array<Player>): Array<Tile> {
       400,
     ),
   ];
+
+  players.forEach((player) => {
+    result[player.getPosition()].addPlayer(player);
+  });
+
+  return result;
 }
 
 export function getPropertyCards(): Array<PropertyCard> {

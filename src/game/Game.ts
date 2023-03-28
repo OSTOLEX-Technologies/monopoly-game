@@ -1,22 +1,34 @@
 import {Board} from "./Board";
-import {Player} from "./Player";
 import {Bank} from "./Bank";
 import {getTiles} from "./GameConfig";
+import {Action} from "./Actions/Action";
+import {IOffer} from "./Offers/IOffer";
+import {GameData} from "../controllers/GameData";
 
 export class Game {
   private board: Board;
   private bank: Bank;
   private currentDice: Array<number> | null;
 
-  constructor(players: Array<Player>) {
-    let tiles = getTiles(players);
+  constructor(data: GameData) {
+    let tiles = getTiles(data.players);
 
-    this.bank = new Bank(tiles, players);
-    this.board = new Board(tiles, players, this.bank);
+    this.bank = new Bank(tiles, data.players);
+    this.board = new Board(tiles, data.players, data.currentPlayerId, this.bank);
     this.currentDice = null;
   }
 
-  public doSteps(playerIdx: number) {
-    this.board.doStep(playerIdx);
+  public doStep(playerId: string): Array<Action> {
+    return this.board.doStep(playerId);
   }
+
+  public applyOffer(transaction: IOffer) {}
+
+  public checkOffer(offer: IOffer) {}
+
+  public getPlayers() {}
+
+  public getCardsInBank() {}
+
+  public getTiles() {}
 }

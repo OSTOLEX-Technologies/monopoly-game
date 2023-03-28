@@ -1,9 +1,9 @@
-import {ITransaction} from "./ITransaction";
+import {IOffer} from "./IOffer";
 import {Card} from "../Cards/Card";
 import {Tile} from "../Tiles/Tile";
 import {Player} from "../Player";
 
-export class CardToMoneyTransaction implements ITransaction {
+export class CardToMoneyOffer implements IOffer {
   private offer1: {userIdx: number, cardId: string};
   private offer2: {userIdx: number, moneyAmount: number};
 

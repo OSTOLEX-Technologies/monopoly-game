@@ -1,4 +1,4 @@
-import {ITransaction} from "./Transactions/ITransaction";
+import {IOffer} from "./Offers/IOffer";
 import {Tile} from "./Tiles/Tile";
 import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";
@@ -8,6 +8,7 @@ import {CityTile} from "./Tiles/CityTile";
 import {UtilityTile} from "./Tiles/UtilityTile";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {getPropertyCards, getRailroadsCards, getUtilitiesCards} from "./GameConfig";
+import {getPlayerById} from "./Utils";
 
 export class Bank {
   private tiles: Array<Tile>;
@@ -22,69 +23,103 @@ export class Bank {
     this.propertyCards = getPropertyCards();
     this.railroadsCards = getRailroadsCards();
     this.utilitiesCards = getUtilitiesCards();
+
+    this.deletePurchasedCards();
   }
 
-  public trade(transaction: ITransaction) {
+  private deletePurchasedCards() {
+    this.players.forEach((player) => {
+      player.propertyCards.forEach((propertyCard) => {
+        this.removePropertyCardById(propertyCard.getId());
+      });
+      player.railroadsCards.forEach((railroadsCard) => {
+        this.removeRailroadCardById(railroadsCard.getId());
+      });
+      player.utilitiesCards.forEach((utilitiesCard) => {
+        this.removeUtilityCard(utilitiesCard.getId());
+      });
+    });
+  }
+
+  public trade(transaction: IOffer) {
 
   }
 
-  public collectMoney(playerIdx: number, amount: number) {
-    this.players[playerIdx].increaseBalance(amount);
+  public collectMoney(playerId: string, amount: number) {
+    let player = getPlayerById(playerId, this.players);
+    player.increaseBalance(amount);
   }
 
-  public payMoney(playerIdx: number, amount: number) {
-    this.players[playerIdx].decreaseBalance(amount);
+  public payMoney(playerId: string, amount: number) {
+    let player = getPlayerById(playerId, this.players);
+    player.decreaseBalance(amount);
   }
 
-  public buyHouse(cardId: string, playerIdx: number) {
-    const cardIdx = this.players[playerIdx].propertyCards.findIndex(
+  public buyHouse(cardId: string, playerId: string) {
+    let player = getPlayerById(playerId, this.players);
+    const cardIdx = player.propertyCards.findIndex(
       (card: PropertyCard) => cardId === card.getId()
     );
-    const cardPlayer = this.players[playerIdx].propertyCards[cardIdx];
+    const cardPlayer = player.propertyCards[cardIdx];
 
     if (cardPlayer.hasHotel()) {
       console.log('you already have hotel')
       return;
     } else if (cardPlayer.hasFourHouses()) {
-      this.players[playerIdx].decreaseBalance(cardPlayer.getHotelCost());
+      player.decreaseBalance(cardPlayer.getHotelCost());
     } else {
-      this.players[playerIdx].decreaseBalance(cardPlayer.getHouseCost());
+      player.decreaseBalance(cardPlayer.getHouseCost());
     }
 
     cardPlayer.increaseHouses();
   }
 
-  buyPropertyCard(player: Player, cardId: string, playerIdx: number) {
+  public buyPropertyCard(cardId: string, playerId: string) {
+    let player = getPlayerById(playerId, this.players);
     const playerPos = player.getPosition();
-    const cardIdx = this.propertyCards.findIndex(
-      (card: PropertyCard) => card.getId() == cardId
-    );
-    let cardToBuy = this.propertyCards.splice(cardIdx, 1);
-    this.players[playerIdx].decreaseBalance(cardToBuy[0].getPrice());
-    this.players[playerIdx].propertyCards.push(...cardToBuy);
+    const cardToBuy = this.removePropertyCardById(cardId);
+    player.decreaseBalance(cardToBuy[0].getPrice());
+    player.propertyCards.push(...cardToBuy);
     this.tiles[playerPos].setOwner(player);
   }
 
-  buyRailroadCard(player: Player, cardId: string, playerIdx: number) {
-    const position = player.getPosition();
-    const cardIdx = this.railroadsCards.findIndex(
-      (card: RailroadsCard) => card.getId() === cardId
+  private removePropertyCardById(cardId: string): Array<PropertyCard> {
+    const cardIdx = this.propertyCards.findIndex(
+      (card: PropertyCard) => card.getId() == cardId
     );
-    let cardToBuy = this.railroadsCards.splice(cardIdx, 1);
-    this.players[playerIdx].decreaseBalance(cardToBuy[0].getPrice());
-    this.players[playerIdx].railroadsCards.push(...cardToBuy);
+    return this.propertyCards.splice(cardIdx, 1);
+  }
+
+  public buyRailroadCard(cardId: string, playerId: string) {
+    let player = getPlayerById(playerId, this.players);
+    const position = player.getPosition();
+    let cardToBuy = this.removeRailroadCardById(cardId);
+    player.decreaseBalance(cardToBuy[0].getPrice());
+    player.railroadsCards.push(...cardToBuy);
     this.tiles[position].setOwner(player);
   }
 
-  buyUtilityCard(player: Player, cardId: string, playerIdx: number) {
+  private removeRailroadCardById(cardId: string): Array<RailroadsCard> {
+    const cardIdx = this.railroadsCards.findIndex(
+      (card: RailroadsCard) => card.getId() == cardId
+    );
+    return this.railroadsCards.splice(cardIdx, 1);
+  }
+
+  public buyUtilityCard(cardId: string, playerId: string) {
+    let player = getPlayerById(playerId, this.players);
     const position = player.getPosition();
+    let cardToBuy = this.removeUtilityCard(cardId);
+    player.decreaseBalance(cardToBuy[0].getPrice());
+    player.utilitiesCards.push(...cardToBuy);
+    this.tiles[position].setOwner(player);
+  }
+
+  private removeUtilityCard(cardId: string): Array<UtilitiesCard> {
     const cardIdx = this.utilitiesCards.findIndex(
       (card: UtilitiesCard) => card.getId() == cardId
     );
-    let cardToBuy = this.utilitiesCards.splice(cardIdx, 1);
-    this.players[playerIdx].decreaseBalance(cardToBuy[0].getPrice());
-    this.players[playerIdx].utilitiesCards.push(...cardToBuy);
-    this.tiles[position].setOwner(player);
+    return this.utilitiesCards.splice(cardIdx, 1);
   }
 
   private payRent(player: Player, dice: Array<number>, currTile: Tile, playerId: string) {
