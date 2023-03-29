@@ -1,76 +1,16 @@
 import * as THREE from "three";
 import {Vector2, Vector3} from "three";
 import {PieceMoveAnimationRenderer} from "./animationsRenderers";
-import {animationRenderersManager, boardView, keepReactCellsUpdated} from "./viewGlobals";
-import {CELLS_ON_BOARD, CELLS_ON_SIDE} from "./constants";
+import {animationRenderersManager, keepReactCellsUpdated} from "./viewGlobals";
+import {
+    CELLS_ON_BOARD,
+    CELLS_ON_SIDE,
+    cellsOwnerIcons,
+    OwnerIconsTypes,
+    PieceColor,
+    piecesOnCellOffsets
+} from "./constants";
 
-
-const piecesOnCellOffsets = Object.freeze({
-    1: [
-        new Vector3(0, 0, 0),
-    ],
-    2: [
-        new Vector3(0, 0, 0.25),
-        new Vector3(0, 0, -0.25)
-    ],
-    3: [
-        new Vector3(-0.25, 0, 0.25),
-        new Vector3(0.25, 0, 0),
-        new Vector3(-0.25, 0, -0.25),
-    ],
-    4: [
-        new Vector3(-0.25, 0, 0.25),
-        new Vector3(0.25, 0, 0.25),
-        new Vector3(-0.25, 0, -0.25),
-        new Vector3(0.25, 0, -0.25),
-    ],
-    5: [
-        new Vector3(-0.25, 0, 0.25),
-        new Vector3(0.25, 0, 0.25),
-        new Vector3(-0.25, 0, -0.25),
-        new Vector3(0.25, 0, -0.25),
-        new Vector3(0, 0, 0),
-    ],
-    6: [
-        new Vector3(0.17, 0, 0.275),
-        new Vector3(0.3, 0, 0),
-        new Vector3(0.17, 0, -0.275),
-        new Vector3(-0.17, 0, 0.275),
-        new Vector3(-0.3, 0, 0),
-        new Vector3(-0.17, 0, -0.275),
-    ],
-    7: [
-        new Vector3(0.155, 0, 0.275),
-        new Vector3(0.3, 0, 0),
-        new Vector3(0.155, 0, -0.275),
-        new Vector3(-0.155, 0, 0.275),
-        new Vector3(-0.3, 0, 0),
-        new Vector3(-0.155, 0, -0.275),
-        new Vector3(0, 0, 0),
-    ],
-    8: [
-        new Vector3(0.3, 0, 0.3),
-        new Vector3(0.3, 0, 0),
-        new Vector3(0.3, 0, -0.3),
-        new Vector3(0, 0, -0.3),
-        new Vector3(-0.3, 0, -0.3),
-        new Vector3(-0.3, 0, 0),
-        new Vector3(-0.3, 0, 0.3),
-        new Vector3(0, 0, 0.3),
-    ]
-})
-
-
-export enum PieceColor {
-    Pink = "pink",
-    Purple = "purple",
-    Green = "green",
-    Yellow = "yellow",
-    Blue = "blue",
-    Orange = "orange",
-    Navyblue = "navyblue",
-    LightPink = "lightpink",
-}
 
 export class PiecePresenter {
     public object3D?: THREE.Object3D;
@@ -80,13 +20,32 @@ export class PiecePresenter {
     }
 }
 
+export class OwnerChipPresenter {
+    public object3D?: THREE.Object3D;
+    public readonly uuid: string;
+    constructor(public color: PieceColor) {
+        this.uuid = THREE.MathUtils.generateUUID();
+    }
+}
+
 export class CellPresenter {
     public index: number;
+    private owner?: PieceColor;
     private pieces: Array<PiecePresenter> = [];
     constructor(index: number) {
         if (index < 0 || index > CELLS_ON_BOARD - 1)
             throw new Error("Cell index must be between 0 and 39");
         this.index = index;
+    }
+
+    public getOwner(): PieceColor | undefined {
+        return this.owner;
+    }
+
+    // must be called only through BoardPresenter.setOwner
+    public setOwner(owner?: PieceColor): void {
+        if (!this.getOwnerChipIcon()) throw new Error("You can't set owner on this cell");
+        this.owner = owner;
     }
 
     public setPiece(piece: PiecePresenter): void {
@@ -123,24 +82,6 @@ export class CellPresenter {
         return new Vector2(v3.x, v3.z);
     }
 
-    public getBounds2(): Vector2[] {
-        // returns right top corner and left bottom corner
-        const center = this.getCenter2();
-        return [
-            new Vector2(center.x - 0.5, center.y - 0.5),
-            new Vector2(center.x + 0.5, center.y + 0.5),
-        ];
-    }
-
-    public getBounds3(): Vector3[] {
-        // returns right top corner and left bottom corner
-        const center = this.getCenter3();
-        return [
-            new Vector3(center.x - 0.5, center.y, center.z - 0.5),
-            new Vector3(center.x + 0.5, center.y, center.z + 0.5),
-        ];
-    }
-
     public getPiecePosition(piece: PiecePresenter): Vector3 {
         if (this.pieces.indexOf(piece) == -1)
             throw new Error("Piece not found in cell");
@@ -160,6 +101,30 @@ export class CellPresenter {
         // @ts-ignore
         return this.getCenter3().add(piecesOnCellOffsets[this.pieces.length + 1][this.pieces.length]);
     }
+
+    public getOwnerChipPosition(): Vector3 {
+        if (this.index < (CELLS_ON_SIDE - 1)) {
+            return this.getCenter3().add(new Vector3(0, 0, 0.55));
+        } else if (this.index < (CELLS_ON_SIDE - 1) * 2) {
+            return this.getCenter3().add(new Vector3(-0.55, 0, -0.025));
+        } else if (this.index < (CELLS_ON_SIDE - 1) * 3) {
+            return this.getCenter3().add(new Vector3(0, 0, -0.55));
+        } else {
+            return this.getCenter3().add(new Vector3(0.55, 0, 0));
+        }
+    }
+
+    public getOwnerChipPositionTuple(): [number, number, number] {
+        const v3 = this.getOwnerChipPosition();
+        return [v3.x, v3.y, v3.z];
+    }
+
+    public getOwnerChipIcon(): OwnerIconsTypes {
+        if (this.index < 0 || this.index > CELLS_ON_BOARD - 1)
+            throw new Error("Cell index must be between 0 and 32");
+        // @ts-ignore
+        return cellsOwnerIcons[this.index];
+    }
 }
 
 export class BoardPresenter {
@@ -167,6 +132,16 @@ export class BoardPresenter {
 
     constructor() {
         this.cells = Array.from(Array(CELLS_ON_BOARD).keys()).map((i) => new CellPresenter(i));
+    }
+
+    @keepReactCellsUpdated
+    public setOwner(cell: CellPresenter, owner?: PieceColor): void {
+        cell.setOwner(owner);
+    }
+
+    @keepReactCellsUpdated
+    public setOwnerByIndex(index: number, owner?: PieceColor): void {
+        this.setOwner(this.cells[index], owner);
     }
 
     public getCellByUV(uv: Vector2): CellPresenter | null {

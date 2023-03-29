@@ -3,7 +3,8 @@ import {useLoader} from "@react-three/fiber";
 import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
 import {MTLLoader} from "three/examples/jsm/loaders/MTLLoader";
 import {boardView} from "../viewGlobals";
-import {PieceColor, PiecePresenter} from "../board";
+import {PiecePresenter} from "../board";
+import {PieceColor} from "../constants";
 
 
 const PieceColorsMapping = Object.freeze({
@@ -27,7 +28,7 @@ const PieceColorsMapping = Object.freeze({
         mtl: import.meta.env.BASE_URL + 'models/chiporange.mtl',
         obj: import.meta.env.BASE_URL + 'models/chiporange.obj'
     },
-    [PieceColor.LightPink]: {
+    [PieceColor.Red]: {
         mtl: import.meta.env.BASE_URL + 'models/chiplightpink.mtl',
         obj: import.meta.env.BASE_URL + 'models/chiplightpink.obj'
     },

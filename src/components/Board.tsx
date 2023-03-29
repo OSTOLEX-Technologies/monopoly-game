@@ -4,6 +4,7 @@ import {PropsWithChildren, Fragment} from "react";
 import {Piece} from "./Piece";
 import {useCells} from "../hooks";
 import {TextureLoader} from "three";
+import {CircleChip} from "./CircleChip";
 
 export type BoardProps = {
     onClick?: (e: ThreeEvent<MouseEvent>) => void
@@ -19,16 +20,24 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                 <planeGeometry />
                 <meshPhongMaterial map={colorMap} />
             </mesh>
-            {cells.map((cell, i) => {
-                if (cell.getPieces().length > 0) return (
+            {cells.map((cell, i) =>
+                (
                     <Fragment key={i}>
-                        {cell.getPieces().filter(piece => piece).map((piece, j) => (
-                                <Piece piecePresenter={piece!} key={`${i}-${piece!.uuid}`} cellIndex={i}/>
-                            )
-                        )}
+                        {cell.getPieces().length > 0 &&
+                            <Fragment key={i}>
+                                {cell.getPieces().filter(piece => piece).map((piece, j) => (
+                                    <Piece piecePresenter={piece!} key={`${i}-${piece!.uuid}`} cellIndex={i}/>
+                                )
+                                )}
+                            </Fragment>
+                        }
+                        {
+                            cell.getOwner() &&
+                            <CircleChip type={cell.getOwnerChipIcon()} color={cell.getOwner()!} position={cell.getOwnerChipPositionTuple()}/>
+                        }
                     </Fragment>
-                )
-            })}
+                ))
+            }
             {children}
         </>
     )
