@@ -1,1 +1,1 @@
-# $\text{Here will be uploaded game rules}$
+Here will be uploaded game rules}
