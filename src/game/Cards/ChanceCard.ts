@@ -23,6 +23,9 @@ export class ChanceCard extends Card implements ICardTask {
   doTask(playerId: string, players: Array<Player>): Action {
     let player = getPlayerById(playerId, players);
 
+    let currPosition;
+    let newPosition;
+
     let actions: Array<Action> = [];
     switch (this.getId()) {
       case 'chance-201': // Advance to "Go". (Collect $200)
@@ -43,19 +46,18 @@ export class ChanceCard extends Card implements ICardTask {
 
         break;
       case 'chance-204': // Advance token to the nearest Utility
-        /* TODO:
         currPosition = player.getPosition();
         if (currPosition === 7) {
           newPosition = 12;
         } else {
           newPosition = 28;
         }
-        */
-        // this.doStep(newPosition, dice, playerIdx);
+
         player.setIsNextPayByDice({ isTrue: true, payTo: null });
+        actions.push(new MoveAction(playerId, newPosition, []));
+
         break;
       case 'chance-205': // Advance to the nearest Railroad
-        /* TODO:
         currPosition = player.getPosition();
         if (currPosition === 7) {
           newPosition = 15;
@@ -64,9 +66,8 @@ export class ChanceCard extends Card implements ICardTask {
         } else {
           newPosition = 5;
         }
-         */
-        // this.doStep(newPosition, dice, playerIdx);
-        player.setIsNextPayByDice({ isTrue: true, payTo: null });
+
+        actions.push(new MoveAction(playerId, newPosition, []));
         break;
       case 'chance-206': // Bank pays you dividend of $50
         actions.push(new PayAction("bank", playerId, 50))
