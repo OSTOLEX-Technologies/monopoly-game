@@ -12,7 +12,7 @@ import {JailTile} from "./Tiles/JailTile";
 import {PropertyCard} from "./Cards/PropertyCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {RailroadsCard} from "./Cards/RailroadsCard";
-import {CommunityChest} from "./Cards/CommunityChest";
+import {CommunityChestCard} from "./Cards/CommunityChestCard";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {Player} from "./Player";
 
@@ -87,6 +87,26 @@ export const cmpsOrder = Object.freeze([
 ]);
 
 export function getTiles(players: Array<Player>): Array<Tile> {
+  let communityCards = getCommunityChestCards();
+  players.forEach((player) => {
+    player.communityChestCards.forEach((communityCard) => {
+      const cardIdx = communityCards.findIndex(
+        (card) => card.getId() == communityCard.getId()
+       );
+      communityCards.splice(cardIdx, 1);
+    });
+  });
+
+  let chanceCards = getChanceCards();
+  players.forEach((player) => {
+    player.chanceCards.forEach((chanceCard) => {
+      const cardIdx = chanceCards.findIndex(
+        (card) => card.getId() == chanceCard.getId()
+      );
+      chanceCards.splice(cardIdx, 1);
+    });
+  });
+
   let result = [
     new GoTile(
       'Go',
@@ -103,7 +123,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
     new CommunityChestTile(
       'Community chest',
       [],
-      null,
+      communityCards,
     ),
     new CityTile(
       'Baltic Avenue',
@@ -132,7 +152,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
     new ChanceTile(
       'Chance',
       [],
-      null,
+      chanceCards,
     ),
     new CityTile(
       'Vermont Avenue',
@@ -190,7 +210,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
     new CommunityChestTile(
       'Community chest',
       [],
-      null,
+      communityCards,
     ),
     new CityTile(
       'Tennessee Avenue',
@@ -218,7 +238,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
     new ChanceTile(
       'Chance',
       [],
-      null,
+      chanceCards,
     ),
     new CityTile(
       'Indiana Avenue',
@@ -282,7 +302,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
     new CommunityChestTile(
       'Community chest',
       [],
-      null,
+      communityCards,
     ),
     new CityTile(
       'Pennsylvania Avenue',
@@ -299,7 +319,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
     new ChanceTile(
       'Chance',
       [],
-      null,
+      chanceCards,
     ),
     new CityTile(
       'Park Place',
@@ -756,84 +776,84 @@ export function getRailroadsCards(): Array<RailroadsCard> {
   ];
 }
 
-export function getCommunityChestCards(): Array<CommunityChest> {
+export function getCommunityChestCards(): Array<CommunityChestCard> {
   return  [
-    new CommunityChest(
+    new CommunityChestCard(
       'community-101',
       'Community Chest',
       'Advance to "Go". (Collect $200) ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-102',
       'Community Chest',
       'Life insurance matures - Collect $100',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-103',
       'Community Chest',
       'Get Out of Jail Free. ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-104',
       'Community Chest',
       'You have won second prize in a beauty contest. Collect $10.',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-105',
       'Community Chest',
       'Bank error in your favor. Collect $200. ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-106',
       'Community Chest',
       'From sale of stock you get $50.',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-107',
       'Community Chest',
       'Income tax refund. Collect $20. ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-108',
       'Community Chest',
       'Receive for services $25.',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-109',
       'Community Chest',
       'You inherit $100.',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-110',
       'Community Chest',
       'Holiday Fund matures. Collect $100. ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-111',
       'Community Chest',
       'Collect $50 from every player for opening night seats. ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-112',
       'Community Chest',
       "Doctor's fees. Pay $50.",
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-113',
       'Community Chest',
       'Pay hospital $100.',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-114',
       'Community Chest',
       'Pay school tax of $150',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-115',
       'Community Chest',
       'You are assessed for street repairs: Pay $40 per house and $115 per hotel you own. ',
     ),
-    new CommunityChest(
+    new CommunityChestCard(
       'community-116',
       'Community Chest',
       'Go to Jail. ',

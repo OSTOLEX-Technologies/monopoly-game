@@ -1,6 +1,7 @@
 import {Card} from "./Card";
+import {ICardRent} from "./ICardRent";
 
-export class RailroadsCard extends Card {
+export class RailroadsCard extends Card implements ICardRent {
   private price: number;
   private rent: number;
   private ifTwoCards: number;

@@ -2,7 +2,7 @@ import {PropertyCard} from "./Cards/PropertyCard";
 import {RailroadsCard} from "./Cards/RailroadsCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {ChanceCard} from "./Cards/ChanceCard";
-import {CommunityChest} from "./Cards/CommunityChest";
+import {CommunityChestCard} from "./Cards/CommunityChestCard";
 
 export class Player {
   private readonly id: string;
@@ -14,7 +14,7 @@ export class Player {
   public railroadsCards: Array<RailroadsCard>;
   public utilitiesCards: Array<UtilitiesCard>;
   public chanceCards: Array<ChanceCard>;
-  public communityChestCards: Array<CommunityChest>;
+  public communityChestCards: Array<CommunityChestCard>;
   private isNextPayByDice: {isTrue: boolean, payTo: Player | null};
 
   constructor(id: string, name: string, balance: number, position: number) {
@@ -27,7 +27,7 @@ export class Player {
     this.railroadsCards = new Array<RailroadsCard>();
     this.utilitiesCards = new Array<UtilitiesCard>();
     this.chanceCards = new Array<ChanceCard>();
-    this.communityChestCards = new Array<CommunityChest>();
+    this.communityChestCards = new Array<CommunityChestCard>();
     this.isNextPayByDice = {isTrue: false, payTo: null};
   }
 

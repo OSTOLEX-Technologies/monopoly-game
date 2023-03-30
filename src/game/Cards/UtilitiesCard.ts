@@ -1,6 +1,7 @@
 import {Card} from "./Card";
+import {ICardRent} from "./ICardRent";
 
-export class UtilitiesCard extends Card {
+export class UtilitiesCard extends Card implements ICardRent {
   private price: number;
   private rent: string;
   private twoAreOwned: string;
@@ -17,5 +18,13 @@ export class UtilitiesCard extends Card {
 
   public getPrice() {
     return this.price;
+  }
+
+  getRent(quantityOfCards: number, dice: Array<number>): number {
+    if (quantityOfCards == 1) {
+      return (dice[0] + dice[1]) * 4;
+    } else {
+      return (dice[0] + dice[1]) * 10;
+    }
   }
 }

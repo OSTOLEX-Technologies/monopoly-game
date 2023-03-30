@@ -1,5 +1,6 @@
 import {Action} from "../Actions/Action";
+import {Player} from "../Player";
 
 export interface ITileTask {
-  doTask(): Array<Action>;
+  doTask(playerId: string, players: Array<Player>): Action;
 }
