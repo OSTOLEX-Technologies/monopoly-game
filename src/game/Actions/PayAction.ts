@@ -1,4 +1,5 @@
 import {Action} from "./Action";
+import {Board} from "../Board";
 
 export class PayAction extends Action {
   from: string;
@@ -13,6 +14,7 @@ export class PayAction extends Action {
     this.amount = amount;
   }
 
-  doAction(): void {
+  doAction(board: Board): void {
+    board.bank.payMoney(this.from, this.to, this.amount);
   }
 }

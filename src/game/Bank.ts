@@ -50,8 +50,18 @@ export class Bank {
     player.increaseBalance(amount);
   }
 
-  public payMoney(playerId: string, amount: number) {
-    let player = getPlayerById(playerId, this.players);
+  public payMoney(from: string, to: string, amount: number) {
+    if (from == "bank") {
+      this.collectMoney(to, amount);
+      return;
+    }
+
+    if (to != "bank") {
+      let toPlayer = getPlayerById(to, this.players);
+      toPlayer.increaseBalance(amount);
+    }
+
+    let player = getPlayerById(from, this.players);
     player.decreaseBalance(amount);
   }
 

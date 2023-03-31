@@ -29,7 +29,7 @@ export class Board {
   private communityChestCards: Array<CommunityChestCard>;
   private chanceCards: Array<ChanceCard>;
   private tiles: Array<Tile>;
-  private bank: Bank;
+  public bank: Bank;
 
   constructor(tiles: Array<Tile>, players: Array<Player>, currentPlayerId: string, bank: Bank) {
     this.tokens = tokens;
