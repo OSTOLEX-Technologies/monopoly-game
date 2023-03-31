@@ -7,7 +7,7 @@ import {getRandomInt} from "../Utils";
 import {isGetOutOfJailFree} from "./Utils";
 
 export class ChanceTile extends Tile implements ITileTask {
-  private cards: Array<ChanceCard>;
+  private readonly cards: Array<ChanceCard>;
 
   constructor(name: string, players: Array<Player>, cards: Array<ChanceCard>) {
     super(name, null, players, TileType.Chance);

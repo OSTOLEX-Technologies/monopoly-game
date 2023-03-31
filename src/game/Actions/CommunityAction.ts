@@ -2,7 +2,7 @@ import {Action} from "./Action";
 import {Board} from "../Board";
 
 export class CommunityAction extends Action {
-  private actions: Array<Action>;
+  private readonly actions: Array<Action>;
   private description: string;
 
   constructor(playerId: string, actions: Array<Action>, description: string) {

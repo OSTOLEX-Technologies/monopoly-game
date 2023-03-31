@@ -1,14 +1,14 @@
-import {Card} from "./Card";
+import {Card, CardType} from "./Card";
 import {ICardRent} from "./ICardRent";
 
 export class UtilitiesCard extends Card implements ICardRent {
-  private price: number;
+  private readonly price: number;
   private rent: string;
   private twoAreOwned: string;
   private mortgage: number;
 
   constructor(id: string, title: string, price: number, rent: string, twoAreOwned: string, mortgage: number) {
-    super(id, title);
+    super(id, title, CardType.Utility);
 
     this.price = price;
     this.rent = rent;

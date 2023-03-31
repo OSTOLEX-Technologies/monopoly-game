@@ -4,12 +4,10 @@ import {ITileTask} from "./ITileTask";
 import {Action} from "../Actions/Action";
 import {CommunityChestCard} from "../Cards/CommunityChestCard";
 import {getRandomInt} from "../Utils";
-import {GetOutOfJailAction} from "../Actions/GetOutOfJailAction";
-import {CommunityAction} from "../Actions/CommunityAction";
 import {isGetOutOfJailFree} from "./Utils";
 
 export class CommunityChestTile extends Tile implements ITileTask {
-  private cards: Array<CommunityChestCard>;
+  private readonly cards: Array<CommunityChestCard>;
 
   constructor(name: string, players: Array<Player>, cards: Array<CommunityChestCard>) {
     super(name, null, players, TileType.Community);

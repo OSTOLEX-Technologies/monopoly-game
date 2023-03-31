@@ -31,10 +31,6 @@ export class Player {
     this.isNextPayByDice = {isTrue: false, payTo: null};
   }
 
-  public getIsNextPayByDice() {
-    return this.isNextPayByDice;
-  }
-
   public setIsNextPayByDice(isNextPayByDice: {isTrue: boolean, payTo: Player | null}) {
     this.isNextPayByDice = isNextPayByDice;
   }

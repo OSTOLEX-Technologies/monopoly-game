@@ -4,7 +4,7 @@ import {Action} from "../Actions/Action";
 import {PayAction} from "../Actions/PayAction";
 
 export class TaxTile extends Tile {
-  private price: number;
+  private readonly price: number;
 
   constructor(name: string, players: Array<Player>, owner: Player | null, price: number) {
     super(name, owner, players, TileType.Tax);

@@ -1,4 +1,4 @@
-import {Card} from "./Card";
+import {Card, CardType} from "./Card";
 import {ICardTask} from "./ICardTask";
 import {Action} from "../Actions/Action";
 import {Player} from "../Player";
@@ -12,10 +12,10 @@ import {GetFreeCardAction} from "../Actions/GetFreeCardAction";
 import {GoToJailAction} from "../Actions/GoToJailAction";
 
 export class ChanceCard extends Card implements ICardTask {
-  private description: string;
+  private readonly description: string;
 
   constructor(id: string, title: string, description: string) {
-    super(id, title);
+    super(id, title, CardType.Chance);
 
     this.description = description;
   }
@@ -29,19 +29,19 @@ export class ChanceCard extends Card implements ICardTask {
     let actions: Array<Action> = [];
     switch (this.getId()) {
       case 'chance-201': // Advance to "Go". (Collect $200)
-        actions.push(new MoveAction(playerId, 0, []), new GoAction(playerId));
+        actions.push(new MoveAction(playerId, 0, []), new GoAction([], playerId));
         break;
       case 'chance-202': // Advance to Illinois Ave. {Avenue}. If you pass Go, collect $200.
         actions.push(new MoveAction(playerId, 13, []));
         if (player.getPosition() > 13) {
-          actions.push(new GoAction(playerId));
+          actions.push(new GoAction([], playerId));
         }
 
         break;
       case 'chance-203': // Advance to St. Charles Place. If you pass Go, collect $200
         actions.push(new MoveAction(playerId, 13, []));
         if (player.getPosition() > 35) {
-          actions.push(new GoAction(playerId));
+          actions.push(new GoAction([], playerId));
         }
 
         break;
@@ -81,7 +81,7 @@ export class ChanceCard extends Card implements ICardTask {
         actions.push(new MoveAction(playerId, posBack, []));
         break;
       case 'chance-209': // Go to Jail
-        actions.push(new GoToJailAction(playerId, []));
+        actions.push(new GoToJailAction([], playerId));
         break;
       case 'chance-210': // Make general repairs on all your property
         let homeCount = 0;
@@ -103,7 +103,7 @@ export class ChanceCard extends Card implements ICardTask {
       case 'chance-212': // collect $200
         const playerPos = player.getPosition();
         if (playerPos > 5) {
-          actions.push(new GoAction(playerId));
+          actions.push(new GoAction([], playerId));
         }
 
         actions.push(new MoveAction(playerId, 5, []));

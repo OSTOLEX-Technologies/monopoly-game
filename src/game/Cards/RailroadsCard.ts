@@ -1,12 +1,12 @@
-import {Card} from "./Card";
+import {Card, CardType} from "./Card";
 import {ICardRent} from "./ICardRent";
 
 export class RailroadsCard extends Card implements ICardRent {
-  private price: number;
-  private rent: number;
-  private ifTwoCards: number;
-  private ifThreeCards: number;
-  private ifFourCards: number;
+  private readonly price: number;
+  private readonly rent: number;
+  private readonly ifTwoCards: number;
+  private readonly ifThreeCards: number;
+  private readonly ifFourCards: number;
   private mortgage: number;
 
   constructor(
@@ -19,7 +19,7 @@ export class RailroadsCard extends Card implements ICardRent {
     ifThreeCards: number,
     ifFourCards: number,
     mortgage: number) {
-    super(id, title);
+    super(id, title, CardType.RailRoad);
 
     this.price = price;
     this.rent = rent;

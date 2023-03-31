@@ -1,9 +1,18 @@
 import {IOffer} from "./IOffer";
-import {Player} from "../Player";
-import {Card} from "../Cards/Card";
-import {Tile} from "../Tiles/Tile";
+import {CardType} from "../Cards/Card";
+import {Bank} from "../Bank";
 
 export class CardToCardOffer implements IOffer {
-  offer(players: Array<Player>, cards: Array<Card>, tiles: Array<Tile>): void {
+  private offer1: {userId: string, cardId: string, cardType: CardType};
+  private offer2: {userId: string, cardId: string, cardType: CardType};
+
+  constructor(offer1: {userId: string, cardId: string, cardType: CardType}, offer2: {userId: string, cardId: string, cardType: CardType}) {
+    this.offer1 = offer1;
+    this.offer2 = offer2;
+  }
+
+  public acceptOffer(bank: Bank): void {
+    bank.transferCard(this.offer1.userId, this.offer2.userId, this.offer1.cardId, this.offer1.cardType);
+    bank.transferCard(this.offer2.userId, this.offer1.userId, this.offer2.cardId, this.offer2.cardType);
   }
 }

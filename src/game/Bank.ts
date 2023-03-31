@@ -1,21 +1,18 @@
-import {IOffer} from "./Offers/IOffer";
 import {Tile} from "./Tiles/Tile";
 import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";
-import {RailroadTile} from "./Tiles/RailroadTile";
 import {RailroadsCard} from "./Cards/RailroadsCard";
-import {CityTile} from "./Tiles/CityTile";
-import {UtilityTile} from "./Tiles/UtilityTile";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {getPropertyCards, getRailroadsCards, getUtilitiesCards} from "./GameConfig";
 import {getPlayerById} from "./Utils";
+import {CardType} from "./Cards/Card";
 
 export class Bank {
   private tiles: Array<Tile>;
-  private players: Array<Player>;
-  private propertyCards: Array<PropertyCard>;
-  private railroadsCards: Array<RailroadsCard>;
-  private utilitiesCards: Array<UtilitiesCard>;
+  private readonly players: Array<Player>;
+  private readonly propertyCards: Array<PropertyCard>;
+  private readonly railroadsCards: Array<RailroadsCard>;
+  private readonly utilitiesCards: Array<UtilitiesCard>;
 
   constructor(tiles: Array<Tile>, players: Array<Player>) {
     this.tiles = tiles;
@@ -41,10 +38,6 @@ export class Bank {
     });
   }
 
-  public trade(transaction: IOffer) {
-
-  }
-
   public collectMoney(playerId: string, amount: number) {
     let player = getPlayerById(playerId, this.players);
     player.increaseBalance(amount);
@@ -63,6 +56,36 @@ export class Bank {
 
     let player = getPlayerById(from, this.players);
     player.decreaseBalance(amount);
+  }
+
+  public transferCard(fromPlayerId: string, toPlayerId: string, cardId: string, cardType: CardType) {
+    const fromPlayer = getPlayerById(fromPlayerId, this.players);
+    const toPlayer = getPlayerById(toPlayerId, this.players);
+
+    let card;
+    let cardIdx;
+    switch (cardType) {
+      case CardType.Property:
+        cardIdx = this.propertyCards.findIndex((c) => c.getId() == cardId);
+        card = this.propertyCards[cardIdx];
+        fromPlayer.propertyCards.splice(cardIdx, 1);
+        toPlayer.propertyCards.push(card);
+        break;
+      case CardType.RailRoad:
+        cardIdx = this.railroadsCards.findIndex((c) => c.getId() == cardId);
+        card = this.railroadsCards[cardIdx];
+        fromPlayer.railroadsCards.splice(cardIdx, 1);
+        toPlayer.railroadsCards.push(card);
+        break;
+      case CardType.Utility:
+        cardIdx = this.utilitiesCards.findIndex((c) => c.getId() == cardId);
+        card = this.utilitiesCards[cardIdx];
+        fromPlayer.utilitiesCards.splice(cardIdx, 1);
+        toPlayer.utilitiesCards.push(card);
+        break;
+      default:
+        throw new Error(cardType + "cannot be exchanged");
+    }
   }
 
   public buyHouse(cardId: string, playerId: string) {
@@ -130,67 +153,5 @@ export class Bank {
       (card: UtilitiesCard) => card.getId() == cardId
     );
     return this.utilitiesCards.splice(cardIdx, 1);
-  }
-
-  private payRent(player: Player, dice: Array<number>, currTile: Tile, playerId: string) {
-    const ownerId = currTile.getOwnerId();
-    const ownerIdx = this.players.findIndex(
-      (p: Player) => p.getId() == ownerId
-    );
-
-    const playerIdx = this.players.findIndex(
-      (p: Player) => p.getId() == playerId
-    );
-
-    let amountToPay = 0;
-    let card;
-
-    if (currTile instanceof RailroadTile) {
-      const cardIdx = this.players[ownerIdx].railroadsCards.findIndex(
-        (card: RailroadsCard) => {
-          return card.getTitle() == currTile.getName();
-        }
-      );
-      const quantityOfCards =
-        this.players[ownerIdx].railroadsCards.length;
-      card = this.players[ownerIdx].railroadsCards[cardIdx];
-      amountToPay = card.getRent(quantityOfCards);
-    } else if (currTile instanceof CityTile) {
-      const cardIdx = this.players[ownerIdx].propertyCards.findIndex(
-        (card: PropertyCard) => {
-          return card.getTitle() == currTile.getName();
-        }
-      );
-      card = this.players[ownerIdx].propertyCards[cardIdx];
-      amountToPay = card.getRent();
-    } else if (currTile instanceof UtilityTile) {
-      const quantityOfCards =
-        this.players[ownerIdx].utilitiesCards.length;
-
-      if (quantityOfCards === 1) {
-        return this.payByDice(player, dice, 4, this.players[ownerIdx]);
-      } else {
-        return this.payByDice(player, dice, 10, this.players[ownerIdx]);
-      }
-    }
-
-    this.players[playerIdx].decreaseBalance(amountToPay);
-    this.players[ownerIdx].increaseBalance(amountToPay);
-
-    return amountToPay;
-  }
-
-  public payByDice(player: Player, dice: Array<number>, times: number, payTo: Player) {
-    const currPlayerIdx = this.players.findIndex(
-      (p: Player) => p.getId() == player.getId()
-    );
-    const playerToPayIdx = this.players.findIndex(
-      (p: Player) => p.getId() == payTo.getId()
-    );
-    const amount = (dice[0] + dice[1]) * times;
-    this.players[currPlayerIdx].decreaseBalance(amount);
-    this.players[playerToPayIdx].increaseBalance(amount);
-    player.setIsNextPayByDice({isTrue: false, payTo: null});
-    return amount;
   }
 }

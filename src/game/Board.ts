@@ -18,7 +18,7 @@ import {GoAction} from "./Actions/GoAction";
 export class Board {
   public tokens: ReadonlyArray<{ name: string }>;
   public cmpsOrder: ReadonlyArray<string>;
-  private currentPlayerId: string;
+  private readonly currentPlayerId: string;
   public players: Array<Player>;
   private communityChestCards: Array<CommunityChestCard>;
   private chanceCards: Array<ChanceCard>;

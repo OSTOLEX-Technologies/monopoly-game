@@ -7,8 +7,8 @@ import {ICardRent} from "../Cards/ICardRent";
 import {PayAction} from "../Actions/PayAction";
 
 export abstract class Tile {
-  private type: TileType;
-  private name: string;
+  private readonly type: TileType;
+  private readonly name: string;
   private owner: Player | null;
   private players: Array<Player>;
 
@@ -17,10 +17,6 @@ export abstract class Tile {
     this.name = name;
     this.owner = owner;
     this.players = players;
-  }
-
-  public getName(): string {
-    return  this.name;
   }
 
   public getOwnerId(): string {

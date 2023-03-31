@@ -1,7 +1,5 @@
-import {Card} from "../Cards/Card";
-import {Tile} from "../Tiles/Tile";
-import {Player} from "../Player";
+import {Bank} from "../Bank";
 
 export interface IOffer {
-  offer(players: Array<Player>, cards: Array<Card>, tiles: Array<Tile>): void;
+  acceptOffer(bank: Bank): void;
 }

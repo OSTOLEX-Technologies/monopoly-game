@@ -1,17 +1,17 @@
-import {Card} from "./Card";
+import {Card, CardType} from "./Card";
 import {ICardRent} from "./ICardRent";
 
 export class PropertyCard extends Card implements ICardRent {
-  private price: number;
-  private rent: number;
-  private oneHouse: number;
-  private twoHouses: number;
-  private threeHouses: number;
-  private fourHouses: number;
-  private hotel: number;
-  private mortgage: number;
-  private houseCost: number;
-  private hotelCost: number;
+  private readonly price: number;
+  private readonly rent: number;
+  private readonly oneHouse: number;
+  private readonly twoHouses: number;
+  private readonly threeHouses: number;
+  private readonly fourHouses: number;
+  private readonly hotel: number;
+  private _mortgage: number;
+  private readonly houseCost: number;
+  private readonly hotelCost: number;
   private quantity: number;
   private houses: number;
   private hotels: number;
@@ -32,7 +32,7 @@ export class PropertyCard extends Card implements ICardRent {
     quantity: number,
     houses: number,
     hotels: number) {
-    super(id, title);
+    super(id, title, CardType.Property);
 
     this.price = price;
     this.rent = rent;
@@ -41,7 +41,7 @@ export class PropertyCard extends Card implements ICardRent {
     this.threeHouses = threeHouses;
     this.fourHouses = fourHouses;
     this.hotel = hotel;
-    this.mortgage = mortgage;
+    this._mortgage = mortgage;
     this.houseCost = houseCost;
     this.hotelCost = houseCost;
     this.quantity = quantity;

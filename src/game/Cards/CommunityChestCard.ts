@@ -1,4 +1,4 @@
-import {Card} from "./Card";
+import {Card, CardType} from "./Card";
 import {ICardTask} from "./ICardTask";
 import {Action} from "../Actions/Action";
 import {getPlayerById} from "../Utils";
@@ -12,10 +12,10 @@ import {GetFreeCardAction} from "../Actions/GetFreeCardAction";
 import {CommunityAction} from "../Actions/CommunityAction";
 
 export class CommunityChestCard extends Card implements ICardTask {
-  private description: string;
+  private readonly description: string;
 
   constructor(id: string, title: string, description: string) {
-    super(id, title);
+    super(id, title, CardType.Community);
 
     this.description = description;
   }
