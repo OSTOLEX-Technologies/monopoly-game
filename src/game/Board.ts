@@ -1,5 +1,4 @@
 import {Player} from "./Player";
-import {PropertyCard} from "./Cards/PropertyCard";
 import {CommunityChestCard} from "./Cards/CommunityChestCard";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {Tile} from "./Tiles/Tile";
@@ -14,21 +13,16 @@ import {getPlayerById, throwDice} from "./Utils";
 import {ErrorAction} from "./Actions/ErrorAction";
 import {MoveAction} from "./Actions/MoveAction";
 import {GetOutOfJailAction} from "./Actions/GetOutOfJailAction";
-import {CommunityChestTile} from "./Tiles/CommunityChestTile";
-import {ChanceTile} from "./Tiles/ChanceTile";
 import {GoAction} from "./Actions/GoAction";
-import {TaxTile} from "./Tiles/TaxTile";
-import {JailTile} from "./Tiles/JailTile";
-import {GoToJailAction} from "./Actions/GoToJailAction";
 
 export class Board {
   public tokens: ReadonlyArray<{ name: string }>;
   public cmpsOrder: ReadonlyArray<string>;
   private currentPlayerId: string;
-  private players: Array<Player>;
+  public players: Array<Player>;
   private communityChestCards: Array<CommunityChestCard>;
   private chanceCards: Array<ChanceCard>;
-  private tiles: Array<Tile>;
+  public tiles: Array<Tile>;
   public bank: Bank;
 
   constructor(tiles: Array<Tile>, players: Array<Player>, currentPlayerId: string, bank: Bank) {
@@ -75,27 +69,9 @@ export class Board {
       return this.increaseStepsInJail(playerId, dice);
     }
 
-    const result = this.movePlayerToNewTile(dice, playerId);
+    const action = new MoveAction(playerId, 0, dice);
 
-    const player = getPlayerById(playerId, this.players);
-    const playerPosition = player.getPosition();
-    const currTile = this.tiles[playerPosition];
-
-    if (currTile instanceof CommunityChestTile || currTile instanceof ChanceTile) {
-      result.push(currTile.doTask(playerId, this.players));
-    } else if (currTile instanceof TaxTile) {
-      result.push(currTile.getPayTaxAction(playerId));
-    } else if (currTile instanceof JailTile) {
-      result.push(new GoToJailAction(playerId, dice));
-    } else if (currTile.hasOwner() && currTile.getOwnerId() != playerId) {
-      result.push(currTile.getPayRentAction(playerId, dice));
-    }
-
-    result.forEach((action) => {
-      action.doAction(this);
-    });
-
-    return result;
+    return action.doAction(this);
   }
 
   private isCurrentPlayer(playerId: string): boolean {
@@ -124,7 +100,7 @@ export class Board {
     return result;
   }
 
-  private movePlayerToNewTile(dice: Array<number>, playerId: string): Array<Action> {
+  public movePlayerToNewTile(dice: Array<number>, playerId: string): Array<Action> {
     const player = getPlayerById(playerId, this.players);
     this.tiles[player.getPosition()].removePlayer(playerId);
     const result = this.calculateNewPosition(dice, playerId);
@@ -151,6 +127,12 @@ export class Board {
     player.setPosition(newPosition);
 
     return result;
+  }
+
+  public advancePlayer(position: number, playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+    this.tiles[player.getPosition()].removePlayer(playerId);
+    this.tiles[position].addPlayer(player);
   }
 
   private goToJail(playerId: string) {
