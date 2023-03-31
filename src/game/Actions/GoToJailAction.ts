@@ -1,9 +1,11 @@
 import {Action} from "./Action";
+import {Board} from "../Board";
 
 export class GoToJailAction extends Action {
-  constructor(playerId: string, dice: Array<number>) {
+  constructor(dice: Array<number>, playerId: string) {
     super(dice, playerId);
   }
-  doAction(): void {
+  doAction(board: Board): void {
+    board.goToJail(this.playerId);
   }
 }

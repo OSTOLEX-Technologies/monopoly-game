@@ -91,7 +91,9 @@ export class Board {
 
     if (isDouble) {
       this.getOutOfJail(player.getId());
-      result.push(new GetOutOfJailAction(dice, playerId));
+      const getOutOfJailAction = new GetOutOfJailAction(dice, playerId);
+      getOutOfJailAction.doAction(this);
+      result.push(getOutOfJailAction);
       result.push(...this.applyDice(playerId, dice));
     } else {
       result.push(new MoveAction(playerId, player.getPosition(), dice));
@@ -121,7 +123,7 @@ export class Board {
 
     let result = [];
     if (currPosition > newPosition) {
-      result.push(new GoAction(playerId))
+      result.push(new GoAction(dice, playerId))
     }
 
     player.setPosition(newPosition);
@@ -135,12 +137,12 @@ export class Board {
     this.tiles[position].addPlayer(player);
   }
 
-  private goToJail(playerId: string) {
+  public goToJail(playerId: string) {
     let player = getPlayerById(playerId, this.players);
     player.setStepsInJail(3);
   }
 
-  private getOutOfJail(playerId: string) {
+  public getOutOfJail(playerId: string) {
     let player = getPlayerById(playerId, this.players);
     player.setStepsInJail(0);
   }

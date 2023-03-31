@@ -26,7 +26,7 @@ export class CommunityChestCard extends Card implements ICardTask {
     let actions: Array<Action> = [];
     switch (this.id) {
       case 'community-101': // Advance to "Go". (Collect $200)
-        actions.push(new MoveAction(playerId, 0, []), new GoAction(playerId));
+        actions.push(new MoveAction(playerId, 0, []), new GoAction([], playerId));
         break;
       case 'community-102': // Collect $100
         actions.push(new PayAction("bank", playerId, 100));
@@ -87,7 +87,7 @@ export class CommunityChestCard extends Card implements ICardTask {
         actions.push(new PayAction(playerId, "bank", tax));
         break;
       case 'community-116': // Go to Jail
-        actions.push(new GoToJailAction(playerId, []));
+        actions.push(new GoToJailAction([], playerId));
         break;
       default:
         console.log("Community task card not found");

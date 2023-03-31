@@ -1,10 +1,12 @@
 import {Action} from "./Action";
+import {Board} from "../Board";
 
 export class GetOutOfJailAction extends Action{
   constructor(dice: Array<number>, playerId: string) {
-    super([], playerId);
+    super(dice, playerId);
   }
 
-  doAction(): void {
+  doAction(board: Board): void {
+    board.getOutOfJail(this.playerId);
   }
 }

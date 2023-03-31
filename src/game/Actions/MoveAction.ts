@@ -22,27 +22,30 @@ export class MoveAction extends Action {
        return [];
     }
 
-    const result = board.movePlayerToNewTile(this.dice, this.playerId);
+    const actions = board.movePlayerToNewTile(this.dice, this.playerId);
 
     const player = getPlayerById(this.playerId, board.players);
     const playerPosition = player.getPosition();
     const currTile = board.tiles[playerPosition];
 
     if (currTile instanceof CommunityChestTile || currTile instanceof ChanceTile) {
-      result.push(currTile.doTask(this.playerId, board.players));
+      actions.push(currTile.doTask(this.playerId, board.players));
     } else if (currTile instanceof TaxTile) {
-      result.push(currTile.getPayTaxAction(this.playerId));
+      actions.push(currTile.getPayTaxAction(this.playerId));
     } else if (currTile instanceof JailTile) {
-      result.push(new GoToJailAction(this.playerId, this.dice));
+      actions.push(new GoToJailAction(this.dice, this.playerId));
     } else if (currTile.hasOwner() && currTile.getOwnerId() != this.playerId) {
-      result.push(currTile.getPayRentAction(this.playerId, this.dice));
+      actions.push(currTile.getPayRentAction(this.playerId, this.dice));
     } else if (playerPosition == 22) {
-      result.push(new GoToJailAction(this.playerId, this.dice));
+      actions.push(new GoToJailAction(this.dice, this.playerId));
     }
 
-    result.forEach((action) => {
+    actions.forEach((action) => {
       action.doAction(board);
     });
+
+    let result = new Array<Action> (this);
+    result.push(...actions);
 
     return result;
   }
