@@ -2,9 +2,9 @@ import {Action} from "./Action";
 import {Board} from "../Board";
 
 export class PayAction extends Action {
-  from: string;
-  to: string;
-  amount: number;
+  public readonly from: string;
+  public readonly to: string;
+  public readonly amount: number;
 
   constructor(from: string, to: string, amount: number) {
     super([], "");
