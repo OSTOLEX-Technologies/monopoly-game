@@ -1,17 +1,15 @@
 import {Money} from "./Money";
+import {useBalance} from "../../hooks";
+import {balanceManager} from "../../viewGlobals";
 
 export const UI = () => {
-    return <div>
-        <div style={{width: "20%"}}>
-            <div>
-            </div>
-            <div>
-
-            </div>
-        </div>
-        <div style={{width: "60%"}}></div>
-        <div style={{width: "20%"}}>
-            <Money/>
-        </div>
-    </div>
+    const balance = useBalance();
+    return (
+        <>
+            <Money amount={balance}
+                   bankruptHandler={() => balanceManager.setBalance(balanceManager.getBalance() + 10)}
+                     tradeHandler={() => balanceManager.setBalance(balanceManager.getBalance() - 10)}
+            />
+        </>
+    )
 }

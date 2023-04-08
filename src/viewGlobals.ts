@@ -1,10 +1,12 @@
 import {BoardPresenter, CellPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
 import {PieceColor} from "./constants";
+import {BalanceManager} from "./ui_logic";
 
 export const boardView = new BoardPresenter();
+export const balanceManager = new BalanceManager(0);
 
-export class ReactCellsManager {
+class ReactCellsManager {
     public setCellsHandlers: Array<(cells: CellPresenter[]) => void> = [];
 
     public onSetCells(handler: (cells: CellPresenter[]) => void): void {
@@ -18,19 +20,25 @@ export class ReactCellsManager {
         this.setCellsHandlers.splice(index, 1);
     }
 }
+
+class ReactBalanceManager {
+    public setBalanceHandlers: Array<(balance: number) => void> = [];
+
+    public onSetBalance(handler: (balance: number) => void): void {
+        this.setBalanceHandlers.push(handler);
+    }
+
+    public unSetBalance(handler: (balance: number) => void): void {
+        const index = this.setBalanceHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setBalanceHandlers.splice(index, 1);
+    }
+}
+
 export const reactCellsManager = new ReactCellsManager();
 
-export function keepReactCellsUpdated(target: BoardPresenter, propertyKey: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value;
-    descriptor.value = (...args: any[])  => {
-        const toReturn = originalMethod.call(boardView, ...args);
-        for (const handler of reactCellsManager.setCellsHandlers) {
-            handler([...boardView.cells])
-        }
-        return toReturn;
-    }
-    return descriptor
-}
+export const reactBalanceManager = new ReactBalanceManager();
 
 const piece1 = boardView.addPiece(0, PieceColor.Blue);
 const piece2 = boardView.addPiece(0, PieceColor.Green);

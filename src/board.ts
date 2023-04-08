@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import {Vector2, Vector3} from "three";
 import {PieceMoveAnimationRenderer} from "./animationsRenderers";
-import {animationRenderersManager, keepReactCellsUpdated} from "./viewGlobals";
+import {animationRenderersManager} from "./viewGlobals";
 import {
     CELLS_ON_BOARD,
     CELLS_ON_SIDE,
@@ -10,6 +10,7 @@ import {
     PieceColor,
     piecesOnCellOffsets
 } from "./constants";
+import {keepReactCellsUpdated} from "./decorators";
 
 
 export class PiecePresenter {
