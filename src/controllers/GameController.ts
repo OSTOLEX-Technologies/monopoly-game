@@ -1,6 +1,5 @@
 import {GameData} from "./GameData";
 import {Game} from "../game/Game";
-import {boardView} from "../viewGlobals";
 import {Action} from "../game/Actions/Action";
 import {MoveAction} from "../game/Actions/MoveAction";
 import {GoAction} from "../game/Actions/GoAction";
@@ -25,15 +24,22 @@ export class GameController {
   private initGame() {
   }
 
+  public getPlayers() {
+    return this.game.getPlayers();
+  }
+
   public async makeMove() {
-    const actions = this.game.doStep(this.playerId);
-    this.handleActions(actions);
+    this.game.doStep(this.playerId);
   }
 
   private handleActions(actions: Array<Action>) {
     actions.forEach((action) => {
       this.handleAction(action);
     });
+  }
+
+  private getActions() {
+
   }
 
   private handleAction(action: Action) {
@@ -44,7 +50,6 @@ export class GameController {
     else if (action instanceof ChanceAction) this.handleChanceAction(action);
     else if (action instanceof CommunityAction) this.handleCommunityAction(action);
     else if (action instanceof GetFreeCardAction) this.handleGetFreeCardAction(action);
-    else if (action instanceof PayAction) this.handlePayAction(action);
   }
 
   private handleMoveAction(action: MoveAction) {}
@@ -61,5 +66,16 @@ export class GameController {
 
   private handleGetFreeCardAction(action: GetFreeCardAction) {}
 
-  private handlePayAction(action: PayAction) {}
+  private getPayAction() {
+    const actions = this.game.getLastActions();
+
+    let result = new Array<PayAction>();
+    actions.forEach((action) => {
+      if (action instanceof PayAction) {
+        result.push(action);
+      }
+    });
+
+    return result;
+  }
 }
