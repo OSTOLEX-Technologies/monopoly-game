@@ -5,7 +5,8 @@ import {ChanceCard} from "./Cards/ChanceCard";
 import {CommunityChestCard} from "./Cards/CommunityChestCard";
 
 export class Player {
-  private readonly id: string;
+  public readonly id: string;
+  public readonly color: string;
   private name: string;
   private balance: number;
   private position: number;
@@ -17,8 +18,9 @@ export class Player {
   public communityChestCards: Array<CommunityChestCard>;
   private isNextPayByDice: {isTrue: boolean, payTo: Player | null};
 
-  constructor(id: string, name: string, balance: number, position: number) {
+  constructor(id: string, color: string, name: string, balance: number, position: number) {
     this.id = id;
+    this.color = color;
     this.name = name;
     this.balance = balance;
     this.position = position;
@@ -57,6 +59,10 @@ export class Player {
 
   public increaseStepsInJail() {
     this.stepsInJail--;
+  }
+
+  public getBalance() {
+    return this.balance;
   }
 
   public increaseBalance(amount: number) {

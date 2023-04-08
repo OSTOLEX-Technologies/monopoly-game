@@ -8,7 +8,7 @@ import {JailTile} from "../Tiles/JailTile";
 import {GoToJailAction} from "./GoToJailAction";
 
 export class MoveAction extends Action {
-  private readonly position: number;
+  public readonly position: number;
 
   constructor(playerId: string, position: number, dice: Array<number>) {
     super(dice, playerId);

@@ -896,11 +896,6 @@ mmd-parser@^1.0.4:
   resolved "https://registry.yarnpkg.com/mmd-parser/-/mmd-parser-1.0.4.tgz#87cc05782cb5974ca854f0303fc5147bc9d690e7"
   integrity sha512-Qi0VCU46t2IwfGv5KF0+D/t9cizcDug7qnNoy9Ggk7aucp0tssV8IwTMkBlDbm+VqAf3cdQHTCARKSsuS2MYFg==
 
-monopolygame@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/monopolygame/-/monopolygame-0.1.1.tgz#43bb9470a1dd0a5f6b060ba0814ff10089e6932d"
-  integrity sha512-t4qcwVnQYxM96sB0RBhuKdPju0ucp5Rj9zjiJMs8B+zlje+8CrnTK+uzeaPdod0Kn2hITlgcSR7LrwSN/N0vlg==
-
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
