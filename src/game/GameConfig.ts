@@ -211,7 +211,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         200,
     ),
     new UtilityTile(
-        'Sender wallet',
+        'Near UA',
         [],
         null,
         100,
@@ -257,7 +257,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
       260,
     ),
     new UtilityTile(
-        'HERE wallet',
+        'Human Guild',
         [],
         null,
         100,
@@ -275,7 +275,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         200,
     ),
     new CityTile(
-      'Near UA',
+      'Sender wallet',
       [],
       null,
       260,
@@ -286,7 +286,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         communityCards,
     ),
     new CityTile(
-      'Human Guild',
+      'HERE wallet',
       [],
       null,
       280,
@@ -508,7 +508,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-113',
-      'Near UA',
+      'Sender wallet',
       260,
       22,
       110,
@@ -525,7 +525,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-114',
-      'Human Guild',
+      'HERE wallet',
       280,
       24,
       120,
@@ -553,7 +553,7 @@ export function getRailroadsCards(): Array<RailroadsCard> {
       25,
       50,
       100,
-      200,
+      200, // TODO: убрать ifFourCards, потому что у нас их всего 3 на доске
       100,
     ),
     new RailroadsCard(
@@ -585,7 +585,7 @@ export function getUtilitiesCards(): Array<UtilitiesCard> {
   return  [
     new UtilitiesCard(
         'utility-101',
-        'Sender wallet',
+        'Near UA',
         100,
         '4 * Dice Roll',
         '10 * Dice Roll',
@@ -593,7 +593,7 @@ export function getUtilitiesCards(): Array<UtilitiesCard> {
     ),
     new UtilitiesCard(
         'utility-102',
-        'HERE wallet',
+        'Human Guild',
         140,
         '4 * Dice Roll',
         '10 * Dice Roll',
