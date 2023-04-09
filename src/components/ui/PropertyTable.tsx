@@ -37,26 +37,28 @@ const PlayerRow = (props: PlayerRowProps) => (
     </PropertyRow>
 );
 
+const ProperyTableContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { width: 0; };
+    -ms-overflow-style: none;
+`
+
 type PropertyTableProps = {
     properties: Array<{ logo: string; propertyName: string }>;
 }
 
 export const PropertyTable = (props: PropertyTableProps) => (
-    <RightBottomSection style={{top: "150px"}}>
+    <RightBottomSection style={{top: "150px", }}>
         <h2 style={{textAlign: "center"}}>Your property:</h2>
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "20px",
-            }}
-        >
-            <div>
+        <ProperyTableContainer>
                 {props.properties.map((player, index) => (
                     <PlayerRow key={index} logo={player.logo} propertyName={player.propertyName}/>
                 ))}
-            </div>
-        </div>
+        </ProperyTableContainer>
     </RightBottomSection>
 );
