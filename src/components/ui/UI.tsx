@@ -1,11 +1,14 @@
 import {Money} from "./Money";
-import {useBalance, useProperty} from "../../hooks";
+import {useBalance, usePlayers, useProperty} from "../../hooks";
 import {balanceManager} from "../../viewGlobals";
 import {PropertyTable} from "./PropertyTable";
+import {PlayersTable} from "./PlayersTable";
 
 export const UI = () => {
     const balance = useBalance();
     const properties = useProperty();
+    const players = usePlayers();
+
     return (
         <>
             <Money amount={balance}
@@ -13,6 +16,7 @@ export const UI = () => {
                      tradeHandler={() => balanceManager.setBalance(balanceManager.getBalance() - 10)}
             />
             <PropertyTable properties={properties} />
+            <PlayersTable players={players}/>
         </>
     )
 }

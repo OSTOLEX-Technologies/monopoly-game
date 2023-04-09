@@ -44,3 +44,18 @@ export class ReactPropertyManager {
         this.setPropertyHandlers.splice(index, 1);
     }
 }
+
+export class ReactPlayersManager {
+    public setPlayersHandlers: Array<(players: Array<{ logo: string, username: string, money: number, color: string }>) => void> = [];
+
+    public onSetPlayers(handler: (players: Array<{ logo: string, username: string, money: number, color: string }>) => void): void {
+        this.setPlayersHandlers.push(handler);
+    }
+
+    public unSetPlayers(handler: (players: Array<{ logo: string, username: string, money: number, color: string }>) => void): void {
+        const index = this.setPlayersHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setPlayersHandlers.splice(index, 1);
+    }
+}

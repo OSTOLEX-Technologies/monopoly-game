@@ -1,4 +1,12 @@
-import {boardView, balanceManager, reactCellsManager, reactBalanceManager, reactPropertyManager, propertyManager} from "./viewGlobals";
+import {
+    boardView,
+    balanceManager,
+    reactCellsManager,
+    reactBalanceManager,
+    reactPropertyManager,
+    propertyManager,
+    playersManager, reactPlayersManager
+} from "./viewGlobals";
 import {useEffect, useState} from "react";
 
 export function useCells() {
@@ -28,4 +36,13 @@ export function useProperty() {
         return () => reactPropertyManager.unSetProperty(setProperty);
     }, []);
     return property;
+}
+
+export function usePlayers() {
+    const [players, setPlayers] = useState(playersManager.getPlayers());
+    useEffect(() => {
+        reactPlayersManager.onSetPlayers(setPlayers);
+        return () => reactPlayersManager.unSetPlayers(setPlayers);
+    }, []);
+    return players;
 }

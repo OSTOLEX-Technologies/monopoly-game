@@ -1,4 +1,4 @@
-import {keepReactBalanceUpdated, keepReactPropertyUpdated} from "./decorators";
+import {keepReactBalanceUpdated, keepReactPropertyUpdated, keepReactPlayersUpdated} from "./decorators";
 
 
 export class BalanceManager {
@@ -37,4 +37,25 @@ export class PropertyManager {
         if (index === -1) throw new Error("Property not found");
         this.properties.splice(index, 1);
     }
+}
+
+export class PlayersManager {
+    constructor(private players: Array<{ logo: string, username: string, money: number, color: string }> = []) {}
+
+    public getPlayers(): Array<{ logo: string, username: string, money: number, color: string }> {
+        return this.players;
+    }
+
+    @keepReactPlayersUpdated
+    public addPlayer(player: { logo: string, username: string, money: number, color: string }): void {
+        this.players.push(player);
+    }
+
+    @keepReactPlayersUpdated
+    public removePlayer(player: { logo: string, username: string, money: number, color: string }): void {
+        const index = this.players.findIndex((p) => p.logo === player.logo && p.username === player.username && p.money === player.money && p.color === player.color);
+        if (index === -1) throw new Error("Player not found");
+        this.players.splice(index, 1);
+    }
+
 }

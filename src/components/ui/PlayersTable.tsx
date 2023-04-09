@@ -1,67 +1,85 @@
-import {GameController} from "../../controllers/GameController";
-import {useEffect, useState} from "react";
-import {Player} from "../../game/Player";
+import {LeftTopSection, RoundImage} from "./common";
+import {SmallButton} from "./styledComponents";
+import styled from "styled-components";
+import {useEffect, useRef, useState} from "react";
 
-const smallButtonStyle = {
-    backgroundImage: `url("https://raw.githubusercontent.com/OSTOLEX-Technologies/monopoly-game/feature/layout/vault/button%20small.png")`,
-    color: "#fff",
-    fontFamily: "Orbitron",
-    fontSize: "16px",
-    height: "43px",
-    width: "151px",
-    padding: 0,
-    border: 0,
-    outline: "none",
-    cursor: "pointer",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundColor: "transparent",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-};
+const PlayerRowContainer = styled.div`
+  font-family: Orbitron;
+  font-size: 24px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: #fff;
+  width: 100%;
+`
 
-const rowStyle = {
-    fontFamily: "Orbitron",
-    fontSize: "24px",
-    display: "flex",
-    gap: "20px",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-};
+const Username = styled.span`
+  font-family: Orbitron;
+  font-size: 1.3rem;
+  word-wrap: break-word;
+`
 
-const PlayerRow = (username: string, money: number, color: string) => (
-    <div key={username} style={{ ...rowStyle, color: color }}>
-        <span>{username}</span>
-        <span>{money}</span>
-        <button style={smallButtonStyle}>
-            <p style={{ paddingTop: "5px" }}>Vote-kick</p>
-        </button>
-    </div>
-);
+type PlayerRowProps = {
+    logo: string;
+    username: string;
+    money: number;
+    color: string;
+}
 
-export const PlayersTable = (controller: GameController) => {
-    const [players, setPlayers] = useState<Array<Player>>();
+const PlayerRow = (props: PlayerRowProps) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const moneyRef = useRef<HTMLDivElement>(null);
+    const voteKickRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
-        setPlayers(controller.getPlayers());
-    }, [controller.getPlayers()]);
+        if (isHovered) {
+            moneyRef.current!.style.display = "none";
+            voteKickRef.current!.style.display = "block";
+        } else {
+            moneyRef.current!.style.display = "block";
+            voteKickRef.current!.style.display = "none";
+        }
+    });
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "20px",
-            }}
+        <PlayerRowContainer key={props.username} style={{color: props.color}}
+                            onMouseOver={() => setIsHovered(true)}
+                            onMouseOut={() => setIsHovered(false)}
         >
-            <div>
-                {players!.map((player) =>
-                    PlayerRow(player.id, player.getBalance(), player.color)
+            <RoundImage src={props.logo} width="40px" />
+            <div style={{textAlign: "left"}}>
+                <Username>{props.username}</Username>
+            </div>
+            <div style={{textAlign: "right", lineHeight: 1}} ref={moneyRef}>
+                <span>{props.money}</span>
+            </div>
+            <SmallButton style={{width: "14rem"}} ref={voteKickRef}>
+                <span style={{ paddingTop: "5px" }}>Vote-kick</span>
+            </SmallButton>
+        </PlayerRowContainer>
+    )
+};
+
+type PlayersTableProps = {
+    players: Array<{logo: string, username: string, money: number, color: string}>;
+}
+
+export const PlayersTable = (props: PlayersTableProps) => {
+    return (
+        <LeftTopSection>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "start",
+                }}
+            >
+                {props.players!.map((player, index) =>
+                    <PlayerRow key={index} logo={player.logo} username={player.username} money={player.money} color={player.color} />
                 )}
             </div>
-        </div>
+        </LeftTopSection>
     );
 }

@@ -14,6 +14,13 @@ right: 0;
 bottom: 0;
 `
 
+export const LeftTopSection = styled.section`
+width: max-content;
+position: absolute;
+left: 0;
+top: 0;
+`
+
 export const RoundImage = styled.img`
 border-radius: 50%;
 `
