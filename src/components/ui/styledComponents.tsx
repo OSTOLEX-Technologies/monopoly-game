@@ -14,5 +14,5 @@ export const SmallButton = styled.button`
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  padding-bottom: 14px;
+  padding-top: 2px;
 `
