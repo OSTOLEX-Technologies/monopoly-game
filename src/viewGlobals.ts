@@ -1,44 +1,22 @@
-import {BoardPresenter, CellPresenter} from "./board";
+import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
 import {PieceColor} from "./constants";
-import {BalanceManager} from "./ui_logic";
+import {BalanceManager, PropertyManager} from "./ui_logic";
+import {ReactBalanceManager, ReactCellsManager, ReactPropertyManager} from "./ReactManagers";
 
 export const boardView = new BoardPresenter();
 export const balanceManager = new BalanceManager(0);
+export const propertyManager = new PropertyManager();
 
-class ReactCellsManager {
-    public setCellsHandlers: Array<(cells: CellPresenter[]) => void> = [];
-
-    public onSetCells(handler: (cells: CellPresenter[]) => void): void {
-        this.setCellsHandlers.push(handler);
-    }
-
-    public unSetCells(handler: (cells: CellPresenter[]) => void): void {
-        const index = this.setCellsHandlers.indexOf(handler);
-        if (index == -1)
-            throw new Error("Handler not found");
-        this.setCellsHandlers.splice(index, 1);
-    }
-}
-
-class ReactBalanceManager {
-    public setBalanceHandlers: Array<(balance: number) => void> = [];
-
-    public onSetBalance(handler: (balance: number) => void): void {
-        this.setBalanceHandlers.push(handler);
-    }
-
-    public unSetBalance(handler: (balance: number) => void): void {
-        const index = this.setBalanceHandlers.indexOf(handler);
-        if (index == -1)
-            throw new Error("Handler not found");
-        this.setBalanceHandlers.splice(index, 1);
-    }
-}
 
 export const reactCellsManager = new ReactCellsManager();
-
 export const reactBalanceManager = new ReactBalanceManager();
+export const reactPropertyManager = new ReactPropertyManager();
+propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave" })
+propertyManager.addProperty({ logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave" })
+propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "3 Avenue" })
+propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
+
 
 const piece1 = boardView.addPiece(0, PieceColor.Blue);
 const piece2 = boardView.addPiece(0, PieceColor.Green);

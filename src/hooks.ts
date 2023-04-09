@@ -1,4 +1,4 @@
-import {boardView, balanceManager, reactCellsManager, reactBalanceManager} from "./viewGlobals";
+import {boardView, balanceManager, reactCellsManager, reactBalanceManager, reactPropertyManager, propertyManager} from "./viewGlobals";
 import {useEffect, useState} from "react";
 
 export function useCells() {
@@ -18,4 +18,14 @@ export function useBalance() {
         return () => reactBalanceManager.unSetBalance(setBalance);
     }, []);
     return balance;
+}
+
+
+export function useProperty() {
+    const [property, setProperty] = useState(propertyManager.getProperties());
+    useEffect(() => {
+        reactPropertyManager.onSetProperty(setProperty);
+        return () => reactPropertyManager.unSetProperty(setProperty);
+    }, []);
+    return property;
 }
