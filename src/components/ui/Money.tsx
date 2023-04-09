@@ -14,6 +14,7 @@ const ButtonsContainer = styled.div`
   display: flex;
   text-align: center;
   gap: 1rem;
+  margin-top: 1rem;
 `
 
 type MoneyProps = {
