@@ -59,3 +59,19 @@ export class ReactPlayersManager {
         this.setPlayersHandlers.splice(index, 1);
     }
 }
+
+export class ReactGameHistoryManager {
+    // history message is a string in format  "(red).{let45fc.testnet} sent 300$ to (green).{Player3}"
+    public setGameHistoryHandlers: Array<(history: Array<string>) => void> = [];
+
+    public onSetGameHistory(handler: (history: Array<string>) => void): void {
+        this.setGameHistoryHandlers.push(handler);
+    }
+
+    public unSetGameHistory(handler: (history: Array<string>) => void): void {
+        const index = this.setGameHistoryHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setGameHistoryHandlers.splice(index, 1);
+    }
+}

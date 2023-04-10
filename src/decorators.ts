@@ -1,6 +1,6 @@
 import {BoardPresenter} from "./board";
 import {boardView, reactCellsManager, reactBalanceManager, balanceManager, propertyManager, reactPropertyManager,
-    reactPlayersManager, playersManager} from "./viewGlobals";
+    reactPlayersManager, playersManager, gameHistoryManager, reactGameHistoryManager} from "./viewGlobals";
 
 export function keepReactCellsUpdated(target: BoardPresenter, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
@@ -44,6 +44,18 @@ export function keepReactPlayersUpdated(target: any, propertyKey: string, descri
         const toReturn = originalMethod.call(playersManager, ...args);
         for (const handler of reactPlayersManager.setPlayersHandlers) {
             handler([...playersManager.getPlayers()])
+        }
+        return toReturn;
+    }
+    return descriptor
+}
+
+export function keepReactHistoryUpdated(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+    descriptor.value = (...args: any[]) => {
+        const toReturn = originalMethod.call(gameHistoryManager, ...args);
+        for (const handler of reactGameHistoryManager.setGameHistoryHandlers) {
+            handler([...gameHistoryManager.getHistory()])
         }
         return toReturn;
     }

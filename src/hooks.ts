@@ -5,7 +5,7 @@ import {
     reactBalanceManager,
     reactPropertyManager,
     propertyManager,
-    playersManager, reactPlayersManager
+    playersManager, reactPlayersManager, reactGameHistoryManager, gameHistoryManager
 } from "./viewGlobals";
 import {useEffect, useState} from "react";
 
@@ -45,4 +45,13 @@ export function usePlayers() {
         return () => reactPlayersManager.unSetPlayers(setPlayers);
     }, []);
     return players;
+}
+
+export function useHistory() {
+    const [history, setHistory] = useState(gameHistoryManager.getHistory());
+    useEffect(() => {
+        reactGameHistoryManager.onSetGameHistory(setHistory);
+        return () => reactGameHistoryManager.unSetGameHistory(setHistory);
+    }, []);
+    return history;
 }

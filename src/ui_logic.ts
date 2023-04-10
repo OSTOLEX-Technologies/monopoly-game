@@ -1,4 +1,9 @@
-import {keepReactBalanceUpdated, keepReactPropertyUpdated, keepReactPlayersUpdated} from "./decorators";
+import {
+    keepReactBalanceUpdated,
+    keepReactPropertyUpdated,
+    keepReactPlayersUpdated,
+    keepReactHistoryUpdated
+} from "./decorators";
 
 
 export class BalanceManager {
@@ -57,4 +62,17 @@ export class PlayersManager {
         this.players.splice(index, 1);
     }
 
+}
+
+export class GameHistoryManager {
+    constructor(private history: Array<string> = []) {}
+
+    public getHistory(): Array<string> {
+        return this.history;
+    }
+
+    @keepReactHistoryUpdated
+    public addHistoryMessage(message: string): void {
+        this.history.push(message);
+    }
 }
