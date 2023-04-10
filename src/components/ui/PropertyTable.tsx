@@ -54,7 +54,7 @@ type PropertyTableProps = {
 
 export const PropertyTable = (props: PropertyTableProps) => (
     <RightBottomSection style={{top: "150px", }}>
-        <h2 style={{textAlign: "center"}}>Your property:</h2>
+        <h2 style={{textAlign: "center", fontFamily: "Orbitron"}}>Your property:</h2>
         <ProperyTableContainer>
                 {props.properties.map((player, index) => (
                     <PlayerRow key={index} logo={player.logo} propertyName={player.propertyName}/>

@@ -8,11 +8,11 @@ const PlayerRowContainer = styled.div`
   font-size: 24px;
   display: flex;
   gap: 10px;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   color: #fff;
-  width: 100%;
+  width: 400px;
+  height: 40px;
 `
 
 const Username = styled.span`
@@ -49,7 +49,7 @@ const PlayerRow = (props: PlayerRowProps) => {
                             onMouseOut={() => setIsHovered(false)}
         >
             <RoundImage src={props.logo} width="40px" />
-            <div style={{textAlign: "left"}}>
+            <div style={{textAlign: "left", width: "200px", position: "relative", overflow: "hidden", whiteSpace: "nowrap"}}>
                 <Username>{props.username}</Username>
             </div>
             <div style={{textAlign: "right", lineHeight: 1, fontSize: "1rem"}} ref={moneyRef}>
