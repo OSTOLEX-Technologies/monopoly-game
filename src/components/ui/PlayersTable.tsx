@@ -17,7 +17,7 @@ const PlayerRowContainer = styled.div`
 
 const Username = styled.span`
   font-family: Orbitron;
-  font-size: 1.3rem;
+  font-size: 1rem;
   word-wrap: break-word;
 `
 
@@ -52,7 +52,7 @@ const PlayerRow = (props: PlayerRowProps) => {
             <div style={{textAlign: "left"}}>
                 <Username>{props.username}</Username>
             </div>
-            <div style={{textAlign: "right", lineHeight: 1}} ref={moneyRef}>
+            <div style={{textAlign: "right", lineHeight: 1, fontSize: "1rem"}} ref={moneyRef}>
                 <span>{props.money}</span>
             </div>
             <SmallButton style={{width: "14rem"}} ref={voteKickRef}>

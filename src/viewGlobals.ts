@@ -13,25 +13,26 @@ export const reactCellsManager = new ReactCellsManager();
 export const reactBalanceManager = new ReactBalanceManager();
 export const reactPropertyManager = new ReactPropertyManager();
 export const reactPlayersManager = new ReactPlayersManager();
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave" })
-propertyManager.addProperty({ logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "3 Avenue" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
-propertyManager.addProperty({ logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager" })
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave"})
+propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "3 Avenue"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
 
-playersManager.addPlayer({ logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "let45fc.near", money: 1000, color: "red" })
-playersManager.addPlayer({ logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "kostup99kastet.testnet", money: 2000, color: "blue" })
-playersManager.addPlayer({ logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "Player3", money: 1500, color: "green" })
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "let45fc.testnet", money: 1000, color: "red"})
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "kostup99kastet.testnet", money: 2000, color: "blue"})
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "Player3", money: 1500, color: "green"})
+
 
 
 const piece1 = boardView.addPiece(0, PieceColor.Blue);
