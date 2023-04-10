@@ -49,29 +49,33 @@ const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
 const piece8 = boardView.addPiece(0, PieceColor.Orange);
 
 
-// const messages = [
-//         "(red).{let45fc.testnet} sent 300$ to (green).{Player3}",
-//         "(red).{let45fc.testnet} bought a house on Avenue de la République for 200$",
-//         "You are bankrupt!",
-//         "(blue).{johndoe} traded 150$ with (purple).{janedoe}",
-//         "(green).{sarahsmith} sold 3 shares of AAPL for 500$ to (red).{mikewilliams}",
-//         "(orange).{samjones} bought a car for 1000$ from (green).{amythompson}",
-//         "(purple).{davidsmith} sent 75$ to (blue).{peterlee}",
-//         "(red).{sarahkim} traded 200$ with (blue).{danielbrown}",
-//         "(green).{katiebaker} sold 5 shares of AMZN for 1000$ to (orange).{johndoe}",
-//         "(blue).{markjones} bought a bike for 300$ from (purple).{mikejohnson}",
-//         "(orange).{lindadavis} sent 50$ to (green).{karenwilson}",
-//         "(purple).{robertmoore} traded 100$ with (red).{jimmykim}",
-//         "(blue).{jessicawilliams} bought a watch for 150$ from (green).{sarahlee}",
-//         "(green).{taylorharris} sold 2 shares of TSLA for 600$ to (red).{harrybrown}",
-//         "(red).{johnsmith} sent 25$ to (blue).{michellelee}",
-//         "(purple).{kevinjones} traded 300$ with (orange).{julielee}",
-//         "(blue).{hannahbrown} bought a camera for 400$ from (green).{lucaswilson}",
-//         "(orange).{sophieturner} sold 4 shares of FB for 800$ to (purple).{stevenjones}",
-//         "(green).{liuyang} sent 150$ to (red).{maxwelltaylor}",
-//         "(red).{emilynguyen} traded 50$ with (blue).{davidwilson}",
-// ];
-//
+const messages = [
+        "(red).{let45fc.testnet} sent 300$ to (green).{Player3}",
+        "(red).{let45fc.testnet} bought a house on Avenue de la République for 200$",
+        "You are bankrupt!",
+        "(blue).{johndoe} traded 150$ with (purple).{janedoe}",
+        "(green).{sarahsmith} sold 3 shares of AAPL for 500$ to (red).{mikewilliams}",
+        "(orange).{samjones} bought a car for 1000$ from (green).{amythompson}",
+        "(purple).{davidsmith} sent 75$ to (blue).{peterlee}",
+        "(red).{sarahkim} traded 200$ with (blue).{danielbrown}",
+        "(green).{katiebaker} sold 5 shares of AMZN for 1000$ to (orange).{johndoe}",
+        "(blue).{markjones} bought a bike for 300$ from (purple).{mikejohnson}",
+        "(orange).{lindadavis} sent 50$ to (green).{karenwilson}",
+        "(purple).{robertmoore} traded 100$ with (red).{jimmykim}",
+        "(blue).{jessicawilliams} bought a watch for 150$ from (green).{sarahlee}",
+        "(green).{taylorharris} sold 2 shares of TSLA for 600$ to (red).{harrybrown}",
+        "(red).{johnsmith} sent 25$ to (blue).{michellelee}",
+        "(purple).{kevinjones} traded 300$ with (orange).{julielee}",
+        "(blue).{hannahbrown} bought a camera for 400$ from (green).{lucaswilson}",
+        "(orange).{sophieturner} sold 4 shares of FB for 800$ to (purple).{stevenjones}",
+        "(green).{liuyang} sent 150$ to (red).{maxwelltaylor}",
+        "(red).{emilynguyen} traded 50$ with (blue).{davidwilson}",
+];
+
+for (let i = 0; i < messages.length; i++) {
+    gameHistoryManager.addHistoryMessage(messages[i]);
+}
+
 // window.addEventListener('piecesLoaded', async ev => {
 //     await new Promise(resolve => setTimeout(resolve, 2000));
 //     boardView.setOwnerByIndex(3, PieceColor.Blue);
