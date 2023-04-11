@@ -77,31 +77,46 @@ for (let i = 0; i < messages.length; i++) {
 }
 
 // window.addEventListener('piecesLoaded', async ev => {
+//         await boardView.movePieceToJail(piece1);
+//         await boardView.movePieceToJail(piece2);
+//         await boardView.movePieceToJail(piece3);
+//         await boardView.movePieceToJail(piece4);
+//         await boardView.movePieceToJail(piece5);
+//         await boardView.movePieceToJail(piece6);
+//         await boardView.movePieceToJail(piece7);
+//         await boardView.movePieceToJail(piece8);
+//         await boardView.movePieceFromJail(piece1);
+//         await boardView.movePieceFromJail(piece2);
+//         await boardView.movePieceFromJail(piece3);
+//         await boardView.movePieceFromJail(piece4);
+// })
+
+// window.addEventListener('piecesLoaded', async ev => {
 //     await new Promise(resolve => setTimeout(resolve, 2000));
 //     boardView.setOwnerByIndex(3, PieceColor.Blue);
 //     gameHistoryManager.addHistoryMessage(messages[0]);
-//     await boardView.movePiece(piece1, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece1, boardView.getCell(15));
 //     boardView.setOwnerByIndex(3);
 //     gameHistoryManager.addHistoryMessage(messages[1]);
-//     await boardView.movePiece(piece2, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece2, boardView.getCell(15));
 //     boardView.setOwnerByIndex(1, PieceColor.Red);
 //     gameHistoryManager.addHistoryMessage(messages[2]);
-//     await boardView.movePiece(piece3, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece3, boardView.getCell(15));
 //     boardView.setOwnerByIndex(11, PieceColor.Red);
 //     gameHistoryManager.addHistoryMessage(messages[3]);
-//     await boardView.movePiece(piece4, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece4, boardView.getCell(15));
 //     boardView.setOwnerByIndex(20, PieceColor.Pink);
 //     gameHistoryManager.addHistoryMessage(messages[4]);
-//     await boardView.movePiece(piece5, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece5, boardView.getCell(15));
 //     boardView.setOwnerByIndex(26, PieceColor.Green);
 //     gameHistoryManager.addHistoryMessage(messages[5]);
-//     await boardView.movePiece(piece6, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece6, boardView.getCell(15));
 //     boardView.setOwnerByIndex(31, PieceColor.Yellow);
 //     gameHistoryManager.addHistoryMessage(messages[6]);
-//     await boardView.movePiece(piece7, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece7, boardView.getCell(15));
 //     boardView.setOwnerByIndex(7, PieceColor.Navyblue);
 //     gameHistoryManager.addHistoryMessage(messages[7]);
-//     await boardView.movePiece(piece8, boardView.getCell(15));
+//     await boardView.movePieceToCell(piece8, boardView.getCell(15));
 //     boardView.setOwnerByIndex(1, PieceColor.Red);
 //     gameHistoryManager.addHistoryMessage(messages[8]);
 //     for (let i = 9; i < messages.length; i++) {

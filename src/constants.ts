@@ -3,6 +3,14 @@ import {Vector3} from "three";
 export const CELLS_ON_SIDE = 9;
 export const CELLS_ON_BOARD = CELLS_ON_SIDE * 4 - 4;
 
+export const JAIL_POSITION = new Vector3(2.3, 0, -2.3);
+export const JAIL_POSITION_ARRAY: [number, number, number] = [
+    JAIL_POSITION.x,
+    JAIL_POSITION.y,
+    JAIL_POSITION.z
+]
+export const JAIL_EXIT_CELL_INDEX = 8;
+
 export enum PieceColor {
     Pink = "#FF8EFA",
     Purple = "#A800FF",

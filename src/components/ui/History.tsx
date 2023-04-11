@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useRef} from "react";
+import {Fragment, ReactNode, useEffect, useRef} from "react";
 import {LeftBottomSection} from "./common";
 import styled from "styled-components";
 
@@ -20,11 +20,9 @@ function HistoryMessage(props: HistoryMessageProps) {
     const parts = props.message.split(regex);
     // console.log(props.message.matchAll(regex))
     const elements = parts.map((part, index) => {
-        if (part === "") return <></>;
-        console.log(part)
+        if (part === "") return <Fragment key={index}/>;
         if (part.match(regex)) {
             let [color, username] = part.split('.');
-            console.log(color, username)
             color = color.slice(1, -1);
             username = username.slice(1, -1);
             const style = { color };
