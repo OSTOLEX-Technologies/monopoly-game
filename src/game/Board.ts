@@ -146,4 +146,22 @@ export class Board {
     let player = getPlayerById(playerId, this.players);
     player.setStepsInJail(0);
   }
+
+  public useJailFreeCard(playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+
+    if (!player.getStepsInJail()) {
+      new Error("Player  is not in jail");
+    }
+
+    if (player.chanceCards.length != 0) {
+      player.chanceCards.pop();
+    } else if (player.communityChestCards.length != 0) {
+      player.communityChestCards.pop();
+    } else {
+      new Error("The player does not have a card");
+    }
+
+    this.getOutOfJail(playerId);
+  }
 }

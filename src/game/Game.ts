@@ -22,6 +22,10 @@ export class Game {
     return this.board.doStep(playerId);
   }
 
+  public useJailFreeCard(playerId: string) {
+    this.board.useJailFreeCard(playerId);
+  }
+
   public applyOffer(transaction: IOffer) {}
 
   public checkOffer(offer: IOffer) {}
