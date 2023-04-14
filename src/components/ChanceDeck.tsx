@@ -9,12 +9,11 @@ import {CardType} from "../constants";
 let description = "";
 
 export function ChanceDeck() {
-    const {scene, animations} = useGLTF(import.meta.env.BASE_URL + 'models/card_deck.gltf');
+    const {scene, animations} = useGLTF(import.meta.env.BASE_URL + 'models/chance_card_deck.gltf');
     // const [description, setDescription] = useState("");
     const [showPopup, setShowPopup] = useState(false);
     const new_obj = scene.clone();
     const mixer = new THREE.AnimationMixer(new_obj);
-    console.log("RERENDER")
     useChanceCard((newDescription) => {
         animations.forEach((clip) => {
             const action = mixer.clipAction(clip);
