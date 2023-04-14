@@ -3,10 +3,11 @@ import {RailroadsCard} from "./Cards/RailroadsCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {CommunityChestCard} from "./Cards/CommunityChestCard";
+import {PieceColor} from "../constants";
 
 export class Player {
   public readonly id: string;
-  public readonly color: string;
+  public readonly color: PieceColor;
   private name: string;
   private balance: number;
   private position: number;
@@ -18,7 +19,7 @@ export class Player {
   public communityChestCards: Array<CommunityChestCard>;
   private isNextPayByDice: {isTrue: boolean, payTo: Player | null};
 
-  constructor(id: string, color: string, name: string, balance: number, position: number) {
+  constructor(id: string, color: PieceColor, name: string, balance: number, position: number) {
     this.id = id;
     this.color = color;
     this.name = name;

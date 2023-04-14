@@ -9,7 +9,6 @@ export class Game {
   private board: Board;
   private bank: Bank;
   private currentDice: Array<number> | null;
-  private lastActions: Array<Action>;
 
   constructor(data: GameData) {
     let tiles = getTiles(data.players);
@@ -17,15 +16,10 @@ export class Game {
     this.bank = new Bank(tiles, data.players);
     this.board = new Board(tiles, data.players, data.currentPlayerId, this.bank);
     this.currentDice = null;
-    this.lastActions = new Array<Action>();
   }
 
   public doStep(playerId: string) {
-    this.lastActions = this.board.doStep(playerId);
-  }
-
-  public getLastActions() {
-    return this.lastActions;
+    return this.board.doStep(playerId);
   }
 
   public applyOffer(transaction: IOffer) {}
