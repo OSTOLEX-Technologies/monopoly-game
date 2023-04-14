@@ -6,18 +6,19 @@ import {Animator} from "./Animator";
 import {CardDeck} from "./CardDeck";
 import {Jail} from "./Jail";
 import {JAIL_POSITION_ARRAY} from "../constants";
+import {ChanceDeck} from "./ChanceDeck";
 
 export function Scene() {
     return (
         <>
-            <OrbitControls/>
+            {/*<OrbitControls/>*/}
             <primitive object={new THREE.AxesHelper(11)}/>
             <Animator/>
             <Board>
                 <CardDeck rotation={[0, Math.PI / 4, 0]} position={[1.8, 0, 1.8]}/>
-                <CardDeck rotation={[0, Math.PI / 4, 0]} position={[-1.8, 0, -1.8]}/>
+                {/*<CardDeck rotation={[0, Math.PI / 4, 0]} position={[-1.8, 0, -1.8]}/>*/}
                 <Jail position={JAIL_POSITION_ARRAY} scale={[1.5, 1.5, 1.5]}/>
-                {/*<TestAnimation/>*/}
+                <ChanceDeck/>
             </Board>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
             <directionalLight intensity={0.3} position={[0, 10, 0]}/>

@@ -22,7 +22,6 @@ export enum PieceColor {
     Red = "#F5007A",
 }
 
-
 export enum OwnerIconsTypes {
     Games = "games",
     Guild = "guild",
@@ -125,3 +124,8 @@ export const cellsOwnerIcons = Object.freeze({
     30: null,
     31: OwnerIconsTypes.Guild,
 })
+
+export enum CardType {
+    Chance = "chance",
+    Treasury = "treasury",
+}

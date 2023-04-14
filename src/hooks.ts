@@ -5,7 +5,11 @@ import {
     reactBalanceManager,
     reactPropertyManager,
     propertyManager,
-    playersManager, reactPlayersManager, reactGameHistoryManager, gameHistoryManager
+    playersManager,
+    reactPlayersManager,
+    reactGameHistoryManager,
+    gameHistoryManager,
+    reactChanceCardsManager
 } from "./viewGlobals";
 import {useEffect, useState} from "react";
 
@@ -54,4 +58,18 @@ export function useHistory() {
         return () => reactGameHistoryManager.unSetGameHistory(setHistory);
     }, []);
     return history;
+}
+
+export function useChanceCard(callback: (description: string) => void) {
+    const [description, setDescription] = useState("");
+    const [ignore, setIgnore] = useState(true);
+    useEffect(() => {
+        reactChanceCardsManager.onSetChanceCard(setDescription);
+        if (!ignore)
+            callback(description);
+        setIgnore(false);
+        return () => {
+                reactChanceCardsManager.unSetChanceCard(setDescription);
+            }
+    }, [description]);
 }

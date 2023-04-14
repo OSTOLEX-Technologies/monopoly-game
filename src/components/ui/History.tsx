@@ -18,11 +18,11 @@ type HistoryMessageProps = {
 function HistoryMessage(props: HistoryMessageProps) {
     const regex = /(\([a-z]+\)\.{[a-zA-Z0-9.]+})/g;
     const parts = props.message.split(regex);
-    // console.log(props.message.matchAll(regex))
     const elements = parts.map((part, index) => {
         if (part === "") return <Fragment key={index}/>;
         if (part.match(regex)) {
-            let [color, username] = part.split('.');
+            let color = part.split('.')[0];
+            let username = part.split(".").slice(1).join('.')
             color = color.slice(1, -1);
             username = username.slice(1, -1);
             const style = { color };

@@ -75,3 +75,22 @@ export class ReactGameHistoryManager {
         this.setGameHistoryHandlers.splice(index, 1);
     }
 }
+
+export class ReactChanceCardsManager {
+    public setChanceCardHandlers: Array<(description: string) => void> = [];
+
+    public onSetChanceCard(handler: (description: string) => void): void {
+        this.setChanceCardHandlers.push(handler);
+    }
+
+    public unSetChanceCard(handler: (description: string) => void): void {
+        const index = this.setChanceCardHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setChanceCardHandlers.splice(index, 1);
+    }
+
+    public showChanceCard(description: string): void {
+        this.setChanceCardHandlers.forEach((handler) => handler(description));
+    }
+}

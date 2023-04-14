@@ -4,6 +4,8 @@ import {balanceManager} from "../../viewGlobals";
 import {PropertyTable} from "./PropertyTable";
 import {PlayersTable} from "./PlayersTable";
 import {History} from "./History";
+import {CardPopup} from "./CardPopup";
+import {CardType} from "../../constants";
 
 export const UI = () => {
     const balance = useBalance();

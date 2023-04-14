@@ -2,8 +2,10 @@ import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
 import {PieceColor} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
-import {ReactBalanceManager, ReactCellsManager, ReactPlayersManager, ReactPropertyManager,
-        ReactGameHistoryManager} from "./ReactManagers";
+import {
+        ReactBalanceManager, ReactCellsManager, ReactPlayersManager, ReactPropertyManager,
+        ReactGameHistoryManager, ReactChanceCardsManager
+} from "./ReactManagers";
 
 export const boardView = new BoardPresenter();
 export const balanceManager = new BalanceManager(0);
@@ -18,6 +20,8 @@ export const reactBalanceManager = new ReactBalanceManager();
 export const reactPropertyManager = new ReactPropertyManager();
 export const reactPlayersManager = new ReactPlayersManager();
 export const reactGameHistoryManager = new ReactGameHistoryManager();
+export const reactChanceCardsManager = new ReactChanceCardsManager();
+
 propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave"})
 propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave"})
 propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "3 Avenue"})
@@ -75,6 +79,10 @@ const messages = [
 for (let i = 0; i < messages.length; i++) {
     gameHistoryManager.addHistoryMessage(messages[i]);
 }
+
+window.addEventListener('piecesLoaded', async ev => {
+        setTimeout(() => reactChanceCardsManager.showChanceCard("Example chance card"), 2000);
+})
 
 // window.addEventListener('piecesLoaded', async ev => {
 //         await boardView.movePieceToJail(piece1);
