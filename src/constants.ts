@@ -3,6 +3,14 @@ import {Vector3} from "three";
 export const CELLS_ON_SIDE = 9;
 export const CELLS_ON_BOARD = CELLS_ON_SIDE * 4 - 4;
 
+export const JAIL_POSITION = new Vector3(2.3, 0, -2.3);
+export const JAIL_POSITION_ARRAY: [number, number, number] = [
+    JAIL_POSITION.x,
+    JAIL_POSITION.y,
+    JAIL_POSITION.z
+]
+export const JAIL_EXIT_CELL_INDEX = 8;
+
 export enum PieceColor {
     Pink = "#FF8EFA",
     Purple = "#A800FF",
@@ -13,7 +21,6 @@ export enum PieceColor {
     Navyblue = "#0AFAFB",
     Red = "#F5007A",
 }
-
 
 export enum OwnerIconsTypes {
     Games = "games",
@@ -117,3 +124,8 @@ export const cellsOwnerIcons = Object.freeze({
     30: null,
     31: OwnerIconsTypes.Guild,
 })
+
+export enum CardType {
+    Chance = "chance",
+    Treasury = "treasury",
+}

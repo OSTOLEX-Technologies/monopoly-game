@@ -1,53 +1,45 @@
-const smallButtonStyle = {
-    backgroundImage: `url("https://raw.githubusercontent.com/OSTOLEX-Technologies/monopoly-game/feature/layout/vault/button%20small.png")`,
-    color: "#fff",
-    fontFamily: "Orbitron",
-    fontSize: "16px",
-    height: "43px",
-    width: "151px",
-    margin: "10px",
-    padding: 0,
-    border: 0,
-    outline: "none",
-    cursor: "pointer",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundColor: "transparent",
-};
+import styled from "styled-components";
+import {SmallButton} from "./styledComponents";
+import {RightTopSection} from "./common";
 
-export const Money = () => {
+const AmountText = styled.span`
+  font-family: Orbitron;
+  font-weight: bold;
+  font-size: 74px;
+  color: white;
+  width: 100%
+`
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  text-align: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`
+
+type MoneyProps = {
+    amount: number,
+    currencySign?: string
+    bankruptHandler: () => void
+    tradeHandler: () => void
+}
+
+export const Money = ({currencySign = "$", ...props}: MoneyProps) => {
     return (
-        <div>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <p
-                    style={{
-                        fontFamily: "Orbitron",
-                        fontWeight: "bold",
-                        fontSize: "74px",
-                        color: "white",
-                    }}
-                >
-                    199.78$
-                </p>
+        <RightTopSection>
+            <div style={{textAlign: "center", lineHeight: 1, paddingTop: "1rem"}}>
+                <AmountText>
+                    {props.amount}{currencySign}
+                </AmountText>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <button style={smallButtonStyle}>
-                    <p style={{ paddingTop: "5px" }}>bankrupt</p>
-                </button>
-                <button style={smallButtonStyle}>
-                    <p style={{ paddingTop: "5px" }}>trade</p>
-                </button>
-            </div>
-        </div>
+            <ButtonsContainer>
+                <SmallButton onClick={props.bankruptHandler}>
+                    <span>bankrupt</span>
+                </SmallButton>
+                <SmallButton onClick={props.tradeHandler}>
+                    <span>trade</span>
+                </SmallButton>
+            </ButtonsContainer>
+        </RightTopSection>
     );
 }
