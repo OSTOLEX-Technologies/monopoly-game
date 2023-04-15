@@ -114,3 +114,28 @@ export class ReactTreasuryCardsManager {
         this.setTreasuryCardHandlers.forEach((handler) => handler(description));
     }
 }
+
+export type ModalPopupData = {
+    message: string;
+    yesCallback: () => void;
+    noCallback: () => void;
+}
+
+export class ReactModalPopupManager {
+    public setModalPopupHandlers: Array<(data: ModalPopupData) => void> = [];
+
+    public onSetModalPopup(handler: (data: ModalPopupData) => void): void {
+        this.setModalPopupHandlers.push(handler);
+    }
+
+    public unSetModalPopup(handler: (data: ModalPopupData) => void): void {
+        const index = this.setModalPopupHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setModalPopupHandlers.splice(index, 1);
+    }
+
+    public showPopup(data: ModalPopupData ): void {
+        this.setModalPopupHandlers.forEach((handler) => handler(data));
+    }
+}

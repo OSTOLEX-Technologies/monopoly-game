@@ -9,8 +9,9 @@ import {
     reactPlayersManager,
     reactGameHistoryManager,
     gameHistoryManager,
-    reactChanceCardsManager, reactTreasuryCardsManager
+    reactChanceCardsManager, reactTreasuryCardsManager, reactModalPopupManager
 } from "./viewGlobals";
+import {ModalPopupData} from "./ReactManagers";
 import {useEffect, useState} from "react";
 
 export function useCells() {
@@ -86,4 +87,22 @@ export function useTreasuryCard(callback: (description: string) => void) {
             reactTreasuryCardsManager.unSetTreasuryCard(setDescription);
         }
     }, [description]);
+}
+
+export function useModalPopup() {
+    const [modalPopupData, setModalPopupData] = useState<ModalPopupData>({
+        message: "",
+        yesCallback: () => {},
+        noCallback: () => {},
+    });
+    const [showPopup, setShowPopup] = useState(false);
+    const handler = (data: ModalPopupData) => {
+        setModalPopupData(data);
+        setShowPopup(true);
+    }
+    useEffect(() => {
+        reactModalPopupManager.onSetModalPopup(handler);
+        return () => reactModalPopupManager.unSetModalPopup(handler);
+    }, [modalPopupData]);
+    return {modalPopupData, showPopup, setShowPopup};
 }
