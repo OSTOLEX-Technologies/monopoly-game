@@ -4,7 +4,7 @@ import {PieceColor} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
 import {
         ReactBalanceManager, ReactCellsManager, ReactPlayersManager, ReactPropertyManager,
-        ReactGameHistoryManager, ReactChanceCardsManager
+        ReactGameHistoryManager, ReactChanceCardsManager, ReactTreasuryCardsManager
 } from "./ReactManagers";
 
 export const boardView = new BoardPresenter();
@@ -21,6 +21,7 @@ export const reactPropertyManager = new ReactPropertyManager();
 export const reactPlayersManager = new ReactPlayersManager();
 export const reactGameHistoryManager = new ReactGameHistoryManager();
 export const reactChanceCardsManager = new ReactChanceCardsManager();
+export const reactTreasuryCardsManager = new ReactTreasuryCardsManager();
 
 propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave"})
 propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave"})
@@ -81,7 +82,7 @@ for (let i = 0; i < messages.length; i++) {
 }
 
 window.addEventListener('piecesLoaded', async ev => {
-        setTimeout(() => reactChanceCardsManager.showChanceCard("Example chance card"), 2000);
+        setTimeout(() => reactChanceCardsManager.showCard("Example treasury card"), 2000);
 })
 
 // window.addEventListener('piecesLoaded', async ev => {

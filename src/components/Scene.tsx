@@ -7,6 +7,7 @@ import {CardDeck} from "./CardDeck";
 import {Jail} from "./Jail";
 import {JAIL_POSITION_ARRAY} from "../constants";
 import {ChanceDeck} from "./ChanceDeck";
+import {TreasuryDeck} from "./TreasuryDeck";
 
 export function Scene() {
     return (
@@ -15,7 +16,7 @@ export function Scene() {
             <primitive object={new THREE.AxesHelper(11)}/>
             <Animator/>
             <Board>
-                <CardDeck rotation={[0, Math.PI / 4, 0]} position={[1.8, 0, 1.8]}/>
+                <TreasuryDeck/>
                 {/*<CardDeck rotation={[0, Math.PI / 4, 0]} position={[-1.8, 0, -1.8]}/>*/}
                 <Jail position={JAIL_POSITION_ARRAY} scale={[1.5, 1.5, 1.5]}/>
                 <ChanceDeck/>

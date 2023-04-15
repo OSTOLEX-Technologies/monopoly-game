@@ -90,7 +90,27 @@ export class ReactChanceCardsManager {
         this.setChanceCardHandlers.splice(index, 1);
     }
 
-    public showChanceCard(description: string): void {
+    public showCard(description: string): void {
         this.setChanceCardHandlers.forEach((handler) => handler(description));
+    }
+}
+
+
+export class ReactTreasuryCardsManager {
+    public setTreasuryCardHandlers: Array<(description: string) => void> = [];
+
+    public onSetTreasuryCard(handler: (description: string) => void): void {
+        this.setTreasuryCardHandlers.push(handler);
+    }
+
+    public unSetTreasuryCard(handler: (description: string) => void): void {
+        const index = this.setTreasuryCardHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setTreasuryCardHandlers.splice(index, 1);
+    }
+
+    public showCard(description: string): void {
+        this.setTreasuryCardHandlers.forEach((handler) => handler(description));
     }
 }

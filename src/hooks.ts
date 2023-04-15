@@ -9,7 +9,7 @@ import {
     reactPlayersManager,
     reactGameHistoryManager,
     gameHistoryManager,
-    reactChanceCardsManager
+    reactChanceCardsManager, reactTreasuryCardsManager
 } from "./viewGlobals";
 import {useEffect, useState} from "react";
 
@@ -71,5 +71,19 @@ export function useChanceCard(callback: (description: string) => void) {
         return () => {
                 reactChanceCardsManager.unSetChanceCard(setDescription);
             }
+    }, [description]);
+}
+
+export function useTreasuryCard(callback: (description: string) => void) {
+    const [description, setDescription] = useState("");
+    const [ignore, setIgnore] = useState(true);
+    useEffect(() => {
+        reactTreasuryCardsManager.onSetTreasuryCard(setDescription);
+        if (!ignore)
+            callback(description);
+        setIgnore(false);
+        return () => {
+            reactTreasuryCardsManager.unSetTreasuryCard(setDescription);
+        }
     }, [description]);
 }
