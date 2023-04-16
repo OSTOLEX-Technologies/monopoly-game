@@ -752,7 +752,7 @@ export function getChanceCards(): Array<ChanceCard> {
     new ChanceCard(
       'chance-213',
       'Chance',
-      'Advance to HERE wallet. ',
+      'Advance to HERE wallet. If you pass Go, collect $200. ',
     ),
     new ChanceCard(
       'chance-214',
