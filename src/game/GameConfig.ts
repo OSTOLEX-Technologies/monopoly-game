@@ -122,10 +122,10 @@ export function getTiles(players: Array<Player>): Array<Tile> {
       null,
       120,
     ),
-    new ChanceTile(
-        'Chance',
+    new CommunityChestTile(
+        'Treasury',
         [],
-        chanceCards,
+        communityCards,
     ),
     new CityTile(
         'Trisolaris',
@@ -145,10 +145,10 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         null,
         100,
     ),
-    new CommunityChestTile(
-        'Treasury',
+    new ChanceTile(
+        'Chance',
         [],
-        communityCards,
+        chanceCards,
     ),
     new CityTile(
         'Rainbow Bridge',

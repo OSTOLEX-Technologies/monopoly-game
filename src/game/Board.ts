@@ -138,6 +138,7 @@ export class Board {
 
   public goToJail(playerId: string) {
     let player = getPlayerById(playerId, this.players);
+    player.setPosition(8);
     player.setStepsInJail(3);
   }
 
