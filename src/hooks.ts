@@ -94,6 +94,8 @@ export function useModalPopup() {
         message: "",
         yesCallback: () => {},
         noCallback: () => {},
+        yesText: "",
+        noText: ""
     });
     const [showPopup, setShowPopup] = useState(false);
     const handler = (data: ModalPopupData) => {

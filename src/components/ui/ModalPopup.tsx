@@ -49,10 +49,10 @@ export function ModalPopup(props: ModalPopupData) {
                         }}
                     >
                         <SmallButton onClick={props.noCallback}>
-                            <span style={{ paddingTop: "5px" }}>no</span>
+                            <span style={{ paddingTop: "5px" }}>{props.noText}</span>
                         </SmallButton>
                         <SmallButton onClick={props.yesCallback}>
-                            <span style={{ paddingTop: "5px" }}>yes</span>
+                            <span style={{ paddingTop: "5px" }}>{props.yesText}</span>
                         </SmallButton>
                     </div>
                 </div>

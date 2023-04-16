@@ -84,7 +84,9 @@ window.addEventListener('piecesLoaded', async ev => {
         //         },
         //         noCallback: () => {
         //                 console.log("No");
-        //         }
+        //         },
+        //         yesText: "Hello",
+        //         noText: "Cancel"
         // }), 2000);
         // setTimeout(() => propertyManager.updateProperty("1 Ave", PropertyStatus.Redeem,
         //     () => {console.log("Property redeemed")}), 2000);

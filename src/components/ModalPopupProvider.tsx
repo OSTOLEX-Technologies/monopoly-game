@@ -16,7 +16,8 @@ export function ModalPopupProvider() {
     };
     return (
         <>
-            {showPopup ? <ModalPopup message={modalPopupData.message} yesCallback={yesCallback} noCallback={noCallback} /> : <></>}
+            {showPopup ? <ModalPopup message={modalPopupData.message} yesCallback={yesCallback} noCallback={noCallback}
+                                        yesText={modalPopupData.yesText} noText={modalPopupData.noText}/> : <></>}
         </>
     )
 }

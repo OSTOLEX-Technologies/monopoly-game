@@ -120,6 +120,8 @@ export type ModalPopupData = {
     message: string;
     yesCallback: () => void;
     noCallback: () => void;
+    yesText: string;
+    noText: string;
 }
 
 export class ReactModalPopupManager {
