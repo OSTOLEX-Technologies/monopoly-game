@@ -1,4 +1,5 @@
 import {CellPresenter} from "./board";
+import {PropertyStatus} from "./constants";
 
 export class ReactCellsManager {
     public setCellsHandlers: Array<(cells: CellPresenter[]) => void> = [];
@@ -31,13 +32,13 @@ export class ReactBalanceManager {
 }
 
 export class ReactPropertyManager {
-    public setPropertyHandlers: Array<(property: Array<{ logo: string, propertyName: string}>) => void> = [];
+    public setPropertyHandlers: Array<(property: Array<{ logo: string, propertyName: string, status: PropertyStatus, buttonCallback: () => void}>) => void> = [];
 
-    public onSetProperty(handler: (property: Array<{ logo: string, propertyName: string}>) => void): void {
+    public onSetProperty(handler: (property: Array<{ logo: string, propertyName: string, status: PropertyStatus, buttonCallback: () => void}>) => void): void {
         this.setPropertyHandlers.push(handler);
     }
 
-    public unSetProperty(handler: (property: Array<{ logo: string, propertyName: string}>) => void): void {
+    public unSetProperty(handler: (property: Array<{ logo: string, propertyName: string, status: PropertyStatus, buttonCallback: () => void}>) => void): void {
         const index = this.setPropertyHandlers.indexOf(handler);
         if (index == -1)
             throw new Error("Handler not found");

@@ -1,10 +1,16 @@
 import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
-import {PieceColor} from "./constants";
+import {PieceColor, PropertyStatus} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
 import {
-        ReactBalanceManager, ReactCellsManager, ReactPlayersManager, ReactPropertyManager,
-        ReactGameHistoryManager, ReactChanceCardsManager, ReactTreasuryCardsManager, ReactModalPopupManager
+        ReactBalanceManager,
+        ReactCellsManager,
+        ReactChanceCardsManager,
+        ReactGameHistoryManager,
+        ReactModalPopupManager,
+        ReactPlayersManager,
+        ReactPropertyManager,
+        ReactTreasuryCardsManager
 } from "./ReactManagers";
 
 export const boardView = new BoardPresenter();
@@ -24,21 +30,8 @@ export const reactChanceCardsManager = new ReactChanceCardsManager();
 export const reactTreasuryCardsManager = new ReactTreasuryCardsManager();
 export const reactModalPopupManager = new ReactModalPopupManager();
 
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave"})
-propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "3 Avenue"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://ipfs.near.social/ipfs/bafkreic4cq6t7vdose65ekidski2qdafjpouk64h37ihaxwkkp3aflve3m", propertyName: "Hockey Club Manager"})
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave", status: PropertyStatus.Mortgage, buttonCallback: () => {console.log("mortgage")}});
+propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave", status: PropertyStatus.Mortgage, buttonCallback: () => {console.log("mortgage")}})
 
 playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "let45fc.testnet", money: 1000, color: "red"})
 playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "kostup99kastet.testnet", money: 2000, color: "blue"})
@@ -84,15 +77,17 @@ for (let i = 0; i < messages.length; i++) {
 
 window.addEventListener('piecesLoaded', async ev => {
         // setTimeout(() => reactChanceCardsManager.showCard("Example treasury card"), 2000);
-        setTimeout(() => reactModalPopupManager.showPopup({
-                message: "If you go bankrupt, you will lose a game. Are you going bankrupt?",
-                yesCallback: () => {
-                        console.log("Yes");
-                },
-                noCallback: () => {
-                        console.log("No");
-                }
-        }), 2000);
+        // setTimeout(() => reactModalPopupManager.showPopup({
+        //         message: "If you go bankrupt, you will lose a game. Are you going bankrupt?",
+        //         yesCallback: () => {
+        //                 console.log("Yes");
+        //         },
+        //         noCallback: () => {
+        //                 console.log("No");
+        //         }
+        // }), 2000);
+        // setTimeout(() => propertyManager.updateProperty("1 Ave", PropertyStatus.Redeem,
+        //     () => {console.log("Property redeemed")}), 2000);
 })
 
 // window.addEventListener('piecesLoaded', async ev => {

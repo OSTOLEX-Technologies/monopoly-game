@@ -4,6 +4,7 @@ import {
     keepReactPlayersUpdated,
     keepReactHistoryUpdated
 } from "./decorators";
+import {PropertyStatus} from "./constants";
 
 
 export class BalanceManager {
@@ -23,16 +24,25 @@ export class BalanceManager {
 
 
 export class PropertyManager {
-    constructor(private properties: Array<{ logo: string, propertyName: string}> = []) {
-    }
+    constructor(private properties: Array<{ logo: string, propertyName: string, status: PropertyStatus, buttonCallback: () => void}> = []) {}
 
-    public getProperties(): Array<{logo: string, propertyName: string}> {
+    public getProperties(): Array<{logo: string, propertyName: string, status: PropertyStatus, buttonCallback: () => void}> {
         return this.properties;
     }
 
     @keepReactPropertyUpdated
-    public addProperty(property: {logo: string, propertyName: string}): void {
+    public addProperty(property: {logo: string, propertyName: string, status: PropertyStatus, buttonCallback: () => void}): void {
         this.properties.push(property);
+    }
+
+    @keepReactPropertyUpdated
+    public updateProperty(propertyName: string, status?: PropertyStatus, buttonCallback?: () => void): void {
+        const index = this.properties.findIndex((p) => p.propertyName === propertyName);
+        if (index === -1) throw new Error("Property not found");
+        if (status)
+            this.properties[index].status = status;
+        if (buttonCallback)
+            this.properties[index].buttonCallback = buttonCallback;
     }
 
     @keepReactPropertyUpdated
