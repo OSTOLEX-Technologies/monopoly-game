@@ -36,7 +36,7 @@ export class MoveAction extends Action {
       actions.push(new GoToJailAction(this.dice, this.playerId));
     } else if (currTile.hasOwner() && currTile.getOwnerId() != this.playerId) {
       actions.push(currTile.getPayRentAction(this.playerId, this.dice));
-    } else if (playerPosition == 22) {
+    } else if (playerPosition == 24) {
       actions.push(new GoToJailAction(this.dice, this.playerId));
     }
 
@@ -47,6 +47,32 @@ export class MoveAction extends Action {
     let result = new Array<Action> (this);
     result.push(...actions);
 
+    this.generateHistoryMessage(board);
+
     return result;
+  }
+
+  public getNewPosition() {
+    let result = this.position;
+    if (this.dice.length != 0) {
+      result += this.dice[0] + this.dice[1];
+      if (result > 31) {
+        result -= 32;
+      }
+    }
+
+    return result;
+  }
+
+  private generateHistoryMessage(board: Board) {
+    if (this.dice.length == 0) return;
+
+    const player = getPlayerById(this.playerId, board.players);
+
+    this.historyMessage = "(" + player.color + ").{" + player.id + "} rolled the dice " + this.dice[0] + " and " + this.dice[1];
+  }
+
+  public getHistoryMessage(): string {
+    return this.historyMessage;
   }
 }

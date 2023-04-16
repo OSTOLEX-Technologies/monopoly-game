@@ -7,5 +7,9 @@ export class GetFreeCardAction extends Action {
   }
 
   // already implemented
-  doAction(board: Board): void { }
+  public doAction(board: Board): void { }
+
+  public getHistoryMessage(): string {
+    return "";
+  }
 }

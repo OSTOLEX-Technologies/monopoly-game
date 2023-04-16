@@ -1,13 +1,10 @@
 import {Action} from "../game/Actions/Action";
 import {MoveAction} from "../game/Actions/MoveAction";
-import {GoAction} from "../game/Actions/GoAction";
 import {GoToJailAction} from "../game/Actions/GoToJailAction";
 import {GetOutOfJailAction} from "../game/Actions/GetOutOfJailAction";
 import {ChanceAction} from "../game/Actions/ChanceAction";
 import {CommunityAction} from "../game/Actions/CommunityAction";
-import {GetFreeCardAction} from "../game/Actions/GetFreeCardAction";
-import {PayAction} from "../game/Actions/PayAction";
-import {boardView} from "../viewGlobals";
+import {boardView, reactChanceCardsManager, reactTreasuryCardsManager, gameHistoryManager} from "../viewGlobals";
 import {PiecePresenter} from "../board";
 
 export async function handleActions(actions: Array<Action>, piece: PiecePresenter) {
@@ -18,34 +15,32 @@ export async function handleActions(actions: Array<Action>, piece: PiecePresente
 
 async function handleAction(action: Action, piece: PiecePresenter) {
     if (action instanceof MoveAction) await handleMoveAction(action, piece);
-    else if (action instanceof GoAction) handleGoAction(action);
-    else if (action instanceof GoToJailAction) handleGoToJailAction(action);
-    else if (action instanceof GetOutOfJailAction) handleGetOutOfJailAction(action);
+    else if (action instanceof GoToJailAction) await handleGoToJailAction(action, piece);
+    else if (action instanceof GetOutOfJailAction) await handleGetOutOfJailAction(action, piece);
     else if (action instanceof ChanceAction) handleChanceAction(action);
     else if (action instanceof CommunityAction) handleCommunityAction(action);
-    else if (action instanceof GetFreeCardAction) handleGetFreeCardAction(action);
-    else if (action instanceof PayAction) handlePayAction(action);
+
+    gameHistoryManager.addHistoryMessage(action.getHistoryMessage());
 }
 
 async function handleMoveAction(action: MoveAction, piece: PiecePresenter) {
-    if (action.dice.length != 0) {
-
-    } else {
-        const newPosition = boardView.getCell(action.position);
-        await boardView.movePiece(piece, newPosition);
-    }
+    const newPosition = action.getNewPosition();
+    const newCellPosition = boardView.getCell(newPosition);
+    await boardView.movePieceToCell(piece, newCellPosition);
 }
 
-function handleGoAction(action: GoAction) {}
+async function handleGoToJailAction(action: GoToJailAction, piece: PiecePresenter) {
+    await boardView.movePieceToJail(piece);
+}
 
-function handleGoToJailAction(action: GoToJailAction) {}
+async function handleGetOutOfJailAction(action: GoToJailAction, piece: PiecePresenter) {
+    await boardView.movePieceFromJail(piece);
+}
 
-function handleGetOutOfJailAction(action: GetOutOfJailAction) {}
+function handleChanceAction(action: ChanceAction) {
+    reactChanceCardsManager.showCard(action.description);
+}
 
-function handleChanceAction(action: ChanceAction) {}
-
-function handleCommunityAction(action: CommunityAction) {}
-
-function handleGetFreeCardAction(action: GetFreeCardAction) {}
-
-function handlePayAction(action: PayAction) { }
+function handleCommunityAction(action: CommunityAction) {
+    reactTreasuryCardsManager.showCard(action.description);
+}

@@ -3,7 +3,7 @@ import {CommunityChestCard} from "./Cards/CommunityChestCard";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {Tile} from "./Tiles/Tile";
 import {
-  cmpsOrder, getChanceCards,
+  getChanceCards,
   getCommunityChestCards,
   tokens
 } from "./GameConfig";
@@ -17,7 +17,6 @@ import {GoAction} from "./Actions/GoAction";
 
 export class Board {
   public tokens: ReadonlyArray<{ name: string }>;
-  public cmpsOrder: ReadonlyArray<string>;
   private readonly currentPlayerId: string;
   public players: Array<Player>;
   private communityChestCards: Array<CommunityChestCard>;
@@ -28,7 +27,6 @@ export class Board {
   constructor(tiles: Array<Tile>, players: Array<Player>, currentPlayerId: string, bank: Bank) {
     this.tokens = tokens;
     this.tiles = tiles;
-    this.cmpsOrder = cmpsOrder;
     this.communityChestCards = getCommunityChestCards();
     this.chanceCards = getChanceCards();
     this.currentPlayerId = currentPlayerId;
@@ -69,7 +67,8 @@ export class Board {
       return this.increaseStepsInJail(playerId, dice);
     }
 
-    const action = new MoveAction(playerId, 0, dice);
+    const player = getPlayerById(playerId, this.players);
+    const action = new MoveAction(playerId, player.getPosition(), dice);
 
     return action.doAction(this);
   }
@@ -117,8 +116,8 @@ export class Board {
     const currPosition = player.getPosition();
     let newPosition =  + dice[0] + dice[1];
 
-    if (newPosition > 39){
-      newPosition -= 40;
+    if (newPosition > 31){
+      newPosition -= 32;
     }
 
     let result = [];

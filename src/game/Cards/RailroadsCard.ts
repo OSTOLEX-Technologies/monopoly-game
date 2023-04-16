@@ -6,7 +6,6 @@ export class RailroadsCard extends Card implements ICardRent {
   private readonly rent: number;
   private readonly ifTwoCards: number;
   private readonly ifThreeCards: number;
-  private readonly ifFourCards: number;
   private mortgage: number;
 
   constructor(
@@ -17,7 +16,6 @@ export class RailroadsCard extends Card implements ICardRent {
     rent: number,
     ifTwoCards: number,
     ifThreeCards: number,
-    ifFourCards: number,
     mortgage: number) {
     super(id, title, CardType.RailRoad);
 
@@ -25,7 +23,6 @@ export class RailroadsCard extends Card implements ICardRent {
     this.rent = rent;
     this.ifTwoCards = ifTwoCards;
     this.ifThreeCards = ifThreeCards;
-    this.ifFourCards = ifFourCards;
     this.mortgage = mortgage;
   }
 
@@ -38,10 +35,8 @@ export class RailroadsCard extends Card implements ICardRent {
       return this.rent;
     } else if (quantityOfCards === 2) {
       return this.ifTwoCards;
-    } else if (quantityOfCards === 3) {
-      return this.ifThreeCards;
     } else {
-      return this.ifFourCards;
+      return this.ifThreeCards;
     }
   }
 }

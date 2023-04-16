@@ -43,49 +43,6 @@ export const tokens = Object.freeze( [
   },
 ]);
 
-export const cmpsOrder = Object.freeze([
-  'startCmp',
-  'tileCmp',
-  'communityCmp',
-  'tileCmp',
-  'incomeCmp',
-  'railroadCmp',
-  'tileCmp',
-  'chanceCmp',
-  'tileCmp',
-  'tileCmp',
-  'jailCmp',
-  'tileCmp',
-  'electricCmp',
-  'tileCmp',
-  'tileCmp',
-  'railroadCmp',
-  'tileCmp',
-  'communityCmp',
-  'tileCmp',
-  'tileCmp',
-  'parkingCmp',
-  'tileCmp',
-  'chanceCmp',
-  'tileCmp',
-  'tileCmp',
-  'railroadCmp',
-  'tileCmp',
-  'tileCmp',
-  'waterWorkCmp',
-  'tileCmp',
-  'sendToJailCmp',
-  'tileCmp',
-  'tileCmp',
-  'communityCmp',
-  'tileCmp',
-  'railroadCmp',
-  'chanceCmp',
-  'tileCmp',
-  'luxuryTaxCmp',
-  'tileCmp',
-]);
-
 export function getTiles(players: Array<Player>): Array<Tile> {
   let communityCards = getCommunityChestCards();
   players.forEach((player) => {
@@ -553,7 +510,6 @@ export function getRailroadsCards(): Array<RailroadsCard> {
       25,
       50,
       100,
-      200, // TODO: убрать ifFourCards, потому что у нас их всего 3 на доске
       100,
     ),
     new RailroadsCard(
@@ -564,7 +520,6 @@ export function getRailroadsCards(): Array<RailroadsCard> {
       25,
       50,
       100,
-      200,
       100,
     ),
     new RailroadsCard(
@@ -575,7 +530,6 @@ export function getRailroadsCards(): Array<RailroadsCard> {
       25,
       50,
       100,
-      200,
       100,
     ),
   ];

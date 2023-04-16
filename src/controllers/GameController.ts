@@ -6,7 +6,7 @@ import {boardView} from "../viewGlobals";
 
 export class GameController {
   private game: Game;
-  private playerId: string;
+  private readonly playerId: string;
   private pieces: Map<string, PiecePresenter>;
 
   constructor(data: GameData, playerId: string) {
@@ -30,6 +30,12 @@ export class GameController {
 
   public async makeMove() {
     const actions = this.game.doStep(this.playerId);
-    // handleActions(actions);
+    const piece = this.pieces.get(this.playerId);
+
+    if (piece == undefined) {
+      throw new Error("Cannot find piece");
+    }
+
+    await handleActions(actions, piece);
   }
 }
