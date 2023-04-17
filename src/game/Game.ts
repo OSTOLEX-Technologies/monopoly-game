@@ -37,4 +37,12 @@ export class Game {
   public getCardsInBank() {}
 
   public getTiles() {}
+
+  public getPlayerBalance(playerId: string) {
+    return this.bank.getBalance(playerId);
+  }
+
+  public getProperties(playerId: string) {
+    return this.board.getPlayerProperties(playerId);
+  }
 }

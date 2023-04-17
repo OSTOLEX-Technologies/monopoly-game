@@ -164,4 +164,9 @@ export class Board {
 
     this.getOutOfJail(playerId);
   }
+
+  public getPlayerProperties(playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+    return player.propertyCards;
+  }
 }

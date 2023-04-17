@@ -262,6 +262,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-101',
       'Paras',
+        '',
       60,
       2,
       10,
@@ -279,6 +280,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-102',
       'Mintbase',
+      '',
       60,
       4,
       20,
@@ -296,6 +298,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-103',
       'Trisolaris',
+      '',
       100,
       6,
       30,
@@ -313,6 +316,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-104',
       'Ref.finance',
+        '',
       120,
       8,
       40,
@@ -330,6 +334,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-105',
       'Laser chess',
+        '',
       140,
       10,
       50,
@@ -347,6 +352,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-106',
       'Hockey Club Manager',
+        '',
       160,
       12,
       60,
@@ -364,6 +370,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-107',
       'Aurigami',
+        '',
       180,
       14,
       70,
@@ -381,6 +388,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-108',
       'Bastion',
+        '',
       200,
       16,
       80,
@@ -398,6 +406,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-109',
       'Octopus',
+        '',
       220,
       18,
       90,
@@ -415,6 +424,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-110',
       'Calimero',
+        '',
       220,
       18,
       90,
@@ -432,6 +442,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-111',
       'Rainbow Bridge',
+        '',
       240,
       20,
       100,
@@ -449,6 +460,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-112',
       'Aurora',
+        '',
       260,
       22,
       110,
@@ -466,6 +478,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-113',
       'Sender wallet',
+        '',
       260,
       22,
       110,
@@ -483,6 +496,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-114',
       'HERE wallet',
+        '',
       280,
       24,
       120,
