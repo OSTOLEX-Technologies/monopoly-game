@@ -13,5 +13,5 @@ export abstract class Action {
 
   public abstract doAction(board: Board): void;
 
-  public abstract getHistoryMessage(): string;
+  public abstract getHistoryMessage(playerId: string): string;
 }

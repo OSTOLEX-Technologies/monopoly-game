@@ -88,7 +88,7 @@ export class GameController {
       throw new Error("Cannot find piece");
     }
 
-    await handleActions(actions, piece);
+    await handleActions(actions, piece, playerId);
   }
 
   public async makeOpponentMove(gameData: GameData, opponentId: string) {

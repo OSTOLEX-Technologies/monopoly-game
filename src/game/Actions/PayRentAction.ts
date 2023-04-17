@@ -18,7 +18,14 @@ export class PayRentAction extends Action {
         board.bank.payMoney(this.playerId, this.cardOwnerId, this.rent);
     }
 
-    public getHistoryMessage(): string {
-        return "You came to the " + this.cardName + " and you have to pay " + this.cardOwnerId + " " + this.rent;
+    public getHistoryMessage(playerId: string): string {
+        let result = "came to the " + this.cardName + " and you have to pay " + this.cardOwnerId + " " + this.rent;
+        if (playerId == this.playerId) {
+            result = "You " + result;
+        } else {
+            result = this.playerId + " " + result;
+        }
+
+        return result;
     }
 }
