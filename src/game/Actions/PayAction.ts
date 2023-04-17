@@ -1,5 +1,6 @@
 import {Action} from "./Action";
 import {Board} from "../Board";
+import {getPlayerById} from "../Utils";
 
 export class PayAction extends Action {
   public readonly from: string;
@@ -16,5 +17,18 @@ export class PayAction extends Action {
 
   doAction(board: Board): void {
     board.bank.payMoney(this.from, this.to, this.amount);
+    this.generateHistoryMessage(board);
+  }
+
+  private generateHistoryMessage(board: Board) {
+    const from = getPlayerById(this.from, board.players);
+    const to = getPlayerById(this.to, board.players);
+
+    this.historyMessage =  "(" + from.color + ").{" + from.id + "} paid " +
+        "(" + to.color + ").{" + to.id + "}" + this.amount;
+  }
+
+  public getHistoryMessage(): string {
+    return this.historyMessage;
   }
 }

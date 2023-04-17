@@ -3,6 +3,7 @@ import {RailroadsCard} from "./Cards/RailroadsCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {CommunityChestCard} from "./Cards/CommunityChestCard";
+import {PieceColor} from "../constants";
 
 export class Player {
   public readonly id: string;
