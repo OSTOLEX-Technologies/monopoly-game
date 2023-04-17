@@ -33,7 +33,7 @@ async function handleGoToJailAction(action: GoToJailAction, piece: PiecePresente
     await boardView.movePieceToJail(piece);
 }
 
-async function handleGetOutOfJailAction(action: GoToJailAction, piece: PiecePresenter) {
+async function handleGetOutOfJailAction(action: GetOutOfJailAction, piece: PiecePresenter) {
     await boardView.movePieceFromJail(piece);
 }
 

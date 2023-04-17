@@ -9,7 +9,7 @@ import {CardType} from "./Cards/Card";
 
 export class Bank {
   private tiles: Array<Tile>;
-  private readonly players: Array<Player>;
+  public players: Array<Player>;
   private readonly propertyCards: Array<PropertyCard>;
   private readonly railroadsCards: Array<RailroadsCard>;
   private readonly utilitiesCards: Array<UtilitiesCard>;
