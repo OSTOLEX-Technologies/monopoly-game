@@ -1,18 +1,6 @@
 import {ThreeEvent, useLoader} from "@react-three/fiber";
 import {TextureLoader, Vector3, Matrix3, Vector2} from "three";
-import {OwnerIconsTypes, PieceColor} from "../constants";
-
-const ownerIcons = Object.freeze({
-    [OwnerIconsTypes.Games]: import.meta.env.BASE_URL + 'models/owner_icons/Games.png',
-    [OwnerIconsTypes.Guild]: import.meta.env.BASE_URL + 'models/owner_icons/Guild.png',
-    [OwnerIconsTypes.Lending]: import.meta.env.BASE_URL + 'models/owner_icons/Lending.png',
-    [OwnerIconsTypes.Network]: import.meta.env.BASE_URL + 'models/owner_icons/Network.png',
-    [OwnerIconsTypes.NFT]: import.meta.env.BASE_URL + 'models/owner_icons/NFT.png',
-    [OwnerIconsTypes.Person]: import.meta.env.BASE_URL + 'models/owner_icons/Person.png',
-    [OwnerIconsTypes.Swap]: import.meta.env.BASE_URL + 'models/owner_icons/Swap.png',
-    [OwnerIconsTypes.Wallet]: import.meta.env.BASE_URL + 'models/owner_icons/Wallet.png',
-    [OwnerIconsTypes.Aurora]: import.meta.env.BASE_URL + 'models/owner_icons/Aurora.png',
-})
+import {ownerIcons, OwnerIconsTypes, PieceColor} from "../constants";
 
 type CircleChipProps = {
     type: OwnerIconsTypes;

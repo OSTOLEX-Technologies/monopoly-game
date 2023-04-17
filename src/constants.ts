@@ -125,6 +125,19 @@ export const cellsOwnerIcons = Object.freeze({
     31: OwnerIconsTypes.Guild,
 })
 
+export const ownerIcons = Object.freeze({
+    [OwnerIconsTypes.Games]: import.meta.env.BASE_URL + 'models/owner_icons/Games.png',
+    [OwnerIconsTypes.Guild]: import.meta.env.BASE_URL + 'models/owner_icons/Guild.png',
+    [OwnerIconsTypes.Lending]: import.meta.env.BASE_URL + 'models/owner_icons/Lending.png',
+    [OwnerIconsTypes.Network]: import.meta.env.BASE_URL + 'models/owner_icons/Network.png',
+    [OwnerIconsTypes.NFT]: import.meta.env.BASE_URL + 'models/owner_icons/NFT.png',
+    [OwnerIconsTypes.Person]: import.meta.env.BASE_URL + 'models/owner_icons/Person.png',
+    [OwnerIconsTypes.Swap]: import.meta.env.BASE_URL + 'models/owner_icons/Swap.png',
+    [OwnerIconsTypes.Wallet]: import.meta.env.BASE_URL + 'models/owner_icons/Wallet.png',
+    [OwnerIconsTypes.Aurora]: import.meta.env.BASE_URL + 'models/owner_icons/Aurora.png',
+})
+
+
 export enum CardType {
     Chance = "chance",
     Treasury = "treasury",

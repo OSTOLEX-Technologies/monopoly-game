@@ -2,8 +2,8 @@ import * as THREE from "three";
 import {ThreeEvent, useLoader} from "@react-three/fiber";
 import {PropsWithChildren, Fragment} from "react";
 import {Piece} from "./Piece";
-import {useCells} from "../hooks";
-import {TextureLoader} from "three";
+import {useBoardOnHoverCallbacks, useCells} from "../hooks";
+import {TextureLoader, Vector3} from "three";
 import {CircleChip} from "./CircleChip";
 
 export type BoardProps = {
@@ -13,6 +13,7 @@ export type BoardProps = {
 export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<BoardProps>) {
     const colorMap = useLoader(TextureLoader, import.meta.env.BASE_URL + 'board.png')
     const cells = useCells();
+    const [onEnterCallback, onLeaveCallback] = useBoardOnHoverCallbacks();
 
     return (
         <>
@@ -35,9 +36,15 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                             cell.getOwner() &&
                             <CircleChip type={cell.getOwnerChipIcon()} color={cell.getOwner()!} position={cell.getOwnerChipPositionTuple()}/>
                         }
+                       <mesh onPointerEnter={(e) => onEnterCallback(cell.index, e)} onPointerOut={onLeaveCallback} rotation={[-Math.PI / 2, 0, 0]} position={cell.getCenter3().clone().add(new Vector3(0, 0.01, 0))}>
+                            <planeGeometry />
+                            <meshPhongMaterial opacity={0} transparent={true}/>
+                       </mesh>
                     </Fragment>
                 ))
             }
+            {/* spawn transparent cell above every cell*/}
+
             {children}
         </>
     )

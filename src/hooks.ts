@@ -9,10 +9,12 @@ import {
     reactPlayersManager,
     reactGameHistoryManager,
     gameHistoryManager,
-    reactChanceCardsManager, reactTreasuryCardsManager, reactModalPopupManager
+    reactChanceCardsManager, reactTreasuryCardsManager, reactModalPopupManager, reactCellInfoPopupManager
 } from "./viewGlobals";
-import {ModalPopupData} from "./ReactManagers";
+import {CellInfoPopupData, ModalPopupData} from "./ReactManagers";
 import {useEffect, useState} from "react";
+import {ThreeEvent} from "@react-three/fiber";
+import {getCellInfoPopupData} from "./utils";
 
 export function useCells() {
     const [cells, setCells] = useState(boardView.cells);
@@ -113,4 +115,41 @@ export function useModalPopup() {
         return () => reactModalPopupManager.unSetModalPopup(handler);
     }, [modalPopupData]);
     return {modalPopupData, showPopup, setShowPopup};
+}
+
+export function useBoardOnHoverCallbacks(): [
+    (cellIndex: number, e: ThreeEvent<MouseEvent>) => void,
+    (e: ThreeEvent<MouseEvent>) => void] {
+    const intervalTime = 500;
+    return [
+        (cellIndex: number, e: ThreeEvent<MouseEvent>) => {
+            reactCellInfoPopupManager.showPopupWithDelay(getCellInfoPopupData(cellIndex), intervalTime);
+        },
+        (e: ThreeEvent<MouseEvent>) => {
+            reactCellInfoPopupManager.hidePopupWithDelay(intervalTime);
+            reactCellInfoPopupManager.cancelShowPopup();
+        }
+    ]
+}
+
+export function useCellInfoPopup(): [CellInfoPopupData, boolean] {
+    const [popupData, setPopupData] = useState<CellInfoPopupData>({
+        header: "",
+        description: "",
+        logo: "",
+    });
+    const [showPopup, setShowPopup] = useState(false);
+    const handler = (data: CellInfoPopupData) => {
+        setPopupData(data);
+        setShowPopup(true);
+    }
+    useEffect(() => {
+        reactCellInfoPopupManager.onCellInfoPopup(handler);
+        reactCellInfoPopupManager.onCellInfoShow(setShowPopup)
+        return () => {
+            reactCellInfoPopupManager.unCellInfoPopup(handler);
+            reactCellInfoPopupManager.unCellInfoShow(setShowPopup)
+        }
+    }, [popupData, showPopup]);
+    return [popupData, showPopup];
 }

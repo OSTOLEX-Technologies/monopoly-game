@@ -3,7 +3,7 @@ import {AnimationRenderersManager} from "./animationsRenderers";
 import {PieceColor, PropertyStatus} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
 import {
-        ReactBalanceManager,
+        ReactBalanceManager, ReactCellInfoPopupManager,
         ReactCellsManager,
         ReactChanceCardsManager,
         ReactGameHistoryManager,
@@ -29,6 +29,7 @@ export const reactGameHistoryManager = new ReactGameHistoryManager();
 export const reactChanceCardsManager = new ReactChanceCardsManager();
 export const reactTreasuryCardsManager = new ReactTreasuryCardsManager();
 export const reactModalPopupManager = new ReactModalPopupManager();
+export const reactCellInfoPopupManager = new ReactCellInfoPopupManager();
 
 balanceManager.addEventListener("bankrupt", () => {
         balanceManager.setBalance(balanceManager.getBalance() + 10);

@@ -1,19 +1,16 @@
 import styled from "styled-components";
 import {Html} from "@react-three/drei";
+import {CellInfoPopupData} from "../../ReactManagers";
 
 const Background = styled.div`
   margin: auto;
   width: 300px;
   height: 450px;
-  //width: 300px;
-  //height: 400px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/OSTOLEX-Technologies/monopoly-game/feature/layout/vault/vertical_popup.png");
-  //position: absolute;
-  //top: 50%;
-  //left: 50%;
-  //transform: translate(-50%, -50%);
+  background-image: url(${import.meta.env.BASE_URL + 'vault/vertical_popup.png'});
+  position: absolute;
+  transform: translate(-50%, -43%);
 `;
 
 const CategoryContainer = styled.div`
@@ -28,6 +25,7 @@ const CategoryImg = styled.img`
   width: 30px;
   height: 30px;
   margin-left: -15px;
+  filter: invert(1);
 `;
 
 const PopupHeaderContainer = styled.div`
@@ -45,7 +43,7 @@ const PopupHeader = styled.p`
   font-weight: bold;
   text-align: center;
   margin-top: 0;
-  margin-right: -30px;
+  margin-left: 0px;
 `;
 
 const PopupDescription = styled.span`
@@ -53,7 +51,8 @@ const PopupDescription = styled.span`
   font-size: 12px;
   text-align: center;
   margin-top: 5px;
-  margin-right: -30px;
+  margin-right: -15px;
+  margin-left: -15px;
 `;
 
 const PopupLink = styled.a`
@@ -91,7 +90,7 @@ const ProjectDataContainer = styled.div`
   font-family: Orbitron;
   color: #fff;
   //margin: 80px 60px;
-  margin-top: 60px;
+  margin-top: 80px;
 `;
 
 const GameDataContainer = styled.div`
@@ -120,24 +119,15 @@ const GameDataUnitImage = styled.img`
   height: 30px;
 `;
 
-interface CellInfoPopupProps {
-    header: string;
-    link?: string;
-    description: string;
-    logo: string;
-    owner?: string;
-    categoryImg?: string;
-    housePrice?: number;
-    hotelPrice?: number;
-    mortgagePrice?: number;
-    stages?: Array<string>;
-    currentStage?: number;
+interface CellInfoPopupProps extends CellInfoPopupData {
+    onPointerOver: (e: any) => void;
+    onPointerLeave: (e: any) => void;
 }
 
 export function CellInfoPopup(props: CellInfoPopupProps) {
     return (
-        <Html position={[2.6, 1, 4]}>
-            <Background>
+        <Html position={[0, 0, 0]}>
+            <Background onPointerOver={props.onPointerOver} onPointerLeave={props.onPointerLeave}>
                 <CategoryContainer>
                     {
                         props.categoryImg && (

@@ -142,3 +142,77 @@ export class ReactModalPopupManager {
         this.setModalPopupHandlers.forEach((handler) => handler(data));
     }
 }
+
+export interface CellInfoPopupData {
+    header: string;
+    link?: string;
+    description: string;
+    logo: string;
+    owner?: string;
+    categoryImg?: string;
+    housePrice?: number;
+    hotelPrice?: number;
+    mortgagePrice?: number;
+    stages?: Array<string>;
+    currentStage?: number;
+}
+
+export class ReactCellInfoPopupManager {
+    public setCellInfoPopupDataHandlers: Array<(data: CellInfoPopupData) => void> = [];
+    public setCellInfoShowHandlers: Array<(show: boolean) => void> = [];
+    private showPopupTimeout?: NodeJS.Timeout;
+    private hidePopupTimeout?: NodeJS.Timeout;
+
+    public onCellInfoPopup(handler: (data: CellInfoPopupData) => void): void {
+        this.setCellInfoPopupDataHandlers.push(handler);
+    }
+
+    public onCellInfoShow(handler: (show: boolean) => void): void {
+        this.setCellInfoShowHandlers.push(handler);
+    }
+
+    public unCellInfoPopup(handler: (data: CellInfoPopupData) => void): void {
+        const index = this.setCellInfoPopupDataHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setCellInfoPopupDataHandlers.splice(index, 1);
+    }
+
+    public unCellInfoShow(handler: (show: boolean) => void): void {
+        const index = this.setCellInfoShowHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setCellInfoShowHandlers.splice(index, 1);
+    }
+
+    public showPopupWithDelay(data: CellInfoPopupData, delay: number): NodeJS.Timeout {
+        clearTimeout(this.hidePopupTimeout);
+        clearTimeout(this.showPopupTimeout);
+        this.showPopupTimeout = setTimeout(() => this.showPopup(data), delay);
+        return this.showPopupTimeout;
+    }
+
+    public hidePopupWithDelay(delay: number): NodeJS.Timeout {
+        clearTimeout(this.showPopupTimeout);
+        clearTimeout(this.hidePopupTimeout);
+        this.hidePopupTimeout = setTimeout(() => this.hidePopup(), delay);
+        return this.hidePopupTimeout;
+    }
+
+    public cancelShowPopup(): void {
+        clearTimeout(this.showPopupTimeout);
+    }
+
+    public cancelHidePopup(): void {
+        clearTimeout(this.hidePopupTimeout);
+    }
+
+    public showPopup(data: CellInfoPopupData): void {
+        this.setCellInfoPopupDataHandlers.forEach((handler) => handler(data));
+        this.setCellInfoShowHandlers.forEach((handler) => handler(true));
+    }
+
+    public hidePopup(): void {
+        this.setCellInfoShowHandlers.forEach((handler) => handler(false));
+    }
+}

@@ -112,7 +112,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         220,
     ),
     new VisitTile(
-        'Just visiting ',
+        'Just visiting',
         [],
         null,
     ),
@@ -157,7 +157,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         240,
     ),
     new ParkingTile(
-        'Withdrawal is temporarily suspended',
+        'Withdraw function is temporarily suspended',
         [],
         null,
     ),
@@ -208,7 +208,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         null,
     ),
     new CityTile(
-      'Laser chess',
+      'Laser Chess',
       [],
       null,
       140,

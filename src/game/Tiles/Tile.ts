@@ -8,7 +8,7 @@ import {PayAction} from "../Actions/PayAction";
 
 export abstract class Tile {
   private readonly type: TileType;
-  private readonly name: string;
+  public readonly name: string;
   private owner: Player | null;
   private players: Array<Player>;
 
