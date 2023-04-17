@@ -180,7 +180,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         200,
     ),
     new RailroadTile(
-        'Hudzilin Pub',
+        'Hudzilin`s Pub',
         [],
         null,
         200,
@@ -197,7 +197,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         chanceCards,
     ),
     new CityTile(
-        'Hockey Club Manager',
+        'HCM',
         [],
         null,
         160,
@@ -262,7 +262,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-101',
       'Paras',
-        '',
+        import.meta.env.BASE_URL + 'logos/Paras.png',
       60,
       2,
       10,
@@ -280,7 +280,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-102',
       'Mintbase',
-      '',
+      import.meta.env.BASE_URL + 'logos/Mintbase.png',
       60,
       4,
       20,
@@ -298,7 +298,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-103',
       'Trisolaris',
-      '',
+        import.meta.env.BASE_URL + 'logos/Trisolaris.png',
       100,
       6,
       30,
@@ -315,8 +315,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-104',
-      'Ref.finance',
-        '',
+      'Ref Finance',
+        import.meta.env.BASE_URL + 'logos/RefFinance.png',
       120,
       8,
       40,
@@ -333,8 +333,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-105',
-      'Laser chess',
-        '',
+      'Laser Chess',
+        import.meta.env.BASE_URL + 'logos/Laser%chess.png',
       140,
       10,
       50,
@@ -351,8 +351,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-106',
-      'Hockey Club Manager',
-        '',
+      'HCM',
+        import.meta.env.BASE_URL + 'logos/Hockey%Club&Manager.png',
       160,
       12,
       60,
@@ -370,7 +370,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-107',
       'Aurigami',
-        '',
+        import.meta.env.BASE_URL + 'logos/Aurigami.png',
       180,
       14,
       70,
@@ -388,7 +388,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-108',
       'Bastion',
-        '',
+        import.meta.env.BASE_URL + 'logos/Bastion.png',
       200,
       16,
       80,
@@ -406,7 +406,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-109',
       'Octopus',
-        '',
+        import.meta.env.BASE_URL + 'logos/Octopus.png',
       220,
       18,
       90,
@@ -424,7 +424,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-110',
       'Calimero',
-        '',
+        import.meta.env.BASE_URL + 'logos/Calimero.png',
       220,
       18,
       90,
@@ -442,7 +442,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-111',
       'Rainbow Bridge',
-        '',
+        import.meta.env.BASE_URL + 'logos/Rainbow&bridge.png',
       240,
       20,
       100,
@@ -460,7 +460,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-112',
       'Aurora',
-        '',
+        import.meta.env.BASE_URL + 'logos/Aurora.png',
       260,
       22,
       110,
@@ -478,7 +478,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-113',
       'Sender wallet',
-        '',
+        import.meta.env.BASE_URL + 'logos/Sender.png',
       260,
       22,
       110,
@@ -496,7 +496,7 @@ export function getPropertyCards(): Array<PropertyCard> {
     new PropertyCard(
       'property-114',
       'HERE wallet',
-        '',
+        import.meta.env.BASE_URL + 'logos/HERE.png',
       280,
       24,
       120,
@@ -528,7 +528,7 @@ export function getRailroadsCards(): Array<RailroadsCard> {
     ),
     new RailroadsCard(
       'railroad-102',
-      'Hudzilin Pub',
+      'Hudzilin`s Pub',
       '',
       200,
       25,
@@ -700,7 +700,7 @@ export function getChanceCards(): Array<ChanceCard> {
     new ChanceCard(
       'chance-209',
       'Chance',
-      'Go to Jail. Go directly to Jail. Do not pass GO, do not collect $200.',
+      'Go to Jail. Do not pass GO and collect $200.',
     ),
     new ChanceCard(
       'chance-210',
