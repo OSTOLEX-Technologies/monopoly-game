@@ -4,8 +4,9 @@ import {GoToJailAction} from "../game/Actions/GoToJailAction";
 import {GetOutOfJailAction} from "../game/Actions/GetOutOfJailAction";
 import {ChanceAction} from "../game/Actions/ChanceAction";
 import {CommunityAction} from "../game/Actions/CommunityAction";
-import {boardView, reactChanceCardsManager, reactTreasuryCardsManager, gameHistoryManager} from "../viewGlobals";
+import {boardView, reactChanceCardsManager, reactTreasuryCardsManager, gameHistoryManager, reactModalPopupManager} from "../viewGlobals";
 import {PiecePresenter} from "../board";
+import {PayRentAction} from "../game/Actions/PayRentAction";
 
 export async function handleActions(actions: Array<Action>, piece: PiecePresenter) {
     for (const action of actions) {
@@ -19,6 +20,7 @@ async function handleAction(action: Action, piece: PiecePresenter) {
     else if (action instanceof GetOutOfJailAction) await handleGetOutOfJailAction(action, piece);
     else if (action instanceof ChanceAction) handleChanceAction(action);
     else if (action instanceof CommunityAction) handleCommunityAction(action);
+    else if (action instanceof PayRentAction) handlePayRentAction(action);
 
     gameHistoryManager.addHistoryMessage(action.getHistoryMessage());
 }
@@ -43,4 +45,16 @@ function handleChanceAction(action: ChanceAction) {
 
 function handleCommunityAction(action: CommunityAction) {
     reactTreasuryCardsManager.showCard(action.description);
+}
+
+function handlePayRentAction(action: PayRentAction) {
+    const modalPopupData = {
+        message: action.getHistoryMessage(),
+        yesCallback: () => {},
+        noCallback: () => {},
+        yesText: "Ok",
+        noText: "No",
+    };
+
+    reactModalPopupManager.showPopup(modalPopupData);
 }
