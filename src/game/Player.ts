@@ -7,6 +7,7 @@ import {PieceColor} from "../constants";
 
 export class Player {
   public readonly id: string;
+  public readonly logo: string;
   public readonly color: string;
   private name: string;
   private balance: number;
@@ -19,8 +20,9 @@ export class Player {
   public communityChestCards: Array<CommunityChestCard>;
   private isNextPayByDice: {isTrue: boolean, payTo: Player | null};
 
-  constructor(id: string, color: string, name: string, balance: number, position: number) {
+  constructor(id: string, logo: string, color: string, name: string, balance: number, position: number) {
     this.id = id;
+    this.logo = logo;
     this.color = color;
     this.name = name;
     this.balance = balance;

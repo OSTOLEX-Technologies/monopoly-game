@@ -31,26 +31,30 @@ export class ChanceCard extends Card implements ICardTask {
       case 'chance-201': // Advance to "Go". (Collect $200)
         actions.push(new MoveAction(playerId, 0, []), new GoAction([], playerId));
         break;
-      case 'chance-202': // Advance to Illinois Ave. {Avenue}. If you pass Go, collect $200.
-        actions.push(new MoveAction(playerId, 13, []));
-        if (player.getPosition() > 13) {
+      case 'chance-202':
+        currPosition = player.getPosition();
+        actions.push(new MoveAction(playerId, 5, []));
+
+        if (currPosition > 5) {
           actions.push(new GoAction([], playerId));
         }
 
         break;
-      case 'chance-203': // Advance to St. Charles Place. If you pass Go, collect $200
-        actions.push(new MoveAction(playerId, 13, []));
-        if (player.getPosition() > 35) {
+      case 'chance-203':
+        currPosition = player.getPosition();
+        actions.push(new MoveAction(playerId, 9, []));
+
+        if (currPosition > 9) {
           actions.push(new GoAction([], playerId));
         }
 
         break;
       case 'chance-204': // Advance token to the nearest Utility
         currPosition = player.getPosition();
-        if (currPosition === 7) {
-          newPosition = 12;
+        if (currPosition === 2) {
+          newPosition = 13;
         } else {
-          newPosition = 28;
+          newPosition = 27;
         }
 
         player.setIsNextPayByDice({ isTrue: true, payTo: null });
@@ -59,12 +63,12 @@ export class ChanceCard extends Card implements ICardTask {
         break;
       case 'chance-205': // Advance to the nearest Railroad
         currPosition = player.getPosition();
-        if (currPosition === 7) {
-          newPosition = 15;
-        } else if (currPosition === 22) {
-          newPosition = 25;
+        if (currPosition === 2) {
+          newPosition = 12;
+        } else if (currPosition === 14) {
+          newPosition = 20;
         } else {
-          newPosition = 5;
+          newPosition = 28;
         }
 
         actions.push(new MoveAction(playerId, newPosition, []));
@@ -109,7 +113,13 @@ export class ChanceCard extends Card implements ICardTask {
         actions.push(new MoveAction(playerId, 5, []));
         break;
       case 'chance-213': // Advance token to Boardwalk
-        actions.push(new MoveAction(playerId, 39, []));
+        currPosition = player.getPosition();
+        actions.push(new MoveAction(playerId, 29, []));
+
+        if (currPosition > 29) {
+          actions.push(new GoAction([], playerId));
+        }
+
         break;
       case 'chance-214': // PAY EACH PLAYER $50
         players.forEach((p: Player) => {

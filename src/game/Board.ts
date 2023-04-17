@@ -138,6 +138,7 @@ export class Board {
 
   public goToJail(playerId: string) {
     let player = getPlayerById(playerId, this.players);
+    player.setPosition(8);
     player.setStepsInJail(3);
   }
 
@@ -162,5 +163,10 @@ export class Board {
     }
 
     this.getOutOfJail(playerId);
+  }
+
+  public getPlayerProperties(playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+    return player.propertyCards;
   }
 }

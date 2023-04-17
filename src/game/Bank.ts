@@ -154,4 +154,9 @@ export class Bank {
     );
     return this.utilitiesCards.splice(cardIdx, 1);
   }
+
+    public getBalance(playerId: string) {
+        let player = getPlayerById(playerId, this.players);
+        return player.getBalance();
+    }
 }
