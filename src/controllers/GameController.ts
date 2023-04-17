@@ -2,7 +2,7 @@ import {GameData} from "./GameData";
 import {Game} from "../game/Game";
 import {handleActions} from "./handleActions";
 import {PiecePresenter} from "../board";
-import {balanceManager, boardView, propertyManager} from "../viewGlobals";
+import {balanceManager, boardView, playersManager, propertyManager} from "../viewGlobals";
 import {getPieceColor} from "../game/Utils";
 import {Player} from "../game/Player";
 import {PropertyStatus} from "../constants";
@@ -27,6 +27,7 @@ export class GameController {
 
     this.initBalance();
     this.initProperty();
+    this.initPlayers();
   }
 
   private initPiece(player: Player) {
@@ -45,14 +46,33 @@ export class GameController {
       propertyManager.addProperty({
         logo: property.logo,
         propertyName: property.getTitle(),
-        status: property.isMortgage ? PropertyStatus.Mortgage : PropertyStatus.Redeem,
-        buttonCallback: () => {}
+        status: property.isMortgage ? PropertyStatus.Redeem : PropertyStatus.Mortgage,
+        buttonCallback: () => {
+          // TODO:
+        }
       });
     });
   }
 
-  public getPlayers() {
-    return this.game.getPlayers();
+  private redeem(playerId: string, cardId: string) {
+
+  }
+
+  private mortgage(playerId: string, cardId: string) {
+
+  }
+
+  private initPlayers() {
+    const players = this.game.getPlayers();
+
+    players.forEach((player) => {
+      playersManager.addPlayer({
+        logo: player.color,
+        username: player.id,
+        money: player.getBalance(),
+        color: player.color,
+      });
+    });
   }
 
   public async makeMove() {
