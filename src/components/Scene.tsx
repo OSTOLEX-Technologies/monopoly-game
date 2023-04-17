@@ -8,6 +8,7 @@ import {JAIL_POSITION_ARRAY} from "../constants";
 import {ChanceDeck} from "./ChanceDeck";
 import {TreasuryDeck} from "./TreasuryDeck";
 import {ModalPopupProvider} from "./ModalPopupProvider";
+import {ProjectsOnHoverPopup} from "./ui/ProjectsOnHoverPopup";
 
 export function Scene() {
     return (
@@ -20,6 +21,7 @@ export function Scene() {
                 <ChanceDeck/>
             </Board>
             <ModalPopupProvider/>
+            <ProjectsOnHoverPopup/>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
             <directionalLight intensity={0.3} position={[0, 10, 0]}/>
             {/*<Exporter/>*/}

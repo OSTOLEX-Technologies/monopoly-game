@@ -1,6 +1,7 @@
 import {SmallButton} from "./styledComponents";
-import {RightBottomSection, RightTopSection, RoundImage} from "./common";
+import {RightBottomSection, RoundImage} from "./common";
 import styled from "styled-components";
+import {PropertyStatus} from "../../constants";
 
 const PropertyRow = styled.div`
   font-family: Orbitron;
@@ -23,6 +24,8 @@ const PropertyName = styled.span`
 type PlayerRowProps = {
     logo: string;
     propertyName: string;
+    status: PropertyStatus;
+    buttonCallback: () => void;
 }
 
 const PlayerRow = (props: PlayerRowProps) => (
@@ -31,8 +34,8 @@ const PlayerRow = (props: PlayerRowProps) => (
         <div style={{textAlign: "center", width: "6rem", lineHeight: 0.8}}>
             <PropertyName>{props.propertyName}</PropertyName>
         </div>
-        <SmallButton style={{width: "120px"}}>
-            <span>mortgage</span>
+        <SmallButton style={{width: "120px"}} onClick={props.buttonCallback}>
+            <span>{props.status == PropertyStatus.Mortgage ? "Mortgage" : "Redeem"}</span>
         </SmallButton>
     </PropertyRow>
 );
@@ -49,15 +52,16 @@ const ProperyTableContainer = styled.div`
 `
 
 type PropertyTableProps = {
-    properties: Array<{ logo: string; propertyName: string }>;
+    properties: Array<{logo: string; propertyName: string, status: PropertyStatus, buttonCallback: () => void}>;
 }
 
 export const PropertyTable = (props: PropertyTableProps) => (
     <RightBottomSection style={{top: "150px", }}>
         <h2 style={{textAlign: "center", fontFamily: "Orbitron"}}>Your property:</h2>
         <ProperyTableContainer>
-                {props.properties.map((player, index) => (
-                    <PlayerRow key={index} logo={player.logo} propertyName={player.propertyName}/>
+                {props.properties.map((property, index) => (
+                    <PlayerRow key={index} logo={property.logo} propertyName={property.propertyName}
+                               buttonCallback={property.buttonCallback} status={property.status}/>
                 ))}
         </ProperyTableContainer>
     </RightBottomSection>

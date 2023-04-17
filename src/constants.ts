@@ -129,3 +129,8 @@ export enum CardType {
     Chance = "chance",
     Treasury = "treasury",
 }
+
+export enum PropertyStatus {
+    Redeem = "redeem",
+    Mortgage = "mortgage"
+}
