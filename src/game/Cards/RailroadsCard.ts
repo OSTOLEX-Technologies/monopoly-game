@@ -7,6 +7,7 @@ export class RailroadsCard extends Card implements ICardRent {
   private readonly ifTwoCards: number;
   private readonly ifThreeCards: number;
   private mortgage: number;
+  private readonly logo: string;
 
   constructor(
     id: string,
@@ -14,6 +15,7 @@ export class RailroadsCard extends Card implements ICardRent {
     color: string,
     price: number,
     rent: number,
+    logo: string,
     ifTwoCards: number,
     ifThreeCards: number,
     mortgage: number) {
@@ -21,6 +23,7 @@ export class RailroadsCard extends Card implements ICardRent {
 
     this.price = price;
     this.rent = rent;
+    this.logo = logo;
     this.ifTwoCards = ifTwoCards;
     this.ifThreeCards = ifThreeCards;
     this.mortgage = mortgage;
