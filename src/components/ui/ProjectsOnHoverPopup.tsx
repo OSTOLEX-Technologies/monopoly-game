@@ -21,7 +21,7 @@ const CategoryContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 0 50px;
-  padding-top: 15px;
+  padding-top: 20px;
 `;
 
 const CategoryImg = styled.img`
@@ -52,17 +52,18 @@ const PopupDescription = styled.span`
   font-family: Orbitron;
   font-size: 12px;
   text-align: center;
+  margin-top: 5px;
 `;
 
 const PopupLink = styled.a`
-  margin-top: -20px;
+  margin-top: -15px;
   text-align: center;
   color: #fff;
 `;
 
 const Logo = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
 `;
 
 const OwnerText = styled.span`
@@ -89,7 +90,7 @@ const ProjectDataContainer = styled.div`
   font-family: Orbitron;
   color: #fff;
   //margin: 80px 60px;
-  margin-top: 40px;
+  margin-top: 60px;
 `;
 
 const GameDataContainer = styled.div`
@@ -133,7 +134,7 @@ export function ProjectsOnHoverPopup() {
                             Hockey Club Manager
                         </PopupHeader>
                         <PopupLink href="https://paras.id">
-                            paras.id/
+                            paras.id
                         </PopupLink>
                         <PopupDescription>
                             All-in-one social platform to buy, sell and create NFTs on Near
