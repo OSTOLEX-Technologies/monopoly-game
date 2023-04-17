@@ -22,6 +22,14 @@ export class Game {
     return this.board.doStep(playerId);
   }
 
+  public mortgage(playerId: string, cardId: string) {
+    this.bank.mortgage(playerId, cardId);
+  }
+
+  public redeem(playerId: string, cardId: string) {
+    this.bank.redeem(playerId, cardId);
+  }
+
   public useJailFreeCard(playerId: string) {
     this.board.useJailFreeCard(playerId);
   }

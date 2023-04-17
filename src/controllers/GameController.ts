@@ -55,11 +55,11 @@ export class GameController {
   }
 
   private redeem(playerId: string, cardId: string) {
-
+    this.game.redeem(playerId, cardId);
   }
 
   private mortgage(playerId: string, cardId: string) {
-
+    this.game.mortgage(playerId, cardId);
   }
 
   private initPlayers() {
