@@ -119,7 +119,16 @@ const GameDataUnitImage = styled.img`
   height: 30px;
 `;
 
-export function ProjectsOnHoverPopup() {
+interface CellInfoPopupProps {
+    header: string;
+    link?: string;
+    description: string;
+    logo?: string;
+    owner?: string;
+
+}
+
+export function CellInfoPopup() {
     return (
         <Html position={[2.6, 1, 4]}>
             <Background>
@@ -152,7 +161,7 @@ export function ProjectsOnHoverPopup() {
                     </OwnerText>
                     <div>
                         {/*жирным подсвечиваешь стадию проекта*/}
-                        <ProjectStageText>Pre-seed commission 10 </ProjectStageText>
+                        <ProjectStageText>Pre-seed commission 10</ProjectStageText>
                         <ProjectStageText>Seed commission 30</ProjectStageText>
                         <ProjectStageText>Series A commission 50</ProjectStageText>
                         <ProjectStageText>Series B commission 100</ProjectStageText>

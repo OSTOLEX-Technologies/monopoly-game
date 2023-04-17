@@ -8,7 +8,7 @@ import {JAIL_POSITION_ARRAY} from "../constants";
 import {ChanceDeck} from "./ChanceDeck";
 import {TreasuryDeck} from "./TreasuryDeck";
 import {ModalPopupProvider} from "./ModalPopupProvider";
-import {ProjectsOnHoverPopup} from "./ui/ProjectsOnHoverPopup";
+import {CellInfoPopup} from "./ui/CellInfoPopup";
 
 export function Scene() {
     return (
