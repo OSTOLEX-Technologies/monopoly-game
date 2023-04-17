@@ -1,0 +1,133 @@
+{
+  "Go": {
+    "description": "Collect $200 when they pass or land on this space",
+    "logo": "logos/Go.png"
+  },
+  "Paras": {
+    "link": "https://paras.id",
+    "description": "All-in-one social platform to buy, sell and create NFTs on Near Protocol",
+    "logo": "logos/Paras.png"
+  },
+  "Chance": {
+    "description": "Chance card. Get instructions and follow what they say",
+    "logo": "logos/Chance.png"
+  },
+  "Mintbase": {
+    "link": "https://mintbase.xyz/",
+    "description": "Fully automated Minter + Marketplace on NEAR to create and list NFTs on your smart contract",
+    "logo": "logos/Mintbase.png"
+  },
+  "Treasury": {
+    "description": "Treasury card. Get instructions and follow what they say",
+    "logo": "logos/Treasury.png"
+  },
+  "Calimero": {
+    "link": "https://calimero.network/",
+    "description": "Secure private shard infrastructure for businesses",
+    "logo": "logos/Calimero.png"
+  },
+  "Your position has been liquidated": {
+    "description": "",
+    "logo": "logos/Not stonks.png"
+  },
+  "Octopus": {
+    "link": "https://oct.network/",
+    "description": "Multichain, interoperable cryptonetwork for launching and running appchains",
+    "logo": "logos/Octopus.png"
+  },
+  "Just visiting": {
+    "description": "Say hi to Sam!",
+    "logo": "logos/Jailtime.png"
+  },
+  "Ref.finance": {
+    "link": "https://ref.finance/",
+    "description": "Community-led, multi-purpose DeFi platform built on the NEAR Protocol",
+    "logo": "logos/RefFinance.png"
+  },
+  "Trisolaris": {
+    "link": "https://trisolaris.io/",
+    "description": "Decentralized exchange on NEAR's Aurora engine",
+    "logo": "logos/Trisolaris.png"
+  },
+  "Labor exchange": {
+    "link": "",
+    "description": "Working on the weekend like usual",
+    "logo": "logos/Crowd.png"
+  },
+  "Human Guild": {
+    "link": "https://humanguild.io/",
+    "description": "Group of founders and creators who believe everyone should be rewarded for bringing their creations to the world",
+    "logo": "logos/Human Guild.png"
+  },
+  "Rainbow Bridge": {
+    "link": "https://rainbowbridge.app/",
+    "description": "Bridge between or send within Ethereum, NEAR and Aurora",
+    "logo": "logos/Rainbow bridge.png"
+  },
+  "Withdraw function is temporarily suspended": {
+    "description": "Some problems, wait one turn.",
+    "logo": "logos/Temporarily suspended.png"
+  },
+  "Aurora": {
+    "link": "https://aurora.dev/",
+    "description": "Ethereum compatible blockchain and ecosystem that runs on the NEAR Protocol",
+    "logo": "logos/Aurora.png"
+  },
+  "Sent money to the wrong address": {
+    "description": "",
+    "logo": "logos/Not stonks.png"
+  },
+  "Bastion": {
+    "link": "https://bastionprotocol.com/",
+    "description": "The world’s first Lending and Stableswap Protocol",
+    "logo": "logos/Bastion.png"
+  },
+  "Hudzilin Pub": {
+    "link": "",
+    "description": "Cheers!",
+    "logo": "logos/Hudzilin.png"
+  },
+  "Aurigami": {
+    "link": "https://app.aurigami.finance/",
+    "description": "Noncustodial lending and borrowing haven on Aurora",
+    "logo": "logos/Aurigami.png"
+  },
+  "HCM": {
+    "link": "https://hockeyclubmanager.com/",
+    "description": "Hockey Club Manager simulator on Near",
+    "logo": "logos/Hockey Club Manager.png"
+  },
+  "FRS is interested in you": {
+    "description": "Some suspicious activity on your bank account, please go to jail.",
+    "logo": "logos/FRS.png"
+  },
+  "Laser Chess": {
+    "link": "https://near.social/#/let45fc.near/widget/LaserChess3D",
+    "description": "Strategic board game on near.social that uses lasers to capture the opponent's piece",
+    "logo": "logos/Laser Chess.png"
+  },
+  "SEC is raising rates": {
+    "description": "",
+    "logo": "logos/Not stonks.png"
+  },
+  "Near Ukraine": {
+    "link": "https://t.me/nearprotocolua/",
+    "description": "",
+    "logo": "logos/Near UA.png"
+  },
+  "Ilya Polosukhin University": {
+    "link": "",
+    "description": "The great educational institution where Ilya and some of our team members studied",
+    "logo": "logos/KHPI.png"
+  },
+  "HERE wallet": {
+    "link": "https://herewallet.app/",
+    "description": "Non-custodial wallet for Near Protocol",
+    "logo": "logos/HERE.png"
+  },
+  "Sender wallet": {
+    "link": "https://senderwallet.io/",
+    "description": "Ethereum and NEAR compatible web3 wallet to control cryptocurrency, NFT, DeFi activities and digital assets",
+    "logo": "logos/Sender.png"
+  }
+}
