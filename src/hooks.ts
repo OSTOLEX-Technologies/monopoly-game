@@ -120,13 +120,14 @@ export function useModalPopup() {
 export function useBoardOnHoverCallbacks(): [
     (cellIndex: number, e: ThreeEvent<MouseEvent>) => void,
     (e: ThreeEvent<MouseEvent>) => void] {
-    const intervalTime = 500;
+    const showTimeoutTime = 50;
+    const hideTimeoutTime = 300;
     return [
         (cellIndex: number, e: ThreeEvent<MouseEvent>) => {
-            reactCellInfoPopupManager.showPopupWithDelay(getCellInfoPopupData(cellIndex), intervalTime);
+            reactCellInfoPopupManager.showPopupWithDelay(getCellInfoPopupData(cellIndex), showTimeoutTime);
         },
         (e: ThreeEvent<MouseEvent>) => {
-            reactCellInfoPopupManager.hidePopupWithDelay(intervalTime);
+            reactCellInfoPopupManager.hidePopupWithDelay(hideTimeoutTime);
             reactCellInfoPopupManager.cancelShowPopup();
         }
     ]
