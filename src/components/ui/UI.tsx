@@ -8,7 +8,7 @@ import {CardPopup} from "./CardPopup";
 import {CardType} from "../../constants";
 
 export const UI = () => {
-    const balance = useBalance();
+    const [balance, bankruptHandler, tradeHandler] = useBalance();
     const properties = useProperty();
     const players = usePlayers();
     const history = useHistory();
@@ -16,8 +16,8 @@ export const UI = () => {
     return (
         <>
             <Money amount={balance}
-                   bankruptHandler={() => balanceManager.setBalance(balanceManager.getBalance() + 10)}
-                     tradeHandler={() => balanceManager.setBalance(balanceManager.getBalance() - 10)}
+                   bankruptHandler={bankruptHandler}
+                     tradeHandler={tradeHandler}
             />
             <PropertyTable properties={properties} />
             <PlayersTable players={players}/>

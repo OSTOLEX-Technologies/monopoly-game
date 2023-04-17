@@ -8,6 +8,8 @@ import {PropertyStatus} from "./constants";
 
 
 export class BalanceManager {
+    private bankruptListeners: Array<() => void> = [];
+    private tradeListeners: Array<() => void> = [];
     constructor(private balance: number) {
     }
 
@@ -19,6 +21,30 @@ export class BalanceManager {
     public setBalance(balance: number): void {
         if (balance < 0) throw new Error("Balance can't be negative");
         this.balance = balance;
+    }
+
+    /*
+    * This method is used to add a listener to the balance change event
+    * @param eventName - the name of the event. Available events: "bankrupt", "trade"
+    * */
+    public addEventListener(eventName: string, listener: () => void): void {
+        if (eventName === "bankrupt") {
+            this.bankruptListeners.push(listener);
+        } else if (eventName === "trade") {
+            this.tradeListeners.push(listener);
+        }
+    }
+
+    public dispatchEvent(eventName: string): void {
+        if (eventName === "bankrupt") {
+            for (const listener of this.bankruptListeners) {
+                listener();
+            }
+        } else if (eventName === "trade") {
+            for (const listener of this.tradeListeners) {
+                listener();
+            }
+        }
     }
 }
 
