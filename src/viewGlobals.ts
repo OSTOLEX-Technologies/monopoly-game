@@ -30,6 +30,13 @@ export const reactChanceCardsManager = new ReactChanceCardsManager();
 export const reactTreasuryCardsManager = new ReactTreasuryCardsManager();
 export const reactModalPopupManager = new ReactModalPopupManager();
 
+balanceManager.addEventListener("bankrupt", () => {
+        balanceManager.setBalance(balanceManager.getBalance() + 10);
+})
+balanceManager.addEventListener("trade", () => {
+        balanceManager.setBalance(balanceManager.getBalance() - 10);
+})
+
 propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave", status: PropertyStatus.Mortgage, buttonCallback: () => {console.log("mortgage")}});
 propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave", status: PropertyStatus.Mortgage, buttonCallback: () => {console.log("mortgage")}})
 

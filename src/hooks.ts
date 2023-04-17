@@ -24,13 +24,19 @@ export function useCells() {
 }
 
 
-export function useBalance() {
+export function useBalance(): [number, () => void, () => void] {
     const [balance, setBalance] = useState(balanceManager.getBalance());
+    const bankruptHandler = () => {
+        balanceManager.dispatchEvent("bankrupt")
+    }
+    const tradeHandler = () => {
+        balanceManager.dispatchEvent("trade")
+    }
     useEffect(() => {
         reactBalanceManager.onSetBalance(setBalance);
         return () => reactBalanceManager.unSetBalance(setBalance);
     }, []);
-    return balance;
+    return [balance, bankruptHandler, tradeHandler];
 }
 
 
