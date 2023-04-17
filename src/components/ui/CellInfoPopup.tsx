@@ -53,6 +53,7 @@ const PopupDescription = styled.span`
   font-size: 12px;
   text-align: center;
   margin-top: 5px;
+  margin-right: -30px;
 `;
 
 const PopupLink = styled.a`
@@ -123,80 +124,100 @@ interface CellInfoPopupProps {
     header: string;
     link?: string;
     description: string;
-    logo?: string;
+    logo: string;
     owner?: string;
-
+    categoryImg?: string;
+    housePrice?: number;
+    hotelPrice?: number;
+    mortgagePrice?: number;
+    stages?: Array<string>;
+    currentStage?: number;
 }
 
-export function CellInfoPopup() {
+export function CellInfoPopup(props: CellInfoPopupProps) {
     return (
         <Html position={[2.6, 1, 4]}>
             <Background>
                 <CategoryContainer>
-                    <CategoryImg
-                        src="https://raw.githubusercontent.com/OSTOLEX-Technologies/monopoly-game/feature/layout/project%20logos/Paras.png"
-                        alt="category icon"
-                    />
-                    {/*тут иконка категории, типо игры,  DEX, т.д.*/}
+                    {
+                        props.categoryImg && (
+                            <CategoryImg
+                                src={props.categoryImg}
+                                alt="category icon"
+                            />
+                        )
+                    }
                     <PopupHeaderContainer>
                         <PopupHeader>
-                            Hockey Club Manager
+                            {props.header}
                         </PopupHeader>
-                        <PopupLink href="https://paras.id">
-                            paras.id
-                        </PopupLink>
+                        {props.link && (
+                            <PopupLink href={props.link}>
+                                {props.link.replace("https://", "").replace("http://", "")}
+                            </PopupLink>
+                        )}
                         <PopupDescription>
-                            All-in-one social platform to buy, sell and create NFTs on Near
-                            Protocol
+                            {props.description}
                         </PopupDescription>
                     </PopupHeaderContainer>
                 </CategoryContainer>
                 <ProjectDataContainer>
                     <Logo
-                        src="https://raw.githubusercontent.com/OSTOLEX-Technologies/monopoly-game/feature/layout/project%20logos/Paras.png"
+                        src={props.logo}
                         alt="logo"/>
-                    <OwnerText>
-                        tile owned by: let45fc.near{" "}
-                        {/*цветом имя овнера, если нет овнера, ничего не пиши*/}
-                    </OwnerText>
-                    <div>
-                        {/*жирным подсвечиваешь стадию проекта*/}
-                        <ProjectStageText>Pre-seed commission 10</ProjectStageText>
-                        <ProjectStageText>Seed commission 30</ProjectStageText>
-                        <ProjectStageText>Series A commission 50</ProjectStageText>
-                        <ProjectStageText>Series B commission 100</ProjectStageText>
-                        <ProjectStageText>Series C commission 160</ProjectStageText>
-                        <ProjectStageText>ICO 200 commission</ProjectStageText>
-                    </div>
+                    {
+                        props.owner && (
+                            <OwnerText>
+                                tile owned by: {props.owner}
+                            </OwnerText>
+                        )
+                    }
+                    {
+                        props.stages && (
+                            <div>
+                                {
+                                    props.stages.map((stage, index) => (
+                                        <ProjectStageText
+                                            key={index}
+                                            style={{
+                                                fontWeight: index === props.currentStage ? "bold" : "normal"
+                                            }}
+                                        >
+                                            {stage}
+                                        </ProjectStageText>
+                                    ))
+                                }
+                            </div>
+                        )
+                    }
                 </ProjectDataContainer>
-                {/*тут тебе надо будет в цифры передавать данные из GameConfig что я писал*/}
-                <GameDataContainer>
-                    <GameDataUnitContainer>
-                        {/*тут тоже в цифры передавать данные из GameConfig*/}
-                        <GameDataUnitImage
-                            src={import.meta.env.BASE_URL + "icons/House.png"}
-                            alt="icon"
-                        />
-                        {/*серебряная монетка*/}
-                        <GameDataUnitPrice>100</GameDataUnitPrice>
-                    </GameDataUnitContainer>
-                    <GameDataUnitContainer>
-                        <GameDataUnitImage
-                            src={import.meta.env.BASE_URL + "icons/Hotel.png"}
-                            alt="icon"
-                        />
-                        {/*золотая монетка*/}
-                        <GameDataUnitPrice>100</GameDataUnitPrice>
-                    </GameDataUnitContainer>
-                    <GameDataUnitContainer>
-                        <GameDataUnitImage
-                            src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
-                            alt="icon"
-                        />
-                        {/*иконка залога, её я ещё не нарисовал*/}
-                        <GameDataUnitPrice>100</GameDataUnitPrice>
-                    </GameDataUnitContainer>
-                </GameDataContainer>
+                {
+                    props.housePrice && props.hotelPrice && props.mortgagePrice && (
+                        <GameDataContainer>
+                            <GameDataUnitContainer>
+                                <GameDataUnitImage
+                                    src={import.meta.env.BASE_URL + "icons/House.png"}
+                                    alt="icon"
+                                />
+                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                            </GameDataUnitContainer>
+                            <GameDataUnitContainer>
+                                <GameDataUnitImage
+                                    src={import.meta.env.BASE_URL + "icons/Hotel.png"}
+                                    alt="icon"
+                                />
+                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                            </GameDataUnitContainer>
+                            <GameDataUnitContainer>
+                                <GameDataUnitImage
+                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
+                                    alt="icon"
+                                />
+                                <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>
+                            </GameDataUnitContainer>
+                        </GameDataContainer>
+                    )
+                }
             </Background>
         </Html>
     );

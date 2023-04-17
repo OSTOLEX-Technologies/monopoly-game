@@ -21,7 +21,7 @@ export function Scene() {
                 <ChanceDeck/>
             </Board>
             <ModalPopupProvider/>
-            {/*<ProjectsOnHoverPopup/>*/}
+            <CellInfoPopup header="HCM" logo="logos/Hockey Club Manager.png" description="HELLO"/>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
             <directionalLight intensity={0.3} position={[0, 10, 0]}/>
             {/*<Exporter/>*/}
