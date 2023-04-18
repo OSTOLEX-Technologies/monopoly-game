@@ -5,7 +5,7 @@ import {CellInfoPopupData} from "../../ReactManagers";
 const Background = styled.div`
   margin: auto;
   width: 300px;
-  height: 450px;
+  height: 460px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url(${import.meta.env.BASE_URL + 'vault/vertical_popup.png'});
@@ -22,8 +22,8 @@ const CategoryContainer = styled.div`
 `;
 
 const CategoryImg = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   margin-left: -15px;
   filter: invert(1);
 `;
@@ -58,6 +58,8 @@ const PopupDescription = styled.span`
 const PopupLink = styled.a`
   margin-top: -15px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
   color: #fff;
 `;
 
