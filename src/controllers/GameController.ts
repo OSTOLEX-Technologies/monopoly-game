@@ -6,6 +6,7 @@ import {balanceManager, boardView, playersManager, propertyManager} from "../vie
 import {getPieceColor} from "../game/Utils";
 import {Player} from "../game/Player";
 import {PropertyStatus} from "../constants";
+import {Action} from "../game/Actions/Action";
 
 export class GameController {
   private game: Game;
@@ -55,11 +56,11 @@ export class GameController {
   }
 
   private redeem(playerId: string, cardId: string) {
-
+    this.game.redeem(playerId, cardId);
   }
 
   private mortgage(playerId: string, cardId: string) {
-
+    this.game.mortgage(playerId, cardId);
   }
 
   private initPlayers() {
@@ -77,12 +78,24 @@ export class GameController {
 
   public async makeMove() {
     const actions = this.game.doStep(this.playerId);
-    const piece = this.pieces.get(this.playerId);
+    await this.displayMove(this.playerId, actions);
+  }
+
+  private async displayMove(playerId: string, actions: Array<Action>) {
+    const piece = this.pieces.get(playerId);
 
     if (piece == undefined) {
       throw new Error("Cannot find piece");
     }
 
-    await handleActions(actions, piece);
+    await handleActions(actions, piece, playerId);
+  }
+
+  public async makeOpponentMove(gameData: GameData, opponentId: string) {
+    this.game = new Game(gameData);
+    await this.displayMove(opponentId, gameData.lastActions);
+  }
+
+  public showLastTransaction() {
   }
 }

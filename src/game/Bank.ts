@@ -9,7 +9,7 @@ import {CardType} from "./Cards/Card";
 
 export class Bank {
   private tiles: Array<Tile>;
-  private readonly players: Array<Player>;
+  public players: Array<Player>;
   private readonly propertyCards: Array<PropertyCard>;
   private readonly railroadsCards: Array<RailroadsCard>;
   private readonly utilitiesCards: Array<UtilitiesCard>;
@@ -68,18 +68,21 @@ export class Bank {
       case CardType.Property:
         cardIdx = this.propertyCards.findIndex((c) => c.getId() == cardId);
         card = this.propertyCards[cardIdx];
+        if (card.isMortgage) throw new Error("The card is mortgage");
         fromPlayer.propertyCards.splice(cardIdx, 1);
         toPlayer.propertyCards.push(card);
         break;
       case CardType.RailRoad:
         cardIdx = this.railroadsCards.findIndex((c) => c.getId() == cardId);
         card = this.railroadsCards[cardIdx];
+        if (card.isMortgage) throw new Error("The card is mortgage");
         fromPlayer.railroadsCards.splice(cardIdx, 1);
         toPlayer.railroadsCards.push(card);
         break;
       case CardType.Utility:
         cardIdx = this.utilitiesCards.findIndex((c) => c.getId() == cardId);
         card = this.utilitiesCards[cardIdx];
+        if (card.isMortgage) throw new Error("The card is mortgage");
         fromPlayer.utilitiesCards.splice(cardIdx, 1);
         toPlayer.utilitiesCards.push(card);
         break;
@@ -158,5 +161,46 @@ export class Bank {
     public getBalance(playerId: string) {
         let player = getPlayerById(playerId, this.players);
         return player.getBalance();
+    }
+
+    public mortgage(playerId: string, cardId: string) {
+      const card = this.getPlayerPropertyCard(playerId, cardId);
+      const player = getPlayerById(playerId, this.players);
+
+      if (card.isMortgage) {
+        throw new Error("The card is already mortgage");
+      }
+
+      player.increaseBalance(card.mortgage);
+      card.isMortgage = true;
+    }
+
+    private getPlayerPropertyCard(playerId: string, cardId: string) {
+      const player = getPlayerById(playerId, this.players);
+
+      const card = player.propertyCards.find(
+          (card: PropertyCard) => card.getId() == cardId
+      );
+
+      if (card == undefined) {
+        throw new Error("Card not found");
+      }
+
+      return card;
+    }
+
+    public redeem(playerId: string, cardId: string) {
+      const card = this.getPlayerPropertyCard(playerId, cardId);
+      const player = getPlayerById(playerId, this.players);
+
+      if (!card.isMortgage) {
+        throw new Error("Card is not mortgage");
+      }
+      if (player.getBalance() < card.mortgage) {
+        throw new Error("Not enough balance");
+      }
+
+      player.decreaseBalance(card.mortgage);
+      card.isMortgage = false;
     }
 }

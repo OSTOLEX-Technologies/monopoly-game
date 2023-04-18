@@ -1,12 +1,16 @@
 export abstract class Card {
-  protected id: string;
-  protected title: string;
-  protected type: CardType;
+  public readonly id: string;
+  public readonly title: string;
+  public readonly type: CardType;
+  public readonly mortgage: number;
+  public isMortgage: boolean;
 
-  protected constructor(id: string, title: string, type: CardType) {
+  protected constructor(id: string, title: string, type: CardType, mortgage: number) {
     this.id = id;
     this.title = title;
     this.type = type;
+    this.mortgage = mortgage;
+    this.isMortgage = false;
   }
 
   public getId(): string {

@@ -102,7 +102,25 @@ window.addEventListener('piecesLoaded', async ev => {
         // }), 2000);
         // setTimeout(() => propertyManager.updateProperty("1 Ave", PropertyStatus.Redeem,
         //     () => {console.log("Property redeemed")}), 2000);
-})
+});
+
+window.addEventListener('message', async (event) => {
+        const type = event.data.type;
+        const data = event.data.data;
+
+        switch (type) {
+                case "kick":
+                        break;
+                case "bankrupt":
+                        break;
+                case "move":
+                        break;
+                case "endOfTurn":
+                        break;
+                case "trade":
+                        break;
+        }
+});
 
 // window.addEventListener('piecesLoaded', async ev => {
 //         await boardView.movePieceToJail(piece1);

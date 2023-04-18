@@ -15,7 +15,7 @@ export class ChanceCard extends Card implements ICardTask {
   private readonly description: string;
 
   constructor(id: string, title: string, description: string) {
-    super(id, title, CardType.Chance);
+    super(id, title, CardType.Chance, 0);
 
     this.description = description;
   }

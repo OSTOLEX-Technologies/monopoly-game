@@ -5,6 +5,7 @@ import {RailroadsCard} from "../Cards/RailroadsCard";
 import {UtilitiesCard} from "../Cards/UtilitiesCard";
 import {ICardRent} from "../Cards/ICardRent";
 import {PayAction} from "../Actions/PayAction";
+import {PayRentAction} from "../Actions/PayRentAction";
 
 export abstract class Tile {
   private readonly type: TileType;
@@ -41,7 +42,7 @@ export abstract class Tile {
     }
 
     const rent = this.getRent(dice);
-    return new PayAction(playerId, this.owner.getId(), rent);
+    return new PayRentAction(playerId, this.name, rent, this.owner.getId());
   }
 
   private getRent(dice: Array<number>): number {
