@@ -1,10 +1,11 @@
-import * as THREE from "three";
+import {TextureLoader, Vector3} from "three";
 import {ThreeEvent, useLoader} from "@react-three/fiber";
-import {PropsWithChildren, Fragment} from "react";
+import {Fragment, PropsWithChildren} from "react";
 import {Piece} from "./Piece";
 import {useBoardOnHoverCallbacks, useCells} from "../hooks";
-import {TextureLoader, Vector3} from "three";
 import {CircleChip} from "./CircleChip";
+import OrbitronText from "./OrbitronText3D";
+import {CellPriceType} from "../constants";
 
 export type BoardProps = {
     onClick?: (e: ThreeEvent<MouseEvent>) => void
@@ -35,6 +36,11 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                         {
                             cell.getOwner() &&
                             <CircleChip type={cell.getOwnerChipIcon()} color={cell.getOwner()!} position={cell.getOwnerChipPositionTuple()}/>
+                        }
+                        {cell.getPrice() && cell.getPriceType() != CellPriceType.None &&
+                            <OrbitronText text={
+                                cell.getPriceType() == CellPriceType.Buy? `Buy: ${cell.getPrice()}$` : `Fee: ${cell.getPrice()}$`
+                            } scale={[0.3, 0.3, 0.3]} position={cell.getPriceTextPositionTuple()} rotation={[Math.PI/2, Math.PI, 0]}/>
                         }
                        <mesh onPointerEnter={(e) => onEnterCallback(cell.index, e)} onPointerOut={onLeaveCallback} rotation={[-Math.PI / 2, 0, 0]} position={cell.getCenter3().clone().add(new Vector3(0, 0.01, 0))}>
                             <planeGeometry />

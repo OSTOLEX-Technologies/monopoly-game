@@ -90,6 +90,13 @@ export const piecesOnCellOffsets = Object.freeze({
 })
 
 
+export enum CellPriceType {
+    None = "none",
+    Buy = "buy",
+    Fee = "fee"
+}
+
+
 export const cellsOwnerIcons = Object.freeze({
     0: null,
     1: OwnerIconsTypes.NFT,

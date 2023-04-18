@@ -1,9 +1,10 @@
 import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
-import {PieceColor, PropertyStatus} from "./constants";
+import {CellPriceType, PieceColor, PropertyStatus} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
 import {
-        ReactBalanceManager, ReactCellInfoPopupManager,
+        ReactBalanceManager,
+        ReactCellInfoPopupManager,
         ReactCellsManager,
         ReactChanceCardsManager,
         ReactGameHistoryManager,
@@ -54,6 +55,9 @@ const piece5 = boardView.addPiece(0, PieceColor.Red);
 const piece6 = boardView.addPiece(0, PieceColor.Yellow);
 const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
 const piece8 = boardView.addPiece(0, PieceColor.Orange);
+
+boardView.setCellPrice(31, 2000)
+boardView.setCellPriceType(31, CellPriceType.Fee)
 
 
 const messages = [
