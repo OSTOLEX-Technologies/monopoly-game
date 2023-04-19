@@ -7,7 +7,6 @@
     "link": "https://paras.id",
     "description": "All-in-one social platform to buy, sell and create NFTs on Near Protocol",
     "logo": "logos/Paras.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -23,9 +22,8 @@
   },
   "Mintbase": {
     "link": "https://mintbase.xyz/",
-    "description": "Fully automated Minter + Marketplace on NEAR to create and list NFTs on your smart contract",
+    "description": "Minter + Marketplace to create and list NFTs on your smart contract",
     "logo": "logos/Mintbase.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -43,7 +41,6 @@
     "link": "https://calimero.network/",
     "description": "Secure private shard infrastructure for businesses",
     "logo": "logos/Calimero.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -54,14 +51,13 @@
     ]
   },
   "Your position has been liquidated": {
-    "description": "",
+    "description": "Time to buy the dip",
     "logo": "logos/Not stonks.png"
   },
   "Octopus": {
     "link": "https://oct.network/",
     "description": "Multichain, interoperable cryptonetwork for launching and running appchains",
     "logo": "logos/Octopus.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -79,7 +75,6 @@
     "link": "https://ref.finance/",
     "description": "Community-led, multi-purpose DeFi platform built on the NEAR Protocol",
     "logo": "logos/RefFinance.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -93,7 +88,6 @@
     "link": "https://trisolaris.io/",
     "description": "Decentralized exchange on NEAR's Aurora engine",
     "logo": "logos/Trisolaris.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -104,10 +98,8 @@
     ]
   },
   "Labor exchange": {
-    "link": "",
     "description": "Working on the weekend like usual",
     "logo": "logos/Crowd.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Regular fee",
       "Double owner fee",
@@ -118,7 +110,6 @@
     "link": "https://humanguild.io/",
     "description": "Group of founders and creators who believe everyone should be rewarded for bringing their creations to the world",
     "logo": "logos/Human Guild.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Guild member",
       "Double DAO member"
@@ -128,7 +119,6 @@
     "link": "https://rainbowbridge.app/",
     "description": "Bridge between or send within Ethereum, NEAR and Aurora",
     "logo": "logos/Rainbow bridge.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -138,15 +128,14 @@
       "ICO commission"
     ]
   },
-  "Withdraw function is temporarily suspended": {
+  "Withdraw is temporarily suspended": {
     "description": "Some problems, wait one turn.",
     "logo": "logos/Temporarily suspended.png"
   },
   "Aurora": {
     "link": "https://aurora.dev/",
-    "description": "Ethereum compatible blockchain and ecosystem that runs on the NEAR Protocol",
+    "description": "Ethereum compatible blockchain and ecosystem on NEAR Protocol",
     "logo": "logos/Aurora.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -162,9 +151,8 @@
   },
   "Bastion": {
     "link": "https://bastionprotocol.com/",
-    "description": "Bastion is a decentralized stableswap and lending protocol built on Aurora",
+    "description": "Decentralized stableswap and lending protocol on Aurora",
     "logo": "logos/Bastion.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -177,7 +165,6 @@
   "Hudzilin`s Pub": {
     "description": "Cheers!",
     "logo": "logos/Hudzilin.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Regular fee",
       "Double owner fee",
@@ -188,7 +175,6 @@
     "link": "https://app.aurigami.finance/",
     "description": "Noncustodial lending and borrowing haven on Aurora",
     "logo": "logos/Aurigami.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -202,7 +188,6 @@
     "link": "https://hockeyclubmanager.com/",
     "description": "Hockey Club Manager simulator on Near",
     "logo": "logos/Hockey Club Manager.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -218,9 +203,8 @@
   },
   "Laser Chess": {
     "link": "https://near.social/#/let45fc.near/widget/LaserChess3D",
-    "description": "Strategic board game on near.social that uses lasers to capture the opponent's piece",
+    "description": "Strategic board game on near.social",
     "logo": "logos/Laser Chess.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -230,24 +214,22 @@
       "ICO commission"
     ]
   },
-  "SEC is raising rates": {
-    "description": "",
+  "Fed is raising rates": {
+    "description": "Investors move their money out of cryptocurrencies, which leads to a drop in prices.",
     "logo": "logos/Not stonks.png"
   },
   "Near Ukraine": {
     "link": "https://linktr.ee/nearuaguild",
-    "description": "",
+    "description": "Guild aimed at building devs, creators and entrepreneurs community",
     "logo": "logos/Near UA.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Guild member",
       "Double DAO member"
     ]
   },
-  "Ilya Polosukhin University": {
-    "description": "The great educational institution where Ilya and some of our team members studied",
+  "Polosukhin University": {
+    "description": "The great institution where Ilya and some of our team members studied",
     "logo": "logos/KHPI.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Regular fee",
       "Double owner fee",
@@ -258,7 +240,6 @@
     "link": "https://herewallet.app/",
     "description": "Non-custodial wallet for Near Protocol",
     "logo": "logos/HERE.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
@@ -270,9 +251,8 @@
   },
   "Sender wallet": {
     "link": "https://senderwallet.io/",
-    "description": "Ethereum and NEAR compatible web3 wallet to control cryptocurrency, NFT, DeFi activities and digital assets",
+    "description": "Ethereum and NEAR compatible web3 wallet",
     "logo": "logos/Sender.png",
-    "owner": "tile owned by: ",
     "stages": [
       "Pre-seed commission",
       "Seed commission",
