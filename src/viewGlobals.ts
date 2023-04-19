@@ -58,6 +58,8 @@ const piece8 = boardView.addPiece(0, PieceColor.Orange);
 
 boardView.setCellPrice(31, 2000)
 boardView.setCellPriceType(31, CellPriceType.Fee)
+boardView.setCellPrice(23, 2000)
+boardView.setCellPriceType(23, CellPriceType.Fee)
 
 
 const messages = [
