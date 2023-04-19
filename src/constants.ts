@@ -144,6 +144,13 @@ export const ownerIcons = Object.freeze({
     [OwnerIconsTypes.Aurora]: import.meta.env.BASE_URL + 'models/owner_icons/Aurora.png',
 })
 
+export enum moneyChipsTypes {
+    Bronze = "bronze",
+    Silver = "silver",
+    Gold = "gold",
+}
+
+
 
 export enum CardType {
     Chance = "chance",
