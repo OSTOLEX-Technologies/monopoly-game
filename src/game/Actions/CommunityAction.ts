@@ -30,6 +30,7 @@ export class CommunityAction extends Action {
 
     this.historyMessage = "(" + player.color + ").{" + player.id + "} got a community treasure card: " + this.description;
   }
+
   public getHistoryMessage(): string {
     return this.historyMessage;
   }

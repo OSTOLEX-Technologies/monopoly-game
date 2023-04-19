@@ -1,9 +1,10 @@
 import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
-import {PieceColor, PropertyStatus} from "./constants";
+import {CellPriceType, PieceColor, PropertyStatus} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
 import {
-        ReactBalanceManager, ReactCellInfoPopupManager,
+        ReactBalanceManager,
+        ReactCellInfoPopupManager,
         ReactCellsManager,
         ReactChanceCardsManager,
         ReactGameHistoryManager,
@@ -55,6 +56,9 @@ const piece6 = boardView.addPiece(0, PieceColor.Yellow);
 const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
 const piece8 = boardView.addPiece(0, PieceColor.Orange);
 
+boardView.setCellPrice(31, 2000)
+boardView.setCellPriceType(31, CellPriceType.Fee)
+
 
 const messages = [
         "(red).{let45fc.testnet} sent 300$ to (green).{Player3}",
@@ -98,7 +102,25 @@ window.addEventListener('piecesLoaded', async ev => {
         // }), 2000);
         // setTimeout(() => propertyManager.updateProperty("1 Ave", PropertyStatus.Redeem,
         //     () => {console.log("Property redeemed")}), 2000);
-})
+});
+
+window.addEventListener('message', async (event) => {
+        const type = event.data.type;
+        const data = event.data.data;
+
+        switch (type) {
+                case "kick":
+                        break;
+                case "bankrupt":
+                        break;
+                case "move":
+                        break;
+                case "endOfTurn":
+                        break;
+                case "trade":
+                        break;
+        }
+});
 
 // window.addEventListener('piecesLoaded', async ev => {
 //         await boardView.movePieceToJail(piece1);

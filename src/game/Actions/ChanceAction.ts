@@ -26,7 +26,7 @@ export class ChanceAction extends Action {
 
     this.historyMessage = "(" + player.color + ").{" + player.id + "} got a chance card: " + this.description;
   }
-  getHistoryMessage(): string {
+  public getHistoryMessage(): string {
     return this.historyMessage;
   }
 }

@@ -10,8 +10,6 @@ export class PropertyCard extends Card implements ICardRent {
   public readonly threeHouses: number;
   public readonly fourHouses: number;
   public readonly hotel: number;
-  public readonly isMortgage: boolean;
-  public readonly mortgage: number;
   public readonly houseCost: number;
   public readonly hotelCost: number;
   public readonly quantity: number;
@@ -35,7 +33,7 @@ export class PropertyCard extends Card implements ICardRent {
     quantity: number,
     houses: number,
     hotels: number) {
-    super(id, title, CardType.Property);
+    super(id, title, CardType.Property, mortgage);
 
     this.price = price;
     this.logo = logo;
@@ -45,8 +43,6 @@ export class PropertyCard extends Card implements ICardRent {
     this.threeHouses = threeHouses;
     this.fourHouses = fourHouses;
     this.hotel = hotel;
-    this.isMortgage = false;
-    this.mortgage = mortgage;
     this.houseCost = houseCost;
     this.hotelCost = houseCost;
     this.quantity = quantity;

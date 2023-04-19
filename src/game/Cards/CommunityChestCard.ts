@@ -15,7 +15,7 @@ export class CommunityChestCard extends Card implements ICardTask {
   private readonly description: string;
 
   constructor(id: string, title: string, description: string) {
-    super(id, title, CardType.Community);
+    super(id, title, CardType.Community, 0);
 
     this.description = description;
   }

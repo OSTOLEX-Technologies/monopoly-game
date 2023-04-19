@@ -3,6 +3,7 @@ import {Vector2, Vector3} from "three";
 import {PieceMoveAnimationRenderer} from "./animationsRenderers";
 import {animationRenderersManager} from "./viewGlobals";
 import {
+    CellPriceType,
     CELLS_ON_BOARD,
     CELLS_ON_SIDE,
     cellsOwnerIcons, JAIL_EXIT_CELL_INDEX, JAIL_POSITION,
@@ -47,22 +48,32 @@ export class PiecePresenter {
     }
 }
 
-export class OwnerChipPresenter {
-    public object3D?: THREE.Object3D;
-    public readonly uuid: string;
-    constructor(public color: PieceColor) {
-        this.uuid = THREE.MathUtils.generateUUID();
-    }
-}
-
 export class CellPresenter {
     public index: number;
     private owner?: PieceColor;
     private pieces: Array<PiecePresenter> = [];
+    private price?: number;
+    private priceType: CellPriceType = CellPriceType.None;
     constructor(index: number) {
         if (index < 0 || index > CELLS_ON_BOARD - 1)
             throw new Error("Cell index must be between 0 and 39");
         this.index = index;
+    }
+
+    public setPrice(price: number): void {
+        this.price = price;
+    }
+
+    public getPrice(): number | undefined {
+        return this.price;
+    }
+
+    public setPriceType(priceType: CellPriceType): void {
+        this.priceType = priceType;
+    }
+
+    public getPriceType(): CellPriceType {
+        return this.priceType;
     }
 
     public getOwner(): PieceColor | undefined {
@@ -146,6 +157,23 @@ export class CellPresenter {
         return [v3.x, v3.y, v3.z];
     }
 
+    public getPriceTextPosition(): Vector3 {
+        let x = 0.2
+        if (this.price && this.price > 999) {
+            x = 0.4;
+        } else if (this.price && this.price > 99) {
+            x = 0.33;
+        } else if (this.price && this.price > 9) {
+            x = 0.27;
+        }
+        return this.getCenter3().add(new Vector3(x, 0.01, -0.43));
+    }
+
+    public getPriceTextPositionTuple(): [number, number, number] {
+        const v3 = this.getPriceTextPosition();
+        return [v3.x, v3.y, v3.z];
+    }
+
     public getOwnerChipIcon(): OwnerIconsTypes {
         if (this.index < 0 || this.index > CELLS_ON_BOARD - 1)
             throw new Error("Cell index must be between 0 and 32");
@@ -191,6 +219,16 @@ export class BoardPresenter {
         if (index < 0 || index > CELLS_ON_BOARD)
             throw new Error("Cell index must be between 0 and 39");
         return this.cells[index];
+    }
+
+    @keepReactCellsUpdated
+    public setCellPrice(index: number, price: number) {
+        this.getCell(index).setPrice(price);
+    }
+
+    @keepReactCellsUpdated
+    public setCellPriceType(index: number, type: CellPriceType) {
+        this.getCell(index).setPriceType(type);
     }
 
     public getPieceCell(piece: PiecePresenter): CellPresenter | null {
@@ -303,10 +341,6 @@ export class BoardPresenter {
     }
 
     private movePieceUp(piece: PiecePresenter): Promise<Vector3> {
-        // const cell = this.getPieceCell(piece);
-        // if (!cell) {
-        //     throw new Error("Piece not found on board");
-        // }
         const futurePosition = piece.object3D!.position.clone().add(new Vector3(0, 1, 0));
         return new Promise<Vector3>(
             resolve => animationRenderersManager.add(new PieceMoveAnimationRenderer(
