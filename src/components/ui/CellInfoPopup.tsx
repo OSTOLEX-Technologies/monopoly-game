@@ -4,13 +4,16 @@ import {CellInfoPopupData} from "../../ReactManagers";
 
 const Background = styled.div`
   margin: auto;
-  width: 300px;
-  height: 460px;
+  width: 320px;
+  height: 480px;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-image: url(${import.meta.env.BASE_URL + 'vault/vertical_popup.png'});
   position: absolute;
   transform: translate(-50%, -43%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const CategoryContainer = styled.div`
@@ -34,7 +37,6 @@ const PopupHeaderContainer = styled.div`
   margin-left: -15px;
   display: flex;
   flex-direction: column;
-  //padding-top: 20px;
 `;
 
 const PopupHeader = styled.p`
@@ -51,21 +53,18 @@ const PopupDescription = styled.span`
   font-size: 12px;
   text-align: center;
   margin-top: 5px;
-  margin-right: -15px;
-  margin-left: -15px;
 `;
 
 const PopupLink = styled.a`
   margin-top: -15px;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
   color: #fff;
 `;
 
 const Logo = styled.img`
   width: 110px;
   height: 110px;
+  padding-bottom: 10px;
 `;
 
 const OwnerText = styled.span`
@@ -73,14 +72,13 @@ const OwnerText = styled.span`
   font-size: 12px;
   text-align: center;
   color: #fff;
-  margin-bottom: 10px;
 `;
 
 const ProjectStageText = styled.p`
   font-family: Orbitron;
   font-size: 10px;
   color: #fff;
-  text-align: center;
+  text-align: left;
   margin: 1px;
 `;
 
@@ -91,8 +89,8 @@ const ProjectDataContainer = styled.div`
   flex-direction: column;
   font-family: Orbitron;
   color: #fff;
-  //margin: 80px 60px;
   margin-top: 80px;
+  margin-bottom: 20px;
 `;
 
 const GameDataContainer = styled.div`
@@ -145,7 +143,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         </PopupHeader>
                         {props.link && (
                             <PopupLink href={props.link}>
-                                {props.link.replace("https://", "").replace("http://", "")}
+                                {props.link.replace("https://", "").replace("http://", "").replace("#/let45fc.near/widget/","")}
                             </PopupLink>
                         )}
                         <PopupDescription>
@@ -186,27 +184,39 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                 {
                     props.housePrice && props.hotelPrice && props.mortgagePrice && (
                         <GameDataContainer>
-                            <GameDataUnitContainer>
-                                <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/House.png"}
-                                    alt="icon"
-                                />
-                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
-                            </GameDataUnitContainer>
-                            <GameDataUnitContainer>
-                                <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/Hotel.png"}
-                                    alt="icon"
-                                />
-                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
-                            </GameDataUnitContainer>
-                            <GameDataUnitContainer>
-                                <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
-                                    alt="icon"
-                                />
-                                <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>
-                            </GameDataUnitContainer>
+                            {
+                                props.housePrice && (
+                                    <GameDataUnitContainer>
+                                        <GameDataUnitImage
+                                            src={import.meta.env.BASE_URL + "icons/House.png"}
+                                            alt="icon"
+                                        />
+                                        <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                                    </GameDataUnitContainer>
+                                )
+                            }
+                            {
+                                props.hotelPrice && (
+                                    <GameDataUnitContainer>
+                                        <GameDataUnitImage
+                                            src={import.meta.env.BASE_URL + "icons/Hotel.png"}
+                                            alt="icon"
+                                        />
+                                        <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                                    </GameDataUnitContainer>
+                                )
+                            }
+                            {
+                                props.mortgagePrice && (
+                                    <GameDataUnitContainer>
+                                        <GameDataUnitImage
+                                            src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
+                                            alt="icon"
+                                        />
+                                        <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>
+                                    </GameDataUnitContainer>
+                                )
+                            }
                         </GameDataContainer>
                     )
                 }
