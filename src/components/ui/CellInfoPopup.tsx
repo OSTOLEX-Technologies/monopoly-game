@@ -20,14 +20,14 @@ const CategoryContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 50px;
+  margin: 0 30px;
   padding-top: 20px;
 `;
 
 const CategoryImg = styled.img`
   width: 26px;
   height: 26px;
-  margin-left: -15px;
+  //margin-left: -15px;
   filter: invert(1);
 `;
 
@@ -76,7 +76,7 @@ const OwnerText = styled.span`
 
 const ProjectStageText = styled.p`
   font-family: Orbitron;
-  font-size: 10px;
+  font-size: 14px;
   color: #fff;
   text-align: left;
   margin: 1px;
@@ -89,8 +89,8 @@ const ProjectDataContainer = styled.div`
   flex-direction: column;
   font-family: Orbitron;
   color: #fff;
-  margin-top: 80px;
-  margin-bottom: 20px;
+  margin-top: 45px;
+  margin-bottom: 30px;
 `;
 
 const GameDataContainer = styled.div`

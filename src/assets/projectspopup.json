@@ -134,7 +134,7 @@
   },
   "Aurora": {
     "link": "https://aurora.dev/",
-    "description": "Ethereum compatible blockchain and ecosystem that runs on the NEAR Protocol",
+    "description": "Ethereum compatible blockchain and ecosystem on NEAR Protocol",
     "logo": "logos/Aurora.png",
     "stages": [
       "Pre-seed commission",
@@ -151,7 +151,7 @@
   },
   "Bastion": {
     "link": "https://bastionprotocol.com/",
-    "description": "Bastion is a decentralized stableswap and lending protocol built on Aurora",
+    "description": "Decentralized stableswap and lending protocol on Aurora",
     "logo": "logos/Bastion.png",
     "stages": [
       "Pre-seed commission",
@@ -203,7 +203,7 @@
   },
   "Laser Chess": {
     "link": "https://near.social/#/let45fc.near/widget/LaserChess3D",
-    "description": "Strategic board game on near.social that uses lasers to capture the opponent's piece",
+    "description": "Strategic board game on near.social",
     "logo": "logos/Laser Chess.png",
     "stages": [
       "Pre-seed commission",
@@ -215,20 +215,20 @@
     ]
   },
   "Fed is raising rates": {
-    "description": "Federal Reserve raises interest rates, investors move their money out of cryptocurrencies, which leads to a drop in prices.",
+    "description": "Investors move their money out of cryptocurrencies, which leads to a drop in prices.",
     "logo": "logos/Not stonks.png"
   },
   "Near Ukraine": {
     "link": "https://linktr.ee/nearuaguild",
-    "description": "Fast-growing guild aimed at building devs/creators/entrepreneurs community",
+    "description": "Guild aimed at building devs, creators and entrepreneurs community",
     "logo": "logos/Near UA.png",
     "stages": [
       "Guild member",
       "Double DAO member"
     ]
   },
-  "Ilya Polosukhin University": {
-    "description": "The great educational institution where Ilya and some of our team members studied",
+  "Polosukhin University": {
+    "description": "The great institution where Ilya and some of our team members studied",
     "logo": "logos/KHPI.png",
     "stages": [
       "Regular fee",

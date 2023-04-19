@@ -157,7 +157,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         240,
     ),
     new ParkingTile(
-        'Withdraw function is temporarily suspended',
+        'Withdraw is temporarily suspended',
         [],
         null,
     ),
@@ -214,7 +214,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
       140,
     ),
     new TaxTile(
-        'SEC is raising rates',
+        'Fed is raising rates',
         [],
         null,
         200,
@@ -226,7 +226,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         100,
     ),
     new RailroadTile(
-        'Ilya Polosukhin University',
+        'Polosukhin University',
         [],
         null,
         200,
