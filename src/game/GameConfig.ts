@@ -143,7 +143,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Human Guild',
         [],
         null,
-        100,
+        150,
     ),
     new ChanceTile(
         'Chance',
@@ -223,7 +223,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Near Ukraine',
         [],
         null,
-        140,
+        150,
     ),
     new RailroadTile(
         'Polosukhin University',
@@ -557,7 +557,7 @@ export function getUtilitiesCards(): Array<UtilitiesCard> {
     new UtilitiesCard(
         'utility-101',
         'Human Guild',
-        100,
+        150,
         '4 * Dice Roll',
         import.meta.env.BASE_URL + 'logos/Near UA.png',
         '10 * Dice Roll',
@@ -566,7 +566,7 @@ export function getUtilitiesCards(): Array<UtilitiesCard> {
     new UtilitiesCard(
         'utility-102',
         'Near Ukraine',
-        140,
+        150,
         '4 * Dice Roll',
         import.meta.env.BASE_URL + 'logos/Human Guild.png',
         '10 * Dice Roll',
