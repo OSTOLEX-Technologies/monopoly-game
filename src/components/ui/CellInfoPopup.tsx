@@ -34,7 +34,6 @@ const CategoryImg = styled.img`
 const PopupHeaderContainer = styled.div`
   width: 100%;
   height: 50px;
-  //margin-left: -15px;
   display: flex;
   flex-direction: column;
 `;
