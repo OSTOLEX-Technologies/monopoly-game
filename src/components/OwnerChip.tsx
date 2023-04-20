@@ -18,8 +18,6 @@ export function OwnerChip(
         ...props
     }: CircleChipProps) {
     const colorMap = useLoader(TextureLoader, ownerIcons[props.type])
-    colorMap.offset = new Vector2(-0.35, -0.35)
-    colorMap.repeat.set(1.7, 1.7)
 
     position[1] += 0.01
     const secondPosition = new Vector3(position[0], position[1] + 0.001, position[2])
