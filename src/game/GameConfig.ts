@@ -97,7 +97,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Calimero',
         [],
         null,
-        220,
+        100,
     ),
     new TaxTile(
       'Your position has been liquidated',
@@ -109,7 +109,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Octopus',
         [],
         null,
-        220,
+        120,
     ),
     new VisitTile(
         'Just visiting',
@@ -117,10 +117,10 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         null,
     ),
     new CityTile(
-      'Ref.finance',
+      'Ref Finance',
       [],
       null,
-      120,
+      140,
     ),
     new CommunityChestTile(
         'Treasury',
@@ -131,7 +131,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Trisolaris',
         [],
         null,
-        100,
+        160,
     ),
     new RailroadTile(
         'Labor exchange',
@@ -154,7 +154,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Rainbow Bridge',
         [],
         null,
-        240,
+        180,
     ),
     new ParkingTile(
         'Withdraw is temporarily suspended',
@@ -165,7 +165,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Aurora',
         [],
         null,
-        260,
+        200,
     ),
     new TaxTile(
         'Sent money to the wrong address',
@@ -177,7 +177,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Bastion',
         [],
         null,
-        200,
+        220,
     ),
     new RailroadTile(
         'Hudzilin`s Pub',
@@ -189,7 +189,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Aurigami',
         [],
         null,
-        180,
+        220,
     ),
     new ChanceTile(
         'Chance',
@@ -200,7 +200,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'HCM',
         [],
         null,
-        160,
+        240,
     ),
     new JailTile(
         'FRS is interested in you',
@@ -211,7 +211,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
       'Laser Chess',
       [],
       null,
-      140,
+      260,
     ),
     new TaxTile(
         'Fed is raising rates',
@@ -223,7 +223,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Near Ukraine',
         [],
         null,
-        100,
+        140,
     ),
     new RailroadTile(
         'Polosukhin University',
@@ -235,7 +235,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'HERE wallet',
         [],
         null,
-        280,
+        260,
     ),
     new CommunityChestTile(
         'Treasury',
@@ -246,7 +246,7 @@ export function getTiles(players: Array<Player>): Array<Tile> {
         'Sender wallet',
         [],
         null,
-        260,
+        280,
     ),
   ];
 
@@ -297,8 +297,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-103',
-      'Trisolaris',
-        import.meta.env.BASE_URL + 'logos/Trisolaris.png',
+      'Calimero',
+        import.meta.env.BASE_URL + 'logos/Calimero.png',
       100,
       6,
       30,
@@ -315,8 +315,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-104',
-      'Ref Finance',
-        import.meta.env.BASE_URL + 'logos/RefFinance.png',
+      'Octopus',
+        import.meta.env.BASE_URL + 'logos/Octopus.png',
       120,
       8,
       40,
@@ -333,8 +333,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-105',
-      'Laser Chess',
-        import.meta.env.BASE_URL + 'logos/Laser chess.png',
+      'Ref Finance',
+        import.meta.env.BASE_URL + 'logos/RefFinance.png',
       140,
       10,
       50,
@@ -351,8 +351,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-106',
-      'HCM',
-        import.meta.env.BASE_URL + 'logos/Hockey Club Manager.png',
+      'Trisolaris',
+        import.meta.env.BASE_URL + 'logos/Trisolaris.png',
       160,
       12,
       60,
@@ -369,8 +369,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-107',
-      'Aurigami',
-        import.meta.env.BASE_URL + 'logos/Aurigami.png',
+      'Rainbow Bridge',
+        import.meta.env.BASE_URL + 'logos/Rainbow bridge.png',
       180,
       14,
       70,
@@ -387,8 +387,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-108',
-      'Bastion',
-        import.meta.env.BASE_URL + 'logos/Bastion.png',
+      'Aurora',
+        import.meta.env.BASE_URL + 'logos/Aurora.png',
       200,
       16,
       80,
@@ -405,8 +405,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-109',
-      'Octopus',
-        import.meta.env.BASE_URL + 'logos/Octopus.png',
+      'Bastion',
+        import.meta.env.BASE_URL + 'logos/Bastion.png',
       220,
       18,
       90,
@@ -423,8 +423,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-110',
-      'Calimero',
-        import.meta.env.BASE_URL + 'logos/Calimero.png',
+      'Aurigami',
+        import.meta.env.BASE_URL + 'logos/Aurigami.png',
       220,
       18,
       90,
@@ -441,8 +441,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-111',
-      'Rainbow Bridge',
-        import.meta.env.BASE_URL + 'logos/Rainbow bridge.png',
+      'HCM',
+        import.meta.env.BASE_URL + 'logos/Hockey Club Manager.png',
       240,
       20,
       100,
@@ -459,8 +459,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-112',
-      'Aurora',
-        import.meta.env.BASE_URL + 'logos/Aurora.png',
+      'Laser Chess',
+        import.meta.env.BASE_URL + 'logos/Laser Chess.png',
       260,
       22,
       110,
@@ -477,8 +477,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-113',
-      'Sender wallet',
-        import.meta.env.BASE_URL + 'logos/Sender.png',
+      'HERE wallet',
+        import.meta.env.BASE_URL + 'logos/Here.png',
       260,
       22,
       110,
@@ -495,8 +495,8 @@ export function getPropertyCards(): Array<PropertyCard> {
     ),
     new PropertyCard(
       'property-114',
-      'HERE wallet',
-        import.meta.env.BASE_URL + 'logos/HERE.png',
+      'Sender wallet',
+        import.meta.env.BASE_URL + 'logos/Sender.png',
       280,
       24,
       120,
@@ -556,7 +556,7 @@ export function getUtilitiesCards(): Array<UtilitiesCard> {
   return  [
     new UtilitiesCard(
         'utility-101',
-        'Near Ukraine',
+        'Human Guild',
         100,
         '4 * Dice Roll',
         import.meta.env.BASE_URL + 'logos/Near UA.png',
@@ -565,7 +565,7 @@ export function getUtilitiesCards(): Array<UtilitiesCard> {
     ),
     new UtilitiesCard(
         'utility-102',
-        'Human Guild',
+        'Near Ukraine',
         140,
         '4 * Dice Roll',
         import.meta.env.BASE_URL + 'logos/Human Guild.png',
