@@ -27,7 +27,7 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                 (
                     <Fragment key={i}>
                         {cell.getPieces().length > 0 &&
-                            <Fragment key={i}>
+                            <Fragment key={`${i}-pieces`}>
                                 {cell.getPieces().filter(piece => piece).map((piece, j) => (
                                     <Piece piecePresenter={piece!} key={`${i}-${piece!.uuid}`} cellIndex={i}/>
                                 )
@@ -49,7 +49,7 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                         }
                         {
                             cell.getCoinsData().length > 0 && (
-                                <Fragment key={i}>
+                                <Fragment key={`${i}-moneyChip`}>
                                     {cell.getCoinsData().map((coinData, j) => (
                                         <MoneyChip type={coinData.type} key={`${i}-${j}`}
                                                    position={coinData.position} scale={coinData.scale}/>
