@@ -145,6 +145,7 @@ export class ReactModalPopupManager {
 
 export interface CellInfoPopupData {
     header: string;
+    price?: number;
     link?: string;
     description: string;
     logo: string;

@@ -4,6 +4,8 @@ import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {ChanceCard} from "./Cards/ChanceCard";
 import {CommunityChestCard} from "./Cards/CommunityChestCard";
 import {PieceColor} from "../constants";
+import {Card} from "./Cards/Card";
+import {TileType} from "./Tiles/Tile";
 
 export class Player {
   public readonly id: string;
@@ -34,6 +36,23 @@ export class Player {
     this.chanceCards = new Array<ChanceCard>();
     this.communityChestCards = new Array<CommunityChestCard>();
     this.isNextPayByDice = {isTrue: false, payTo: null};
+  }
+
+  public getCardTileByName(cardName: string, tileType: TileType) {
+    let card: Card | undefined = undefined;
+    switch (tileType) {
+      case TileType.City:
+        card = this.propertyCards.find((card) => card.getTitle() == cardName);
+        break;
+      case TileType.Utility:
+        card = this.utilitiesCards.find((card) => card.getTitle() == cardName);
+        break;
+      case TileType.RailRoad:
+        card = this.railroadsCards.find((card) => card.getTitle() == cardName);
+        break;
+    }
+
+    return card;
   }
 
   public setIsNextPayByDice(isNextPayByDice: {isTrue: boolean, payTo: Player | null}) {

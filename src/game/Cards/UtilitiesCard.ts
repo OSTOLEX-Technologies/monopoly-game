@@ -20,7 +20,7 @@ export class UtilitiesCard extends Card implements ICardRent {
     return this.price;
   }
 
-  getRent(quantityOfCards: number, dice: Array<number>): number {
+  public getRent(quantityOfCards: number, dice: Array<number>): number {
     if (quantityOfCards == 1) {
       return (dice[0] + dice[1]) * 4;
     } else {

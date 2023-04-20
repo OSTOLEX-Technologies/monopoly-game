@@ -5,8 +5,9 @@ import {PiecePresenter} from "../board";
 import {balanceManager, boardView, playersManager, propertyManager} from "../viewGlobals";
 import {getPieceColor} from "../game/Utils";
 import {Player} from "../game/Player";
-import {PropertyStatus} from "../constants";
+import {CardType, PropertyStatus} from "../constants";
 import {Action} from "../game/Actions/Action";
+import {TileType} from "../game/Tiles/Tile";
 
 export class GameController {
   private game: Game;
@@ -74,6 +75,22 @@ export class GameController {
         color: player.color,
       });
     });
+  }
+
+  public getTiles() {
+    return this.game.getTiles();
+  }
+
+  public getRailRoadsStage(playerId: string) {
+    return this.game.getRailRoadsStage(playerId);
+  }
+
+  public getUtilitiesStage(playerId: string) {
+    return this.game.getUtilitiesStage(playerId);
+  }
+
+  public getCardTileByName(cardName: string, tileType: TileType, ownerId: string | undefined) {
+    return this.game.getCardTileByName(cardName, tileType, ownerId);
   }
 
   public async makeMove() {

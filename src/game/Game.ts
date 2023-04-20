@@ -4,6 +4,8 @@ import {getTiles} from "./GameConfig";
 import {IOffer} from "./Offers/IOffer";
 import {GameData} from "../controllers/GameData";
 import {Player} from "./Player";
+import {TileType} from "./Tiles/Tile";
+import {Card} from "./Cards/Card";
 
 export class Game {
   private board: Board;
@@ -54,7 +56,9 @@ export class Game {
 
   public getCardsInBank() {}
 
-  public getTiles() {}
+  public getTiles() {
+    return this.board.tiles;
+  }
 
   public getPlayerBalance(playerId: string) {
     return this.bank.getBalance(playerId);
@@ -62,5 +66,17 @@ export class Game {
 
   public getProperties(playerId: string) {
     return this.board.getPlayerProperties(playerId);
+  }
+
+  public getCardTileByName(cardName: string, tileType: TileType, ownerId: string | undefined) {
+    return this.bank.getCardTiledByName(cardName, tileType, ownerId);
+  }
+
+  public getRailRoadsStage(playerId: string) {
+    return this.board.getRailRoadsStage(playerId);
+  }
+
+  public getUtilitiesStage(playerId: string) {
+    return this.board.getUtilitiesStage(playerId);
   }
 }

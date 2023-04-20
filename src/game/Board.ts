@@ -14,6 +14,9 @@ import {ErrorAction} from "./Actions/ErrorAction";
 import {MoveAction} from "./Actions/MoveAction";
 import {GetOutOfJailAction} from "./Actions/GetOutOfJailAction";
 import {GoAction} from "./Actions/GoAction";
+import {Card} from "./Cards/Card";
+import {PropertyCard} from "./Cards/PropertyCard";
+import {UtilitiesCard} from "./Cards/UtilitiesCard";
 
 export class Board {
   public tokens: ReadonlyArray<{ name: string }>;
@@ -168,5 +171,15 @@ export class Board {
   public getPlayerProperties(playerId: string) {
     const player = getPlayerById(playerId, this.players);
     return player.propertyCards;
+  }
+
+  public getUtilitiesStage(playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+    return player.utilitiesCards.length;
+  }
+
+  public getRailRoadsStage(playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+    return player.railroadsCards.length;
   }
 }

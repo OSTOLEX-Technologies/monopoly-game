@@ -13,6 +13,12 @@ import {
         ReactPropertyManager,
         ReactTreasuryCardsManager
 } from "./ReactManagers";
+import {GameController} from "./controllers/GameController";
+import {GameData} from "./controllers/GameData";
+import {Player} from "./game/Player";
+import {IOffer} from "./game/Offers/IOffer";
+import {Action} from "./game/Actions/Action";
+import {Transaction} from "./game/Offers/Transaction";
 
 export const boardView = new BoardPresenter();
 export const balanceManager = new BalanceManager(0);
@@ -103,6 +109,20 @@ window.addEventListener('piecesLoaded', async ev => {
         // setTimeout(() => propertyManager.updateProperty("1 Ave", PropertyStatus.Redeem,
         //     () => {console.log("Property redeemed")}), 2000);
 });
+
+const gameData = new GameData(
+    new Array<Player>(),
+    "",
+    new Array<IOffer>(),
+    new Array<Transaction>(),
+    new Array<Action>(),
+    new Map<string, number>,
+    new Map<string, Array<string>>,
+    new Array<string>(),
+);
+const playerId = "";
+
+export const gameController = new GameController(gameData, playerId);
 
 window.addEventListener('message', async (event) => {
         const type = event.data.type;

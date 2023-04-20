@@ -1,11 +1,11 @@
-import {Tile} from "./Tiles/Tile";
+import {Tile, TileType} from "./Tiles/Tile";
 import {Player} from "./Player";
 import {PropertyCard} from "./Cards/PropertyCard";
 import {RailroadsCard} from "./Cards/RailroadsCard";
 import {UtilitiesCard} from "./Cards/UtilitiesCard";
 import {getPropertyCards, getRailroadsCards, getUtilitiesCards} from "./GameConfig";
 import {getPlayerById} from "./Utils";
-import {CardType} from "./Cards/Card";
+import {Card, CardType} from "./Cards/Card";
 
 export class Bank {
   private tiles: Array<Tile>;
@@ -202,5 +202,32 @@ export class Bank {
 
       player.decreaseBalance(card.mortgage);
       card.isMortgage = false;
+    }
+
+    public getCardTiledByName(cardName: string, tileType: TileType, ownerId: string | undefined) {
+      if (ownerId == undefined) {
+        return this.findCardTileByNameInBank(cardName, tileType);
+      }
+
+      const player = getPlayerById(ownerId, this.players);
+
+      return player.getCardTileByName(cardName, tileType);
+    }
+
+    private findCardTileByNameInBank(cardName: string, tileType: TileType) {
+      let card: Card | undefined = undefined;
+      switch (tileType) {
+        case TileType.City:
+          card = this.propertyCards.find((card) => card.getTitle() == cardName);
+          break;
+        case TileType.Utility:
+          card = this.utilitiesCards.find((card) => card.getTitle() == cardName);
+          break;
+        case TileType.RailRoad:
+          card = this.railroadsCards.find((card) => card.getTitle() == cardName);
+          break;
+      }
+
+      return card;
     }
 }
