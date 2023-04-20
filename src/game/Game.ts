@@ -5,7 +5,6 @@ import {IOffer} from "./Offers/IOffer";
 import {GameData} from "../controllers/GameData";
 import {Player} from "./Player";
 import {TileType} from "./Tiles/Tile";
-import {Card} from "./Cards/Card";
 
 export class Game {
   private board: Board;
@@ -78,5 +77,13 @@ export class Game {
 
   public getUtilitiesStage(playerId: string) {
     return this.board.getUtilitiesStage(playerId);
+  }
+
+  public getCurrentPlayerId() {
+    return this.board.getCurrentPlayerId();
+  }
+
+  public getBankruptAction(playerId: string) {
+    return this.board.getBankruptAction(playerId);
   }
 }
