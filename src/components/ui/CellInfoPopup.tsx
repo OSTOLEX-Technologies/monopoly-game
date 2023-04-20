@@ -89,7 +89,6 @@ const ProjectDataContainer = styled.div`
   font-family: Orbitron;
   color: #fff;
   margin-top: 45px;
-  margin-bottom: 30px;
 `;
 
 const GameDataContainer = styled.div`
@@ -104,11 +103,12 @@ const GameDataContainer = styled.div`
 const GameDataUnitContainer = styled.div`
   display: flex;
   flex-direction: column;
+  flex-direction: column;
   margin-top: 5px;
 `;
 
 const GameDataUnitPrice = styled.span`
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
   margin-top: 5px;
 `;
