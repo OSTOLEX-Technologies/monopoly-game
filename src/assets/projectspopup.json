@@ -1,6 +1,6 @@
 {
   "Go": {
-    "description": "Collect $200 when they pass or land on this space",
+    "description": "Collect $200 when pass or land on this space",
     "logo": "logos/Go.png"
   },
   "Paras": {
@@ -56,7 +56,7 @@
   },
   "Octopus": {
     "link": "https://oct.network/",
-    "description": "Multichain, interoperable cryptonetwork for launching and running appchains",
+    "description": "Multichain, interoperable cryptonetwork for appchains",
     "logo": "logos/Octopus.png",
     "stages": [
       "Pre-seed commission",

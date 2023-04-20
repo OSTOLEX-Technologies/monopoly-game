@@ -142,13 +142,13 @@ export class CellPresenter {
 
     public getOwnerChipPosition(): Vector3 {
         if (this.index < (CELLS_ON_SIDE - 1)) {
-            return this.getCenter3().add(new Vector3(0, 0, 0.55));
+            return this.getCenter3().add(new Vector3(0, 0, -0.65));
         } else if (this.index < (CELLS_ON_SIDE - 1) * 2) {
-            return this.getCenter3().add(new Vector3(-0.55, 0, -0.025));
+            return this.getCenter3().add(new Vector3(0.55, 0, -0.025));
         } else if (this.index < (CELLS_ON_SIDE - 1) * 3) {
-            return this.getCenter3().add(new Vector3(0, 0, -0.55));
+            return this.getCenter3().add(new Vector3(0, 0, 0.65));
         } else {
-            return this.getCenter3().add(new Vector3(0.55, 0, 0));
+            return this.getCenter3().add(new Vector3(-0.55, 0, 0));
         }
     }
 
@@ -172,6 +172,13 @@ export class CellPresenter {
     public getPriceTextPositionTuple(): [number, number, number] {
         const v3 = this.getPriceTextPosition();
         return [v3.x, v3.y, v3.z];
+    }
+
+    public hasOwnerChipIcon(): boolean {
+        if (this.index < 0 || this.index > CELLS_ON_BOARD - 1)
+            throw new Error("Cell index must be between 0 and 32");
+        // @ts-ignore
+        return !!cellsOwnerIcons[this.index];
     }
 
     public getOwnerChipIcon(): OwnerIconsTypes {

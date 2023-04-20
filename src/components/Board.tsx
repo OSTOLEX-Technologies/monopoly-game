@@ -3,7 +3,7 @@ import {ThreeEvent, useLoader} from "@react-three/fiber";
 import {Fragment, PropsWithChildren} from "react";
 import {Piece} from "./Piece";
 import {useBoardOnHoverCallbacks, useCells} from "../hooks";
-import {CircleChip} from "./CircleChip";
+import {OwnerChip} from "./OwnerChip";
 import OrbitronText from "./OrbitronText3D";
 import {CellPriceType} from "../constants";
 
@@ -35,7 +35,11 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                         }
                         {
                             cell.getOwner() &&
-                            <CircleChip type={cell.getOwnerChipIcon()} color={cell.getOwner()!} position={cell.getOwnerChipPositionTuple()}/>
+                            <OwnerChip type={cell.getOwnerChipIcon()} color={cell.getOwner()!} position={cell.getOwnerChipPositionTuple()}/>
+                        }
+                        {
+                            !cell.getOwner() && cell.hasOwnerChipIcon() &&
+                            <OwnerChip type={cell.getOwnerChipIcon()} color={'white'} position={cell.getOwnerChipPositionTuple()}/>
                         }
                         {cell.getPrice() && cell.getPriceType() != CellPriceType.None &&
                             <OrbitronText text={
