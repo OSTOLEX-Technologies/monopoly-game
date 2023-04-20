@@ -25,16 +25,16 @@ const CategoryContainer = styled.div`
 `;
 
 const CategoryImg = styled.img`
-  width: 26px;
-  height: 26px;
-  //margin-left: -15px;
+  width: 40px;
+  height: 40px;
+  margin-right: -30px;
   filter: invert(1);
 `;
 
 const PopupHeaderContainer = styled.div`
   width: 100%;
   height: 50px;
-  margin-left: -15px;
+  //margin-left: -15px;
   display: flex;
   flex-direction: column;
 `;

@@ -10,11 +10,12 @@ import {CellInfoPopupProvider} from "./CellInfoPopupProvider";
 import OrbitronText from "./OrbitronText3D";
 import {MoneyChip} from "./MoneyChip";
 import {BoardBackground} from "./BoardBackground";
+import { OrbitControls } from "@react-three/drei";
 
 export function Scene() {
     return (
         <>
-            {/*<OrbitControls/>*/}
+            <OrbitControls/>
             <Animator/>
             <Board>
                 <OrbitronText text={"OSTOLEX"} position={[-0.7, 0.01, 2.3]} rotation={[Math.PI/2, Math.PI, 0]}/>
