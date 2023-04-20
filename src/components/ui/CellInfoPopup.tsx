@@ -25,16 +25,15 @@ const CategoryContainer = styled.div`
 `;
 
 const CategoryImg = styled.img`
-  width: 26px;
-  height: 26px;
-  //margin-left: -15px;
+  width: 40px;
+  height: 40px;
+  margin-right: -30px;
   filter: invert(1);
 `;
 
 const PopupHeaderContainer = styled.div`
   width: 100%;
   height: 50px;
-  margin-left: -15px;
   display: flex;
   flex-direction: column;
 `;
@@ -143,7 +142,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         </PopupHeader>
                         {props.link && (
                             <PopupLink href={props.link}>
-                                {props.link.replace("https://", "").replace("http://", "").replace("#/let45fc.near/widget/","")}
+                                {props.link.replace("https://", "").replace("http://", "").replace("#/let45fc.near/widget/", "")}
                             </PopupLink>
                         )}
                         <PopupDescription>
@@ -188,45 +187,41 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         )
                     }
                 </ProjectDataContainer>
-                {
-                    props.housePrice && props.hotelPrice && props.mortgagePrice && (
-                        <GameDataContainer>
-                            {
-                                props.housePrice && (
-                                    <GameDataUnitContainer>
-                                        <GameDataUnitImage
-                                            src={import.meta.env.BASE_URL + "icons/House.png"}
-                                            alt="icon"
-                                        />
-                                        <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
-                                    </GameDataUnitContainer>
-                                )
-                            }
-                            {
-                                props.hotelPrice && (
-                                    <GameDataUnitContainer>
-                                        <GameDataUnitImage
-                                            src={import.meta.env.BASE_URL + "icons/Hotel.png"}
-                                            alt="icon"
-                                        />
-                                        <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
-                                    </GameDataUnitContainer>
-                                )
-                            }
-                            {
-                                props.mortgagePrice && (
-                                    <GameDataUnitContainer>
-                                        <GameDataUnitImage
-                                            src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
-                                            alt="icon"
-                                        />
-                                        <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>
-                                    </GameDataUnitContainer>
-                                )
-                            }
-                        </GameDataContainer>
-                    )
-                }
+                <GameDataContainer>
+                    {
+                        props.housePrice && (
+                            <GameDataUnitContainer>
+                                <GameDataUnitImage
+                                    src={import.meta.env.BASE_URL + "icons/House.png"}
+                                    alt="icon"
+                                />
+                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                            </GameDataUnitContainer>
+                        )
+                    }
+                    {
+                        props.hotelPrice && (
+                            <GameDataUnitContainer>
+                                <GameDataUnitImage
+                                    src={import.meta.env.BASE_URL + "icons/Hotel.png"}
+                                    alt="icon"
+                                />
+                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                            </GameDataUnitContainer>
+                        )
+                    }
+                    {
+                        props.mortgagePrice && (
+                            <GameDataUnitContainer>
+                                <GameDataUnitImage
+                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
+                                    alt="icon"
+                                />
+                                <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>
+                            </GameDataUnitContainer>
+                        )
+                    }
+                </GameDataContainer>
             </Background>
         </Html>
     );
