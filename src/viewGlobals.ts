@@ -95,6 +95,11 @@ for (let i = 0; i < messages.length; i++) {
 }
 
 window.addEventListener('piecesLoaded', async ev => {
+        // setTimeout(() => boardView.addCellCoin(1), 1000);
+        // setTimeout(() => boardView.addCellCoin(1), 2000);
+        // setTimeout(() => boardView.addCellCoin(1), 3000);
+        // setTimeout(() => boardView.addCellCoin(1), 4000);
+        // setTimeout(() => boardView.addCellCoin(1), 5000);
         // setTimeout(() => reactChanceCardsManager.showCard("Example treasury card"), 2000);
         // setTimeout(() => reactModalPopupManager.showPopup({
         //         message: "If you go bankrupt, you will lose a game. Are you going bankrupt?",
@@ -123,8 +128,8 @@ const gameData = new GameData(
     new Array<IOffer>(),
     new Array<Transaction>(),
     new Array<Action>(),
-    new Map<string, number>,
-    new Map<string, Array<string>>,
+    new Map<string, number>(),
+    new Map<string, Array<string>>(),
     playersInGame,
 );
 const playerId = "player1";

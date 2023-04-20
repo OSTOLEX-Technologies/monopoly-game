@@ -89,6 +89,31 @@ export const piecesOnCellOffsets = Object.freeze({
     ]
 })
 
+export const moneyChipPositions = Object.freeze({
+    0: [],
+    1: [
+        new Vector3(0, 0, 0.5),
+    ],
+    2: [
+        new Vector3(0.15, 0, 0.5),
+        new Vector3(-0.15, 0, 0.5),
+    ],
+    3: [
+        new Vector3(0.3, 0, 0.5),
+        new Vector3(0, 0, 0.5),
+        new Vector3(-0.3, 0, 0.5),
+    ],
+    4: [
+        new Vector3(0.1, 0, 0.5),
+        new Vector3(0.1, 0, 0.7),
+        new Vector3(-0.1, 0, 0.7),
+        new Vector3(-0.1, 0, 0.5),
+    ],
+    5: [
+        new Vector3(0, 0, 0.65),
+    ]
+})
+
 
 export enum CellPriceType {
     None = "none",
@@ -145,7 +170,6 @@ export const ownerIcons = Object.freeze({
 })
 
 export enum moneyChipsTypes {
-    Bronze = "bronze",
     Silver = "silver",
     Gold = "gold",
 }
