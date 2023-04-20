@@ -56,7 +56,7 @@
   },
   "Octopus": {
     "link": "https://oct.network/",
-    "description": "Multichain, interoperable cryptonetwork for launching and running appchains",
+    "description": "Multichain, interoperable cryptonetwork for appchains",
     "logo": "logos/Octopus.png",
     "stages": [
       "Pre-seed commission",
