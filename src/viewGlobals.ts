@@ -60,7 +60,6 @@ const piece4 = boardView.addPiece(0, PieceColor.Purple);
 const piece5 = boardView.addPiece(0, PieceColor.Red);
 const piece6 = boardView.addPiece(0, PieceColor.Yellow);
 const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
-const piece8 = boardView.addPiece(0, PieceColor.Orange);
 
 boardView.setCellPrice(31, 2000)
 boardView.setCellPriceType(31, CellPriceType.Fee)
@@ -112,17 +111,23 @@ window.addEventListener('piecesLoaded', async ev => {
         //     () => {console.log("Property redeemed")}), 2000);
 });
 
+const players = new Array<Player>();
+players.push(new Player("player1", "", "red", "test", 100, 0));
+
+const playersInGame = new Array<string>();
+playersInGame.push("player1");
+
 const gameData = new GameData(
-    new Array<Player>(),
+    players,
     "",
     new Array<IOffer>(),
     new Array<Transaction>(),
     new Array<Action>(),
     new Map<string, number>,
     new Map<string, Array<string>>,
-    new Array<string>(),
+    playersInGame,
 );
-const playerId = "";
+const playerId = "player1";
 
 export const gameController = new GameController(gameData, playerId);
 

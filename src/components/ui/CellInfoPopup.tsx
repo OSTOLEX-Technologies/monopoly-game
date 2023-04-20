@@ -163,6 +163,13 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         )
                     }
                     {
+                        !props.owner && props.price && (
+                            <OwnerText>
+                                price: {props.price}
+                            </OwnerText>
+                        )
+                    }
+                    {
                         props.stages && (
                             <div>
                                 {

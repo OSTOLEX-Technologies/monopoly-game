@@ -19,6 +19,7 @@ export class GameController {
     this.playerId = playerId;
     this.pieces = new Map<string, PiecePresenter>();
 
+    console.log(this.game)
     this.initGame(data);
   }
 
