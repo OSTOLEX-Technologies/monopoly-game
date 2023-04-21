@@ -44,7 +44,7 @@ export class PropertyCard extends Card implements ICardRent {
     this.fourHouses = fourHouses;
     this.hotel = hotel;
     this.houseCost = houseCost;
-    this.hotelCost = houseCost;
+    this.hotelCost = hotelCost;
     this.quantity = quantity;
     this.houses = houses;
     this.hotels = hotels;
