@@ -49,7 +49,7 @@ export function getCellInfoPopupData(cellIndex: number): CellInfoPopupData {
 
         mortgagePrice = card.mortgage;
     }
-
+console.log(housePrice, hotelPrice)
     // @ts-ignore
     const data = projectspopup[tile.name]
     return {

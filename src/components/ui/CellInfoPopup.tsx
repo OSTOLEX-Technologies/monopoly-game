@@ -103,7 +103,6 @@ const GameDataContainer = styled.div`
 const GameDataUnitContainer = styled.div`
   display: flex;
   flex-direction: column;
-  flex-direction: column;
   margin-top: 5px;
 `;
 
@@ -192,10 +191,10 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         props.housePrice && (
                             <GameDataUnitContainer>
                                 <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/House.png"}
+                                    src={import.meta.env.BASE_URL + "icons/House.svg"}
                                     alt="icon"
                                 />
-                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                                <GameDataUnitPrice>{props.housePrice}</GameDataUnitPrice>
                             </GameDataUnitContainer>
                         )
                     }
@@ -203,7 +202,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         props.hotelPrice && (
                             <GameDataUnitContainer>
                                 <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/Hotel.png"}
+                                    src={import.meta.env.BASE_URL + "icons/Hotel.svg"}
                                     alt="icon"
                                 />
                                 <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
@@ -214,7 +213,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         props.mortgagePrice && (
                             <GameDataUnitContainer>
                                 <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
+                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.svg"}
                                     alt="icon"
                                 />
                                 <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>
