@@ -61,10 +61,10 @@ const piece5 = boardView.addPiece(0, PieceColor.Red);
 const piece6 = boardView.addPiece(0, PieceColor.Yellow);
 const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
 
-boardView.setCellPrice(31, 2000)
-boardView.setCellPriceType(31, CellPriceType.Fee)
-boardView.setCellPrice(23, 2000)
-boardView.setCellPriceType(23, CellPriceType.Fee)
+// boardView.setCellPrice(31, 2000)
+// boardView.setCellPriceType(31, CellPriceType.Fee)
+// boardView.setCellPrice(23, 2000)
+// boardView.setCellPriceType(23, CellPriceType.Fee)
 
 
 const messages = [

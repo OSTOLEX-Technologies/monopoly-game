@@ -14,13 +14,11 @@ import {ErrorAction} from "./Actions/ErrorAction";
 import {MoveAction} from "./Actions/MoveAction";
 import {GetOutOfJailAction} from "./Actions/GetOutOfJailAction";
 import {GoAction} from "./Actions/GoAction";
-import {Card} from "./Cards/Card";
-import {PropertyCard} from "./Cards/PropertyCard";
-import {UtilitiesCard} from "./Cards/UtilitiesCard";
+import {DeclareBankruptcyAction} from "./Actions/DeclareBankruptcyAction";
 
 export class Board {
   public tokens: ReadonlyArray<{ name: string }>;
-  private readonly currentPlayerId: string;
+  private currentPlayerId: string;
   public players: Array<Player>;
   private communityChestCards: Array<CommunityChestCard>;
   private chanceCards: Array<ChanceCard>;
@@ -55,6 +53,10 @@ export class Board {
         this.chanceCards.splice(cardIdx, 1);
       });
     });
+  }
+
+  public getCurrentPlayerId() {
+    return this.currentPlayerId;
   }
 
   public doStep(playerId: string): Array<Action> {
@@ -181,5 +183,11 @@ export class Board {
   public getRailRoadsStage(playerId: string) {
     const player = getPlayerById(playerId, this.players);
     return player.railroadsCards.length;
+  }
+
+  public getBankruptAction(playerId: string) {
+    const player = getPlayerById(playerId, this.players);
+
+    return new DeclareBankruptcyAction(playerId, player.color);
   }
 }

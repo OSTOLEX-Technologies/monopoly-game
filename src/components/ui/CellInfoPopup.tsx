@@ -89,8 +89,20 @@ const ProjectDataContainer = styled.div`
   font-family: Orbitron;
   color: #fff;
   margin-top: 45px;
-  margin-bottom: 30px;
 `;
+
+const ProjectStageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+`;
+
+const ProjectStagePrice = styled.div`
+  font-family: Orbitron;
+  font-size: 14px;
+  color: #fff;
+  text-align: right;
+`
 
 const GameDataContainer = styled.div`
   display: flex;
@@ -108,7 +120,7 @@ const GameDataUnitContainer = styled.div`
 `;
 
 const GameDataUnitPrice = styled.span`
-  font-size: 12px;
+  font-size: 16px;
   text-align: center;
   margin-top: 5px;
 `;
@@ -168,6 +180,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                             </OwnerText>
                         )
                     }
+                    <ProjectStageContainer>
                     {
                         props.stages && (
                             <div>
@@ -186,16 +199,35 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                             </div>
                         )
                     }
+                    {
+                        props.prices && (
+                            <div>
+                                {
+                                    props.prices.map((prices, index) => (
+                                        <ProjectStagePrice
+                                            key={index}
+                                            style={{
+                                                fontWeight: index === props.currentStage ? "bold" : "normal"
+                                            }}
+                                        >
+                                            {prices}
+                                        </ProjectStagePrice>
+                                    ))
+                                }
+                            </div>
+                        )
+                    }
+                    </ProjectStageContainer>
                 </ProjectDataContainer>
                 <GameDataContainer>
                     {
                         props.housePrice && (
                             <GameDataUnitContainer>
                                 <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/House.png"}
+                                    src={import.meta.env.BASE_URL + "icons/House.svg"}
                                     alt="icon"
                                 />
-                                <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
+                                <GameDataUnitPrice>{props.housePrice}</GameDataUnitPrice>
                             </GameDataUnitContainer>
                         )
                     }
@@ -203,7 +235,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         props.hotelPrice && (
                             <GameDataUnitContainer>
                                 <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/Hotel.png"}
+                                    src={import.meta.env.BASE_URL + "icons/Hotel.svg"}
                                     alt="icon"
                                 />
                                 <GameDataUnitPrice>{props.hotelPrice}</GameDataUnitPrice>
@@ -214,7 +246,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                         props.mortgagePrice && (
                             <GameDataUnitContainer>
                                 <GameDataUnitImage
-                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.png"}
+                                    src={import.meta.env.BASE_URL + "icons/Mortgaged.svg"}
                                     alt="icon"
                                 />
                                 <GameDataUnitPrice>{props.mortgagePrice}</GameDataUnitPrice>

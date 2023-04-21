@@ -155,6 +155,7 @@ export interface CellInfoPopupData {
     hotelPrice?: number;
     mortgagePrice?: number;
     stages?: Array<string>;
+    prices?: Array<string>;
     currentStage?: number;
 }
 

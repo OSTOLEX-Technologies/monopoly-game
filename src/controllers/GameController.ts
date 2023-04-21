@@ -8,6 +8,7 @@ import {Player} from "../game/Player";
 import {CardType, PropertyStatus} from "../constants";
 import {Action} from "../game/Actions/Action";
 import {TileType} from "../game/Tiles/Tile";
+import {DeclareBankruptcyAction} from "../game/Actions/DeclareBankruptcyAction";
 
 export class GameController {
   private game: Game;
@@ -115,5 +116,14 @@ export class GameController {
   }
 
   public showLastTransaction() {
+  }
+
+  public declareBankruptcy() {
+    if (this.playerId != this.game.getCurrentPlayerId()) {
+      throw new Error("Wait for your turn");
+    }
+
+    // TODO:
+    const action = this.game.getBankruptAction(this.playerId);
   }
 }

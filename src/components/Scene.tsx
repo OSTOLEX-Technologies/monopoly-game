@@ -1,3 +1,4 @@
+import React from "react";
 import {Board} from "./Board";
 import {Animator} from "./Animator";
 import {Jail} from "./Jail";
