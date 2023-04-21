@@ -12,6 +12,7 @@ import {
     piecesOnCellOffsets
 } from "./constants";
 import {keepReactCellsUpdated} from "./decorators";
+import {playBuildingHouseOrHotelSound} from "./utils";
 
 
 function getArrangedPiecePosition(center: Vector3, pieces: Array<PiecePresenter>, piece: PiecePresenter, futurePositions = false): Vector3 {
@@ -277,6 +278,7 @@ export class BoardPresenter {
     @keepReactCellsUpdated
     public addCellCoin(index: number) {
         this.getCell(index).addCoin();
+        playBuildingHouseOrHotelSound();
     }
 
     @keepReactCellsUpdated

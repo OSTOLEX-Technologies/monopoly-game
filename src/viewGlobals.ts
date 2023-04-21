@@ -100,7 +100,7 @@ window.addEventListener('piecesLoaded', async ev => {
         // setTimeout(() => boardView.addCellCoin(1), 3000);
         // setTimeout(() => boardView.addCellCoin(1), 4000);
         // setTimeout(() => boardView.addCellCoin(1), 5000);
-        setTimeout(() => reactChanceCardsManager.showCard("Example treasury card"), 2000);
+        // setTimeout(() => reactChanceCardsManager.showCard("Example treasury card"), 2000);
         // setTimeout(() => reactModalPopupManager.showPopup({
         //         message: "If you go bankrupt, you will lose a game. Are you going bankrupt?",
         //         yesCallback: () => {
