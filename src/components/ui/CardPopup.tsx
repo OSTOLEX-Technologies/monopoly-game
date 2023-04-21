@@ -38,7 +38,7 @@ const Heading = styled.div`
 `;
 
 const Text = styled.div`
-font-family: "Orbitron";
+  font-family: "Orbitron";
   font-size: 24px;
   color: white;
   text-align: center;

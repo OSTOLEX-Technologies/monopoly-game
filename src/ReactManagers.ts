@@ -143,7 +143,7 @@ export class ReactModalPopupManager {
 
     public showPopup(data: ModalPopupData ): void {
         this.setModalPopupHandlers.forEach((handler) => handler(data));
-        playChanceOrTreasurySound();
+        // playChanceOrTreasurySound();
     }
 }
 
