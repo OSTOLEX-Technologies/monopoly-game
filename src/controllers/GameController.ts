@@ -71,11 +71,13 @@ export class GameController {
 
     players.forEach((player) => {
       playersManager.addPlayer({
-        logo: player.color,
-        username: player.id,
-        money: player.getBalance(),
-        color: player.color,
-      });
+            logo: player.color,
+            username: player.id,
+            money: player.getBalance(),
+            color: player.color,
+            onKick: () => console.log("onKick")
+          }
+      );
     });
   }
 
