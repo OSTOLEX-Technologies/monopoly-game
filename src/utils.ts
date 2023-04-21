@@ -5,6 +5,7 @@ import {gameController} from "./viewGlobals";
 import {PropertyCard} from "./game/Cards/PropertyCard";
 import {RailroadsCard} from "./game/Cards/RailroadsCard";
 import {UtilitiesCard} from "./game/Cards/UtilitiesCard";
+import chanceOrTreasurySound from "./assets/sounds/SFX/chance or treasury.mp3";
 
 export function getCellInfoPopupData(cellIndex: number): CellInfoPopupData {
     const tiles = gameController.getTiles();
@@ -67,4 +68,11 @@ console.log(housePrice, hotelPrice)
         prices: data.prices,
         currentStage: stage,
     }
+}
+
+
+export function playChanceOrTreasurySound(callback: () => void = () => {}) {
+    const audio = new Audio(chanceOrTreasurySound);
+    audio.play();
+    callback();
 }
