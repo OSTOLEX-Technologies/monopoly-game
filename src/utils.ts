@@ -64,6 +64,7 @@ console.log(housePrice, hotelPrice)
         hotelPrice: hotelPrice,
         mortgagePrice: mortgagePrice,
         stages: data.stages,
+        prices: data.prices,
         currentStage: stage,
     }
 }

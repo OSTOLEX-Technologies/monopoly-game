@@ -91,6 +91,19 @@ const ProjectDataContainer = styled.div`
   margin-top: 45px;
 `;
 
+const ProjectStageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+`;
+
+const ProjectStagePrice = styled.div`
+  font-family: Orbitron;
+  font-size: 14px;
+  color: #fff;
+  text-align: right;
+`
+
 const GameDataContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -167,6 +180,7 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                             </OwnerText>
                         )
                     }
+                    <ProjectStageContainer>
                     {
                         props.stages && (
                             <div>
@@ -185,6 +199,25 @@ export function CellInfoPopup(props: CellInfoPopupProps) {
                             </div>
                         )
                     }
+                    {
+                        props.prices && (
+                            <div>
+                                {
+                                    props.prices.map((prices, index) => (
+                                        <ProjectStagePrice
+                                            key={index}
+                                            style={{
+                                                fontWeight: index === props.currentStage ? "bold" : "normal"
+                                            }}
+                                        >
+                                            {prices}
+                                        </ProjectStagePrice>
+                                    ))
+                                }
+                            </div>
+                        )
+                    }
+                    </ProjectStageContainer>
                 </ProjectDataContainer>
                 <GameDataContainer>
                     {
