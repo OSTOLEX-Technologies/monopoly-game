@@ -23,13 +23,9 @@ type StartScreenProps = {
 
 export function StartScreen(props: StartScreenProps) {
     const playButtonSound = useContext(ButtonClickSoundContext);
-    const onClick = () => {
-        playButtonSound();
-        props.callback();
-    }
     return (
         <StartScreenContainer>
-            <StartScreenButton onClick={onClick}>
+            <StartScreenButton onClick={() => playButtonSound(props.callback)}>
                 Start
             </StartScreenButton>
         </StartScreenContainer>

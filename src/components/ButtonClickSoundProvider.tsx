@@ -4,18 +4,19 @@ import {AudioListenerContext} from "../constants";
 import {useLoader} from "@react-three/fiber";
 import buttonClickSound from '../assets/sounds/SFX/button click.mp3';
 
-export const ButtonClickSoundContext = createContext<() => void>(() => {});
+export const ButtonClickSoundContext = createContext<(callback: () => void) => void>(() => {});
 
 type ButtonClickSoundProviderProps = {
     children: ReactNode
 }
 
 export function ButtonClickSoundProvider({children}: ButtonClickSoundProviderProps) {
-    const audio = new Audio(buttonClickSound)
 
-    const playSound = () => {
+    const playSound = (callback: () => void = () => {}) => {
+        const audio = new Audio(buttonClickSound)
         audio.volume = 0.3
         audio.play()
+        callback()
     }
 
     return (

@@ -1,7 +1,8 @@
 import {LeftTopSection, RoundImage} from "./common";
 import {SmallButton} from "./styledComponents";
 import styled from "styled-components";
-import {useEffect, useRef, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
+import {ButtonClickSoundContext} from "../ButtonClickSoundProvider";
 
 const PlayerRowContainer = styled.div`
   font-family: Orbitron;
@@ -26,9 +27,11 @@ type PlayerRowProps = {
     username: string;
     money: number;
     color: string;
+    onKick: () => void;
 }
 
 const PlayerRow = (props: PlayerRowProps) => {
+    const playButtonSound = useContext(ButtonClickSoundContext);
     const [isHovered, setIsHovered] = useState(false);
     const moneyRef = useRef<HTMLDivElement>(null);
     const voteKickRef = useRef<HTMLButtonElement>(null);
@@ -55,7 +58,7 @@ const PlayerRow = (props: PlayerRowProps) => {
             <div style={{textAlign: "right", lineHeight: 1, fontSize: "1rem"}} ref={moneyRef}>
                 <span>{props.money}</span>
             </div>
-            <SmallButton style={{width: "14rem"}} ref={voteKickRef}>
+            <SmallButton style={{width: "14rem"}} ref={voteKickRef} onClick={() => playButtonSound(props.onKick)}>
                 <span style={{ paddingTop: "5px" }}>Vote-kick</span>
             </SmallButton>
         </PlayerRowContainer>
@@ -63,7 +66,7 @@ const PlayerRow = (props: PlayerRowProps) => {
 };
 
 type PlayersTableProps = {
-    players: Array<{logo: string, username: string, money: number, color: string}>;
+    players: Array<{logo: string, username: string, money: number, color: string, onKick: () => void}>;
 }
 
 export const PlayersTable = (props: PlayersTableProps) => {
@@ -77,7 +80,7 @@ export const PlayersTable = (props: PlayersTableProps) => {
                 }}
             >
                 {props.players!.map((player, index) =>
-                    <PlayerRow key={index} logo={player.logo} username={player.username} money={player.money} color={player.color} />
+                    <PlayerRow key={index} logo={player.logo} username={player.username} money={player.money} color={player.color} onKick={player.onKick}/>
                 )}
             </div>
         </LeftTopSection>

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {SmallButton} from "./styledComponents";
 import {RightTopSection} from "./common";
+import {useContext} from "react";
+import {ButtonClickSoundContext} from "../ButtonClickSoundProvider";
 
 const AmountText = styled.span`
   font-family: Orbitron;
@@ -25,6 +27,7 @@ type MoneyProps = {
 }
 
 export const Money = ({currencySign = "$", ...props}: MoneyProps) => {
+    const playButtonSound = useContext(ButtonClickSoundContext);
     return (
         <RightTopSection>
             <div style={{textAlign: "center", lineHeight: 1, paddingTop: "1rem"}}>
@@ -33,10 +36,10 @@ export const Money = ({currencySign = "$", ...props}: MoneyProps) => {
                 </AmountText>
             </div>
             <ButtonsContainer>
-                <SmallButton onClick={props.bankruptHandler}>
+                <SmallButton onClick={() => playButtonSound(props.bankruptHandler)}>
                     <span>bankrupt</span>
                 </SmallButton>
-                <SmallButton onClick={props.tradeHandler}>
+                <SmallButton onClick={() => playButtonSound(props.tradeHandler)}>
                     <span>trade</span>
                 </SmallButton>
             </ButtonsContainer>

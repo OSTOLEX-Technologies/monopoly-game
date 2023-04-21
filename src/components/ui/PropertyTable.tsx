@@ -2,6 +2,8 @@ import {SmallButton} from "./styledComponents";
 import {RightBottomSection, RoundImage} from "./common";
 import styled from "styled-components";
 import {PropertyStatus} from "../../constants";
+import {useContext} from "react";
+import {ButtonClickSoundContext} from "../ButtonClickSoundProvider";
 
 const PropertyRow = styled.div`
   font-family: Orbitron;
@@ -28,17 +30,20 @@ type PlayerRowProps = {
     buttonCallback: () => void;
 }
 
-const PlayerRow = (props: PlayerRowProps) => (
-    <PropertyRow>
-        <RoundImage width="40px" height="40px" src={props.logo}/>
-        <div style={{textAlign: "center", width: "6rem", lineHeight: 0.8}}>
-            <PropertyName>{props.propertyName}</PropertyName>
-        </div>
-        <SmallButton style={{width: "120px"}} onClick={props.buttonCallback}>
-            <span>{props.status == PropertyStatus.Mortgage ? "Mortgage" : "Redeem"}</span>
-        </SmallButton>
-    </PropertyRow>
-);
+const PlayerRow = (props: PlayerRowProps) => {
+    const playButtonSound = useContext(ButtonClickSoundContext);
+    return (
+        <PropertyRow>
+            <RoundImage width="40px" height="40px" src={props.logo}/>
+            <div style={{textAlign: "center", width: "6rem", lineHeight: 0.8}}>
+                <PropertyName>{props.propertyName}</PropertyName>
+            </div>
+            <SmallButton style={{width: "120px"}} onClick={() => playButtonSound(props.buttonCallback)}>
+                <span>{props.status == PropertyStatus.Mortgage ? "Mortgage" : "Redeem"}</span>
+            </SmallButton>
+        </PropertyRow>
+    );
+}
 
 const ProperyTableContainer = styled.div`
     display: flex;

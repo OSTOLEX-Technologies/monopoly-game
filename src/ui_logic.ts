@@ -80,14 +80,14 @@ export class PropertyManager {
 }
 
 export class PlayersManager {
-    constructor(private players: Array<{logo: string, username: string, money: number, color: string}> = []) {}
+    constructor(private players: Array<{logo: string, username: string, money: number, color: string, onKick: () => void}> = []) {}
 
-    public getPlayers(): Array<{logo: string, username: string, money: number, color: string}> {
+    public getPlayers(): Array<{logo: string, username: string, money: number, color: string, onKick: () => void}> {
         return this.players;
     }
 
     @keepReactPlayersUpdated
-    public addPlayer(player: {logo: string, username: string, money: number, color: string}): void {
+    public addPlayer(player: {logo: string, username: string, money: number, color: string, onKick: () => void}): void {
         this.players.push(player);
     }
 
