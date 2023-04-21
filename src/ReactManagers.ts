@@ -1,5 +1,6 @@
 import {CellPresenter} from "./board";
 import {PropertyStatus} from "./constants";
+import {playChanceOrTreasurySound} from "./utils";
 
 export class ReactCellsManager {
     public setCellsHandlers: Array<(cells: CellPresenter[]) => void> = [];
@@ -93,6 +94,7 @@ export class ReactChanceCardsManager {
 
     public showCard(description: string): void {
         this.setChanceCardHandlers.forEach((handler) => handler(description));
+        playChanceOrTreasurySound();
     }
 }
 
@@ -113,6 +115,7 @@ export class ReactTreasuryCardsManager {
 
     public showCard(description: string): void {
         this.setTreasuryCardHandlers.forEach((handler) => handler(description));
+        playChanceOrTreasurySound();
     }
 }
 
@@ -140,6 +143,7 @@ export class ReactModalPopupManager {
 
     public showPopup(data: ModalPopupData ): void {
         this.setModalPopupHandlers.forEach((handler) => handler(data));
+        playChanceOrTreasurySound();
     }
 }
 
