@@ -1,7 +1,10 @@
 import {AudioListener, Vector3} from "three";
 import {createContext} from "react";
 
-export const AudioListenerContext = createContext(new AudioListener());
+const listener = new AudioListener();
+
+export const AudioListenerContext = createContext(listener);
+
 
 export const CELLS_ON_SIDE = 9;
 export const CELLS_ON_BOARD = CELLS_ON_SIDE * 4 - 4;

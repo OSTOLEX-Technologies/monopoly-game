@@ -17,7 +17,7 @@ export const UI = () => {
         <>
             <Money amount={balance}
                    bankruptHandler={bankruptHandler}
-                     tradeHandler={tradeHandler}
+                   tradeHandler={tradeHandler}
             />
             <PropertyTable properties={properties} />
             <PlayersTable players={players}/>

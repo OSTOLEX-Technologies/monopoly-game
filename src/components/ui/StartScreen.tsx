@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {useContext} from "react";
+import {ButtonClickSoundContext} from "../ButtonClickSoundProvider";
 
 const StartScreenContainer = styled.div`
 height: 100vh;
@@ -20,9 +22,14 @@ type StartScreenProps = {
 }
 
 export function StartScreen(props: StartScreenProps) {
+    const playButtonSound = useContext(ButtonClickSoundContext);
+    const onClick = () => {
+        playButtonSound();
+        props.callback();
+    }
     return (
         <StartScreenContainer>
-            <StartScreenButton onClick={props.callback}>
+            <StartScreenButton onClick={onClick}>
                 Start
             </StartScreenButton>
         </StartScreenContainer>

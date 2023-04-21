@@ -8,6 +8,7 @@ import {UI} from "./components/ui/UI";
 import {createContext, useContext, useState} from "react";
 import {AudioListenerContext} from "./constants";
 import {StartScreen} from "./components/ui/StartScreen";
+import {ButtonClickSoundProvider} from "./components/ButtonClickSoundProvider";
 
 
 function App() {
@@ -21,22 +22,24 @@ function App() {
     return (
         <div className="App">
             <AudioListenerContext.Provider value={audioListener}>
-                {
-                    !startGame && <StartScreen callback={() => setStartGame(true)}/>
-                }
-                {
-                    startGame && (
-                        <>
-                            <Canvas shadows camera={camera}
-                                    dpr={window.devicePixelRatio}
-                            >
-                                <color attach="background" args={['#000']} />
-                                <Scene/>
-                            </Canvas>
-                            <UI/>
-                        </>
-                    )
-                }
+                <ButtonClickSoundProvider>
+                    {
+                        !startGame && <StartScreen callback={() => setStartGame(true)}/>
+                    }
+                    {
+                        startGame && (
+                            <>
+                                <Canvas shadows camera={camera}
+                                        dpr={window.devicePixelRatio}
+                                >
+                                    <color attach="background" args={['#000']} />
+                                    <Scene/>
+                                </Canvas>
+                                <UI/>
+                            </>
+                        )
+                    }
+                </ButtonClickSoundProvider>
             </AudioListenerContext.Provider>
         </div>
     )

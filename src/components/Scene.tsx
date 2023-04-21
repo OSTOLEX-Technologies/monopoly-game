@@ -21,7 +21,6 @@ function GameplaySoundtrack() {
     const musicPlayer = useRef<Audio>();
     const gameplayTrack = useLoader(AudioLoader, gameplay)
 
-    console.log("LISTENER", listener)
     useEffect(() => {
         if (!musicPlayer.current) return;
         musicPlayer.current!.setBuffer(gameplayTrack);
@@ -49,7 +48,6 @@ export function Scene() {
                 <Jail position={JAIL_POSITION_ARRAY} scale={[1.5, 1.5, 1.5]}/>
                 <ChanceDeck/>
             </Board>
-            {/*<UI/>*/}
             <BoardBackground/>
             <ModalPopupProvider/>
             <CellInfoPopupProvider/>
