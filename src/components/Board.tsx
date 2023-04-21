@@ -6,6 +6,7 @@ import {useBoardOnHoverCallbacks, useCells} from "../hooks";
 import {OwnerChip} from "./OwnerChip";
 import OrbitronText from "./OrbitronText3D";
 import {CellPriceType} from "../constants";
+import {MoneyChip} from "./MoneyChip";
 
 export type BoardProps = {
     onClick?: (e: ThreeEvent<MouseEvent>) => void
@@ -26,7 +27,7 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                 (
                     <Fragment key={i}>
                         {cell.getPieces().length > 0 &&
-                            <Fragment key={i}>
+                            <Fragment key={`${i}-pieces`}>
                                 {cell.getPieces().filter(piece => piece).map((piece, j) => (
                                     <Piece piecePresenter={piece!} key={`${i}-${piece!.uuid}`} cellIndex={i}/>
                                 )
@@ -45,6 +46,16 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                             <OrbitronText text={
                                 cell.getPriceType() == CellPriceType.Buy? `Buy: ${cell.getPrice()}$` : `Fee: ${cell.getPrice()}$`
                             } scale={[0.3, 0.3, 0.3]} position={cell.getPriceTextPositionTuple()} rotation={[Math.PI/2, Math.PI, 0]}/>
+                        }
+                        {
+                            cell.getCoinsData().length > 0 && (
+                                <Fragment key={`${i}-moneyChip`}>
+                                    {cell.getCoinsData().map((coinData, j) => (
+                                        <MoneyChip type={coinData.type} key={`${i}-${j}`}
+                                                   position={coinData.position} scale={coinData.scale}/>
+                                    ))}
+                                </Fragment>
+                            )
                         }
                        <mesh onPointerEnter={(e) => onEnterCallback(cell.index, e)} onPointerOut={onLeaveCallback} rotation={[-Math.PI / 2, 0, 0]} position={cell.getCenter3().clone().add(new Vector3(0, 0.01, 0))}>
                             <planeGeometry />

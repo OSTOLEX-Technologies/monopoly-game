@@ -61,10 +61,10 @@ const piece5 = boardView.addPiece(0, PieceColor.Red);
 const piece6 = boardView.addPiece(0, PieceColor.Yellow);
 const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
 
-boardView.setCellPrice(31, 2000)
-boardView.setCellPriceType(31, CellPriceType.Fee)
-boardView.setCellPrice(23, 2000)
-boardView.setCellPriceType(23, CellPriceType.Fee)
+// boardView.setCellPrice(31, 2000)
+// boardView.setCellPriceType(31, CellPriceType.Fee)
+// boardView.setCellPrice(23, 2000)
+// boardView.setCellPriceType(23, CellPriceType.Fee)
 
 
 const messages = [
@@ -95,6 +95,11 @@ for (let i = 0; i < messages.length; i++) {
 }
 
 window.addEventListener('piecesLoaded', async ev => {
+        // setTimeout(() => boardView.addCellCoin(1), 1000);
+        // setTimeout(() => boardView.addCellCoin(1), 2000);
+        // setTimeout(() => boardView.addCellCoin(1), 3000);
+        // setTimeout(() => boardView.addCellCoin(1), 4000);
+        // setTimeout(() => boardView.addCellCoin(1), 5000);
         // setTimeout(() => reactChanceCardsManager.showCard("Example treasury card"), 2000);
         // setTimeout(() => reactModalPopupManager.showPopup({
         //         message: "If you go bankrupt, you will lose a game. Are you going bankrupt?",
@@ -123,8 +128,8 @@ const gameData = new GameData(
     new Array<IOffer>(),
     new Array<Transaction>(),
     new Array<Action>(),
-    new Map<string, number>,
-    new Map<string, Array<string>>,
+    new Map<string, number>(),
+    new Map<string, Array<string>>(),
     playersInGame,
 );
 const playerId = "player1";

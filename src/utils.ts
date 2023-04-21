@@ -49,7 +49,7 @@ export function getCellInfoPopupData(cellIndex: number): CellInfoPopupData {
 
         mortgagePrice = card.mortgage;
     }
-
+console.log(housePrice, hotelPrice)
     // @ts-ignore
     const data = projectspopup[tile.name]
     return {
@@ -64,6 +64,7 @@ export function getCellInfoPopupData(cellIndex: number): CellInfoPopupData {
         hotelPrice: hotelPrice,
         mortgagePrice: mortgagePrice,
         stages: data.stages,
+        prices: data.prices,
         currentStage: stage,
     }
 }

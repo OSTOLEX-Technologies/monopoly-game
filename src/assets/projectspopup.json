@@ -14,6 +14,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "2",
+      "10",
+      "30",
+      "90",
+      "160",
+      "250"
     ]
   },
   "Chance": {
@@ -31,6 +39,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "4",
+      "20",
+      "60",
+      "180",
+      "320",
+      "450"
     ]
   },
   "Treasury": {
@@ -48,6 +64,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "6",
+      "30",
+      "90",
+      "270",
+      "400",
+      "550"
     ]
   },
   "Your position has been liquidated": {
@@ -65,13 +89,21 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "8",
+      "40",
+      "100",
+      "300",
+      "450",
+      "600"
     ]
   },
   "Just visiting": {
     "description": "Say hi to Sam!",
     "logo": "logos/Jailtime.png"
   },
-  "Ref.finance": {
+  "Ref Finance": {
     "link": "https://ref.finance/",
     "description": "Community-led, multi-purpose DeFi platform built on the NEAR Protocol",
     "logo": "logos/RefFinance.png",
@@ -82,6 +114,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "10",
+      "50",
+      "150",
+      "450",
+      "625",
+      "750"
     ]
   },
   "Trisolaris": {
@@ -95,6 +135,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "12",
+      "60",
+      "180",
+      "500",
+      "700",
+      "900"
     ]
   },
   "Labor exchange": {
@@ -104,6 +152,11 @@
       "Regular fee",
       "Double owner fee",
       "Triple owner fee"
+    ],
+    "prices": [
+      "50",
+      "100",
+      "100"
     ]
   },
   "Human Guild": {
@@ -113,6 +166,10 @@
     "stages": [
       "Guild member",
       "Double DAO member"
+    ],
+    "prices": [
+      "Dice Roll * 4",
+      "Dice Roll * 10"
     ]
   },
   "Rainbow Bridge": {
@@ -126,6 +183,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "14",
+      "70",
+      "200",
+      "550",
+      "750",
+      "950"
     ]
   },
   "Withdraw is temporarily suspended": {
@@ -143,6 +208,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "16",
+      "80",
+      "220",
+      "600",
+      "800",
+      "1000"
     ]
   },
   "Sent money to the wrong address": {
@@ -160,6 +233,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "18",
+      "90",
+      "250",
+      "700",
+      "875",
+      "1050"
     ]
   },
   "Hudzilin`s Pub": {
@@ -169,6 +250,11 @@
       "Regular fee",
       "Double owner fee",
       "Triple owner fee"
+    ],
+    "prices": [
+      "50",
+      "100",
+      "100"
     ]
   },
   "Aurigami": {
@@ -182,6 +268,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "18",
+      "90",
+      "250",
+      "700",
+      "875",
+      "1025"
     ]
   },
   "HCM": {
@@ -195,6 +289,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "20",
+      "100",
+      "300",
+      "750",
+      "925",
+      "1100"
     ]
   },
   "FRS is interested in you": {
@@ -212,6 +314,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "22",
+      "110",
+      "330",
+      "800",
+      "975",
+      "1150"
     ]
   },
   "Fed is raising rates": {
@@ -225,6 +335,10 @@
     "stages": [
       "Guild member",
       "Double DAO member"
+    ],
+    "prices": [
+      "Dice Roll * 4",
+      "Dice Roll * 10"
     ]
   },
   "Polosukhin University": {
@@ -234,6 +348,11 @@
       "Regular fee",
       "Double owner fee",
       "Triple owner fee"
+    ],
+    "prices": [
+      "50",
+      "100",
+      "100"
     ]
   },
   "HERE wallet": {
@@ -247,6 +366,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "22",
+      "110",
+      "330",
+      "800",
+      "975",
+      "1150"
     ]
   },
   "Sender wallet": {
@@ -260,6 +387,14 @@
       "Series B commission",
       "Series C commission",
       "ICO commission"
+      ],
+    "prices": [
+      "24",
+      "120",
+      "360",
+      "850",
+      "1025",
+      "1200"
     ]
   }
 }

@@ -53,7 +53,7 @@ const PlayerRow = (props: PlayerRowProps) => {
                 <Username>{props.username}</Username>
             </div>
             <div style={{textAlign: "right", lineHeight: 1, fontSize: "1rem"}} ref={moneyRef}>
-                <span>{props.money}</span>
+                <span>{props.money}$</span>
             </div>
             <SmallButton style={{width: "14rem"}} ref={voteKickRef}>
                 <span style={{ paddingTop: "5px" }}>Vote-kick</span>
