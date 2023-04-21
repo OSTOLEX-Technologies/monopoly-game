@@ -7,6 +7,7 @@ import {RailroadsCard} from "./game/Cards/RailroadsCard";
 import {UtilitiesCard} from "./game/Cards/UtilitiesCard";
 import chanceOrTreasurySound from "./assets/sounds/SFX/chance or treasury.mp3";
 import buildingHouseOrHotelSound from "./assets/sounds/SFX/building_house_or_hotel.mp3";
+import bankruptSound from "./assets/sounds/SFX/bankrupt.mp3";
 
 export function getCellInfoPopupData(cellIndex: number): CellInfoPopupData {
     const tiles = gameController.getTiles();
@@ -76,11 +77,20 @@ export function playChanceOrTreasurySound(callback: () => void = () => {}) {
     const audio = new Audio(chanceOrTreasurySound);
     audio.play();
     callback();
+    console.log("playChanceOrTreasurySound")
 }
 
 
 export function playBuildingHouseOrHotelSound(callback: () => void = () => {}) {
     const audio = new Audio(buildingHouseOrHotelSound);
+    audio.play();
+    callback();
+    console.log("playBuildingHouseOrHotelSound")
+}
+
+
+export function playBankruptSound(callback: () => void = () => {}) {
+    const audio = new Audio(bankruptSound);
     audio.play();
     callback();
 }

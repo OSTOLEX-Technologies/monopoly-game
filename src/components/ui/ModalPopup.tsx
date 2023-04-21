@@ -33,7 +33,6 @@ export function ModalPopup(props: ModalPopupData) {
             <Background>
                 <div
                     style={{
-                        height: "100%",
                         padding: "20% 0",
                     }}
                 >

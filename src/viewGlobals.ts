@@ -19,6 +19,7 @@ import {Player} from "./game/Player";
 import {IOffer} from "./game/Offers/IOffer";
 import {Action} from "./game/Actions/Action";
 import {Transaction} from "./game/Offers/Transaction";
+import {playBankruptSound} from "./utils";
 
 export const boardView = new BoardPresenter();
 export const balanceManager = new BalanceManager(0);
@@ -39,7 +40,15 @@ export const reactModalPopupManager = new ReactModalPopupManager();
 export const reactCellInfoPopupManager = new ReactCellInfoPopupManager();
 
 balanceManager.addEventListener("bankrupt", () => {
-        balanceManager.setBalance(balanceManager.getBalance() + 10);
+        reactModalPopupManager.showPopup({
+                message: "If you go bankrupt, you will lose a game. Are you going bankrupt?",
+                yesText: "Yes",
+                yesCallback: () => {
+                        playBankruptSound();
+                },
+                noText: "No",
+                noCallback: () => {}
+        })
 })
 balanceManager.addEventListener("trade", () => {
         balanceManager.setBalance(balanceManager.getBalance() - 10);
