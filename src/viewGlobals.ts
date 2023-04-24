@@ -1,6 +1,6 @@
 import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
-import {CellPriceType, PieceColor, PropertyStatus} from "./constants";
+import {PieceColor, PropertyStatus} from "./constants";
 import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
 import {
         ReactBalanceManager,
@@ -56,20 +56,21 @@ balanceManager.addEventListener("trade", () => {
         balanceManager.setBalance(balanceManager.getBalance() + 10);
 })
 
-propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave", status: PropertyStatus.Mortgage, buttonCallback: () => {
+propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "Chance sound", status: PropertyStatus.Mortgage, buttonCallback: () => {
         reactChanceCardsManager.showCard("Chance with sound!");
 }});
-propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "2 Ave", status: PropertyStatus.Mortgage, buttonCallback: async () => {
+propertyManager.addProperty({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", propertyName: "Move piece to cell sound", status: PropertyStatus.Mortgage, buttonCallback: async () => {
         await boardView.movePieceToCell(piece1, boardView.getCell(7));
         }})
 
-playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "let45fc.testnet", money: 1000, color: "red", onKick: async () => {
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "Go to jail sound", money: 1000, color: "red", onKick: async () => {
         await boardView.movePieceToJail(piece1);
         }})
-playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "kostup99kastet.testnet", money: 2000, color: "blue", onKick: async () => {
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "Release from jail sound", money: 2000, color: "blue", onKick: async () => {
         await boardView.movePieceFromJail(piece1);
         }})
-playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "Player3", money: 1500, color: "green", onKick: () => boardView.addCellCoin(1)})
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "House or Hotel sound", money: 1500, color: "green", onKick: () => boardView.addCellCoin(1)})
+playersManager.addPlayer({logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png", username: "Owner sound", money: 1500, color: "green", onKick: () => boardView.setOwnerByIndex(1, PieceColor.Red)})
 
 
 const piece1 = boardView.addPiece(0, PieceColor.Blue);

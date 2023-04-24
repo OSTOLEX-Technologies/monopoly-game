@@ -14,7 +14,7 @@ import {
 import {keepReactCellsUpdated} from "./decorators";
 import {
     playBuildingHouseOrHotelSound,
-    playGoToJailSound,
+    playGoToJailSound, playPurchaseOfAPlotSound,
     playReleaseFromJailSound,
     playStepOnTheSectorSound
 } from "./utils";
@@ -252,6 +252,7 @@ export class BoardPresenter {
     @keepReactCellsUpdated
     public setOwner(cell: CellPresenter, owner?: PieceColor): void {
         cell.setOwner(owner);
+        playPurchaseOfAPlotSound()
     }
 
     @keepReactCellsUpdated
