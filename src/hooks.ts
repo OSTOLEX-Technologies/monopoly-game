@@ -74,13 +74,14 @@ export function useChanceCard(callback: (description: string) => void) {
     const [ignore, setIgnore] = useState(true);
     useEffect(() => {
         reactChanceCardsManager.onSetChanceCard(setDescription);
-        if (!ignore)
+        if (!ignore && description !== "")
             callback(description);
         setIgnore(false);
         return () => {
                 reactChanceCardsManager.unSetChanceCard(setDescription);
             }
     }, [description]);
+    return setDescription;
 }
 
 export function useTreasuryCard(callback: (description: string) => void) {
@@ -88,13 +89,14 @@ export function useTreasuryCard(callback: (description: string) => void) {
     const [ignore, setIgnore] = useState(true);
     useEffect(() => {
         reactTreasuryCardsManager.onSetTreasuryCard(setDescription);
-        if (!ignore)
+        if (!ignore &&  description !== "")
             callback(description);
         setIgnore(false);
         return () => {
             reactTreasuryCardsManager.unSetTreasuryCard(setDescription);
         }
     }, [description]);
+    return setDescription;
 }
 
 export function useModalPopup() {

@@ -11,11 +11,10 @@ let description = "";
 
 export function TreasuryDeck() {
     const {scene, animations} = useGLTF(import.meta.env.BASE_URL + 'models/treasury_card_deck.gltf');
-    // const [description, setDescription] = useState("");
     const [showPopup, setShowPopup] = useState(false);
     const new_obj = scene.clone();
     const mixer = new THREE.AnimationMixer(new_obj);
-    useTreasuryCard((newDescription) => {
+    const setDescription = useTreasuryCard((newDescription) => {
         animations.forEach((clip) => {
             const action = mixer.clipAction(clip);
             action.repetitions = 1;
@@ -32,7 +31,8 @@ export function TreasuryDeck() {
         })
     })
     const onClosePopup = () => {
-        setShowPopup(false)
+        setShowPopup(false);
+        setDescription("");
     };
     useFrame((state, delta) => {
         mixer.update(delta);

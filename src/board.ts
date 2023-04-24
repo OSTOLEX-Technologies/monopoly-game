@@ -383,6 +383,7 @@ export class BoardPresenter {
         await this.arrangePiecesOnCell(exitCell, true)
         await this.movePieceDown(piece);
         exitCell.setPiece(piece);
+        playStepOnTheSectorSound();
     }
 
     public async movePieceToCell(piece: PiecePresenter, to: CellPresenter) {
