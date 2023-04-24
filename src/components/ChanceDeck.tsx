@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {useChanceCard} from "../hooks";
 import {CardPopup} from "./ui/CardPopup";
 import {CardType} from "../constants";
+import {reactChanceCardsManager} from "../viewGlobals";
 
 let description = "";
 
@@ -36,6 +37,7 @@ export function ChanceDeck() {
     useFrame((state, delta) => {
         mixer.update(delta);
     });
+    reactChanceCardsManager.isPopupShown = showPopup;
     return (
         <>
             <primitive object={new_obj} rotation={[0, Math.PI, 0]} position={[0, 0, 0]} />

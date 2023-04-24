@@ -2,6 +2,8 @@ import {SmallButton} from "./styledComponents";
 import styled from "styled-components";
 import {Html} from "@react-three/drei";
 import {ModalPopupData} from "../../ReactManagers";
+import {useContext} from "react";
+import {ButtonClickSoundContext} from "../ButtonClickSoundProvider";
 
 
 const Background = styled.div`
@@ -28,6 +30,7 @@ margin: 0px 35px;
 
 
 export function ModalPopup(props: ModalPopupData) {
+    const playButtonSound = useContext(ButtonClickSoundContext);
     return (
         <Html>
             <Background>
@@ -47,7 +50,7 @@ export function ModalPopup(props: ModalPopupData) {
                             marginTop: "20px",
                         }}
                     >
-                        <SmallButton onClick={props.noCallback}>
+                        <SmallButton onClick={() => playButtonSound(props.noCallback)}>
                             <span style={{ paddingTop: "5px" }}>{props.noText}</span>
                         </SmallButton>
                         <SmallButton onClick={props.yesCallback}>

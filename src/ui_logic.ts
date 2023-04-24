@@ -5,6 +5,7 @@ import {
     keepReactHistoryUpdated
 } from "./decorators";
 import {PropertyStatus} from "./constants";
+import {playIncomeSound} from "./utils";
 
 
 export class BalanceManager {
@@ -20,6 +21,8 @@ export class BalanceManager {
     @keepReactBalanceUpdated
     public setBalance(balance: number): void {
         if (balance < 0) throw new Error("Balance can't be negative");
+        if (balance > this.balance)
+            playIncomeSound()
         this.balance = balance;
     }
 

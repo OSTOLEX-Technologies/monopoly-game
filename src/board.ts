@@ -12,7 +12,12 @@ import {
     piecesOnCellOffsets
 } from "./constants";
 import {keepReactCellsUpdated} from "./decorators";
-import {playBuildingHouseOrHotelSound} from "./utils";
+import {
+    playBuildingHouseOrHotelSound,
+    playGoToJailSound,
+    playReleaseFromJailSound,
+    playStepOnTheSectorSound
+} from "./utils";
 
 
 function getArrangedPiecePosition(center: Vector3, pieces: Array<PiecePresenter>, piece: PiecePresenter, futurePositions = false): Vector3 {
@@ -336,6 +341,7 @@ export class BoardPresenter {
         if (!from) {
             throw new Error("Piece not found on board");
         }
+        playGoToJailSound()
         await this.movePieceUp(piece);
         from.removePiece(piece);
         await this.arrangePiecesOnCell(from);
@@ -359,6 +365,7 @@ export class BoardPresenter {
             throw new Error("Piece not in jail");
         }
         this.piecesInJail.splice(index, 1);
+        playReleaseFromJailSound()
         await this.movePieceUp(piece);
         await this.arrangePiecesInJail()
 
@@ -403,6 +410,7 @@ export class BoardPresenter {
         await this.arrangePiecesOnCell(to, true)
         to.setPiece(piece);
         await this.movePieceDown(piece);
+        playStepOnTheSectorSound();
     }
 
     private movePieceUp(piece: PiecePresenter): Promise<Vector3> {

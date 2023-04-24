@@ -80,6 +80,7 @@ export class ReactGameHistoryManager {
 
 export class ReactChanceCardsManager {
     public setChanceCardHandlers: Array<(description: string) => void> = [];
+    public isPopupShown: boolean = false;
 
     public onSetChanceCard(handler: (description: string) => void): void {
         this.setChanceCardHandlers.push(handler);
@@ -101,6 +102,7 @@ export class ReactChanceCardsManager {
 
 export class ReactTreasuryCardsManager {
     public setTreasuryCardHandlers: Array<(description: string) => void> = [];
+    public isPopupShown: boolean = false;
 
     public onSetTreasuryCard(handler: (description: string) => void): void {
         this.setTreasuryCardHandlers.push(handler);
@@ -129,6 +131,7 @@ export type ModalPopupData = {
 
 export class ReactModalPopupManager {
     public setModalPopupHandlers: Array<(data: ModalPopupData) => void> = [];
+    public isPopupShown: boolean = false;
 
     public onSetModalPopup(handler: (data: ModalPopupData) => void): void {
         this.setModalPopupHandlers.push(handler);

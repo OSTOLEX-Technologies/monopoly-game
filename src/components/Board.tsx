@@ -57,6 +57,7 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                                 </Fragment>
                             )
                         }
+                        {/* spawn transparent plane above every cell*/}
                        <mesh onPointerEnter={(e) => onEnterCallback(cell.index, e)} onPointerOut={onLeaveCallback} rotation={[-Math.PI / 2, 0, 0]} position={cell.getCenter3().clone().add(new Vector3(0, 0.01, 0))}>
                             <planeGeometry />
                             <meshPhongMaterial opacity={0} transparent={true}/>
@@ -64,7 +65,6 @@ export function Board({children = [], onClick = (e) => {}}: PropsWithChildren<Bo
                     </Fragment>
                 ))
             }
-            {/* spawn transparent cell above every cell*/}
 
             {children}
         </>
