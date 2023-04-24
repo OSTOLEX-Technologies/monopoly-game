@@ -45,10 +45,10 @@ export function Scene() {
             <Animator/>
             <Board>
                 <OrbitronText text={"OSTOLEX"} position={[-0.7, 0.01, 2.3]} rotation={[Math.PI/2, Math.PI, 0]}/>
-                <TreasuryDeck/>
                 <Jail position={JAIL_POSITION_ARRAY} scale={[1.5, 1.5, 1.5]}/>
-                <ChanceDeck/>
             </Board>
+            <TreasuryDeck/>
+            <ChanceDeck/>
             <BoardBackground/>
             <ModalPopupProvider/>
             <CellInfoPopupProvider/>

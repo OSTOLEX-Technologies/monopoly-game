@@ -18,14 +18,14 @@ export const JAIL_POSITION_ARRAY: [number, number, number] = [
 export const JAIL_EXIT_CELL_INDEX = 8;
 
 export enum PieceColor {
-    Pink = "#FF8EFA",
-    Purple = "#A800FF",
+    Pink = "#F862E3",
+    Purple = "#7300E7",
     Green = "#00FD00",
     Yellow = "#FFEF00",
-    Blue = "#0083F3",
-    Orange = "#FF8400",
+    Blue = "#0032DD",
+    Orange = "#FC4F18",
     Navyblue = "#0AFAFB",
-    Red = "#F5007A",
+    Red = "#F30032",
 }
 
 export enum OwnerIconsTypes {

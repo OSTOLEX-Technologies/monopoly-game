@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {useTreasuryCard} from "../hooks";
 import {CardPopup} from "./ui/CardPopup";
 import {CardType} from "../constants";
+import {reactTreasuryCardsManager} from "../viewGlobals";
 
 let description = "";
 
@@ -36,6 +37,7 @@ export function TreasuryDeck() {
     useFrame((state, delta) => {
         mixer.update(delta);
     });
+    reactTreasuryCardsManager.isPopupShown = showPopup;
     return (
         <>
             <primitive object={new_obj} rotation={[0, Math.PI, 0]} position={[0, 0, 0]} />

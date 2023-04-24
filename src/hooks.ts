@@ -111,6 +111,7 @@ export function useModalPopup() {
         setShowPopup(true);
     }
     useEffect(() => {
+        reactModalPopupManager.isPopupShown = showPopup;
         reactModalPopupManager.onSetModalPopup(handler);
         return () => reactModalPopupManager.unSetModalPopup(handler);
     }, [modalPopupData]);
@@ -124,9 +125,13 @@ export function useBoardOnHoverCallbacks(): [
     const hideTimeoutTime = 300;
     return [
         (cellIndex: number, e: ThreeEvent<MouseEvent>) => {
+            if (reactModalPopupManager.isPopupShown || reactTreasuryCardsManager.isPopupShown || reactChanceCardsManager.isPopupShown)
+                return;
             reactCellInfoPopupManager.showPopupWithDelay(getCellInfoPopupData(cellIndex), showTimeoutTime);
         },
         (e: ThreeEvent<MouseEvent>) => {
+            if (reactModalPopupManager.isPopupShown || reactTreasuryCardsManager.isPopupShown || reactChanceCardsManager.isPopupShown)
+                return;
             reactCellInfoPopupManager.hidePopupWithDelay(hideTimeoutTime);
             reactCellInfoPopupManager.cancelShowPopup();
         }

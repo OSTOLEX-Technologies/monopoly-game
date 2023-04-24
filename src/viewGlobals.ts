@@ -51,7 +51,7 @@ balanceManager.addEventListener("bankrupt", () => {
         })
 })
 balanceManager.addEventListener("trade", () => {
-        balanceManager.setBalance(balanceManager.getBalance() - 10);
+        balanceManager.setBalance(balanceManager.getBalance() + 10);
 })
 
 propertyManager.addProperty({logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png", propertyName: "1 Ave", status: PropertyStatus.Mortgage, buttonCallback: () => {console.log("mortgage")}});
@@ -68,7 +68,7 @@ const piece3 = boardView.addPiece(0, PieceColor.Pink);
 const piece4 = boardView.addPiece(0, PieceColor.Purple);
 const piece5 = boardView.addPiece(0, PieceColor.Red);
 const piece6 = boardView.addPiece(0, PieceColor.Yellow);
-const piece7 = boardView.addPiece(0, PieceColor.Navyblue);
+const piece7 = boardView.addPiece(0, PieceColor.Orange);
 
 // boardView.setCellPrice(31, 2000)
 // boardView.setCellPriceType(31, CellPriceType.Fee)
@@ -163,20 +163,19 @@ window.addEventListener('message', async (event) => {
         }
 });
 
-// window.addEventListener('piecesLoaded', async ev => {
-//         await boardView.movePieceToJail(piece1);
-//         await boardView.movePieceToJail(piece2);
-//         await boardView.movePieceToJail(piece3);
-//         await boardView.movePieceToJail(piece4);
-//         await boardView.movePieceToJail(piece5);
-//         await boardView.movePieceToJail(piece6);
-//         await boardView.movePieceToJail(piece7);
-//         await boardView.movePieceToJail(piece8);
-//         await boardView.movePieceFromJail(piece1);
-//         await boardView.movePieceFromJail(piece2);
-//         await boardView.movePieceFromJail(piece3);
-//         await boardView.movePieceFromJail(piece4);
-// })
+window.addEventListener('piecesLoaded', async ev => {
+        // await boardView.movePieceToJail(piece1);
+        // await boardView.movePieceToJail(piece2);
+        // await boardView.movePieceToJail(piece3);
+        // await boardView.movePieceToJail(piece4);
+        // await boardView.movePieceFromJail(piece1);
+        // await boardView.movePieceFromJail(piece2);
+        // await boardView.movePieceFromJail(piece3);
+        // await boardView.movePieceFromJail(piece4);
+        // boardView.setOwnerByIndex(1, PieceColor.Yellow);
+        // boardView.setOwnerByIndex(31, PieceColor.Orange);
+
+})
 
 // window.addEventListener('piecesLoaded', async ev => {
 //     await new Promise(resolve => setTimeout(resolve, 2000));
@@ -195,7 +194,7 @@ window.addEventListener('message', async (event) => {
 //     boardView.setOwnerByIndex(20, PieceColor.Pink);
 //     gameHistoryManager.addHistoryMessage(messages[4]);
 //     await boardView.movePieceToCell(piece5, boardView.getCell(15));
-//     boardView.setOwnerByIndex(26, PieceColor.Green);
+//     boardView.setOwnerByIndex(3, PieceColor.Green);
 //     gameHistoryManager.addHistoryMessage(messages[5]);
 //     await boardView.movePieceToCell(piece6, boardView.getCell(15));
 //     boardView.setOwnerByIndex(31, PieceColor.Yellow);
@@ -203,8 +202,8 @@ window.addEventListener('message', async (event) => {
 //     await boardView.movePieceToCell(piece7, boardView.getCell(15));
 //     boardView.setOwnerByIndex(7, PieceColor.Navyblue);
 //     gameHistoryManager.addHistoryMessage(messages[7]);
-//     await boardView.movePieceToCell(piece8, boardView.getCell(15));
-//     boardView.setOwnerByIndex(1, PieceColor.Red);
+//     // await boardView.movePieceToCell(piece8, boardView.getCell(15));
+//     // boardView.setOwnerByIndex(1, PieceColor.Red);
 //     gameHistoryManager.addHistoryMessage(messages[8]);
 //     for (let i = 9; i < messages.length; i++) {
 //         await new Promise(resolve => setTimeout(resolve, 500));
