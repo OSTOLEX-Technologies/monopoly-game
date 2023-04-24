@@ -47,7 +47,9 @@ balanceManager.addEventListener("bankrupt", () => {
                         playBankruptSound();
                 },
                 noText: "No",
-                noCallback: () => {}
+                noCallback: () => {
+                        balanceManager.setBalance(balanceManager.getBalance() - 10);
+                }
         })
 })
 balanceManager.addEventListener("trade", () => {
