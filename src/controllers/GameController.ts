@@ -41,7 +41,7 @@ export class GameController {
 
   private initBalance() {
     const playerBalance = this.game.getPlayerBalance(this.playerId);
-    balanceManager.setBalance(playerBalance);
+    balanceManager.initBalance(playerBalance);
   }
 
   private initProperty() {

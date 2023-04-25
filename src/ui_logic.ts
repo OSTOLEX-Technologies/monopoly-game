@@ -19,6 +19,11 @@ export class BalanceManager {
     }
 
     @keepReactBalanceUpdated
+    public initBalance(balance: number): void {
+        this.balance = balance;
+    }
+
+    @keepReactBalanceUpdated
     public setBalance(balance: number): void {
         if (balance < 0) throw new Error("Balance can't be negative");
         if (balance > this.balance)
