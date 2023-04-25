@@ -67,7 +67,7 @@ console.log(housePrice, hotelPrice)
         price: tilePrice,
         link: data.link,
         description: data.description,
-        logo: data.logo,
+        logo: import.meta.env.BASE_URL + data.logo,
         owner: owner,
         categoryImg: categoryImg,
         housePrice: housePrice,
