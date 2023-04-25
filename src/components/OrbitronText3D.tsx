@@ -12,7 +12,7 @@ interface OrbitronTextProps {
 }
 
 export default function OrbitronText(props: OrbitronTextProps) {
-    const font = useLoader(FontLoader, 'fonts/Orbitron_Regular.json');
+    const font = useLoader(FontLoader, import.meta.env.BASE_URL + 'fonts/Orbitron_Regular.json');
 
     return (
         <mesh position={props.position} rotation={props.rotation} scale={props.scale || [1, 1, 1]}>
