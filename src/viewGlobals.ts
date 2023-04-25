@@ -53,6 +53,7 @@ balanceManager.addEventListener("bankrupt", () => {
         })
 })
 balanceManager.addEventListener("trade", () => {
+        console.log("Pressed \"trade\" button")
         balanceManager.setBalance(balanceManager.getBalance() + 10);
 })
 

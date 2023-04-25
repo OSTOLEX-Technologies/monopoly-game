@@ -29,9 +29,11 @@ export function useCells() {
 export function useBalance(): [number, () => void, () => void] {
     const [balance, setBalance] = useState(balanceManager.getBalance());
     const bankruptHandler = () => {
+        console.log("In bankrupt handler")
         balanceManager.dispatchEvent("bankrupt")
     }
     const tradeHandler = () => {
+        console.log("In trade handler")
         balanceManager.dispatchEvent("trade")
     }
     useEffect(() => {
