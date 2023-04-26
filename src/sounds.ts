@@ -7,6 +7,7 @@ import incomeSound from "./assets/sounds/SFX/income.mp3";
 import goToJailSound from "./assets/sounds/SFX/go to jail.mp3";
 import rentTaxFinesSound from "./assets/sounds/SFX/rent, tax, fines.mp3";
 import stepOnTheSectorSound from "./assets/sounds/SFX/step on the sector.mp3";
+import grateClosedSound from "./assets/sounds/SFX/the grate closed.mp3";
 
 export function preloadSound(src: string) {
     const audio = new Audio(src);
@@ -21,6 +22,9 @@ preloadSound(purchaseOfAPlotSound);
 preloadSound(chanceOrTreasurySound);
 preloadSound(incomeSound);
 preloadSound(goToJailSound);
+preloadSound(rentTaxFinesSound);
+preloadSound(stepOnTheSectorSound);
+preloadSound(grateClosedSound);
 
 export function playChanceOrTreasurySound(callback: () => void = () => {
 }) {
@@ -46,6 +50,12 @@ export function playBankruptSound(callback: () => void = () => {
 export function playGoToJailSound(callback: () => void = () => {
 }) {
     const audio = new Audio(goToJailSound);
+    audio.play();
+    callback();
+}
+
+export function playGrateClosedSound(callback: () => void = () => {}) {
+    const audio = new Audio(grateClosedSound);
     audio.play();
     callback();
 }

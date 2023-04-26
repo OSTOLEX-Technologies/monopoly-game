@@ -14,7 +14,7 @@ import {
 import {keepReactCellsUpdated} from "./decorators";
 import {
     playBuildingHouseOrHotelSound,
-    playGoToJailSound,
+    playGoToJailSound, playGrateClosedSound,
     playPurchaseOfAPlotSound,
     playReleaseFromJailSound,
     playStepOnTheSectorSound
@@ -356,7 +356,8 @@ export class BoardPresenter {
                 () => {
                     resolve();
                 })));
-        await this.arrangePiecesInJail(true)
+        await this.arrangePiecesInJail(true);
+        playGrateClosedSound();
         await this.movePieceDown(piece);
         this.piecesInJail.push(piece);
     }
