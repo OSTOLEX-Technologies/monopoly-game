@@ -17,7 +17,7 @@ export function ButtonClickSoundProvider({children}: ButtonClickSoundProviderPro
 
     const playSound = (callback: () => void = () => {}) => {
         const audio = new Audio(buttonClickSound)
-        audio.volume = 0.3
+        audio.volume = 0.9
         audio.play()
         callback()
     }
