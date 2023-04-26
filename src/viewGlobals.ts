@@ -19,7 +19,7 @@ import {Player} from "./game/Player";
 import {IOffer} from "./game/Offers/IOffer";
 import {Action} from "./game/Actions/Action";
 import {Transaction} from "./game/Offers/Transaction";
-import {playBankruptSound} from "./utils";
+import {playBankruptSound} from "./sounds";
 
 export const boardView = new BoardPresenter();
 export const balanceManager = new BalanceManager(0);

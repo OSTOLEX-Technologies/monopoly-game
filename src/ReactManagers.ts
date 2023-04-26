@@ -1,6 +1,6 @@
 import {CellPresenter} from "./board";
 import {PropertyStatus} from "./constants";
-import {playChanceOrTreasurySound} from "./utils";
+import {playChanceOrTreasurySound} from "./sounds";
 
 export class ReactCellsManager {
     public setCellsHandlers: Array<(cells: CellPresenter[]) => void> = [];

@@ -14,10 +14,11 @@ import {
 import {keepReactCellsUpdated} from "./decorators";
 import {
     playBuildingHouseOrHotelSound,
-    playGoToJailSound, playPurchaseOfAPlotSound,
+    playGoToJailSound,
+    playPurchaseOfAPlotSound,
     playReleaseFromJailSound,
     playStepOnTheSectorSound
-} from "./utils";
+} from "./sounds";
 
 
 function getArrangedPiecePosition(center: Vector3, pieces: Array<PiecePresenter>, piece: PiecePresenter, futurePositions = false): Vector3 {

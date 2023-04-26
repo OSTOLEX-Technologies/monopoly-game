@@ -5,7 +5,7 @@ import {
     keepReactHistoryUpdated
 } from "./decorators";
 import {PropertyStatus} from "./constants";
-import {playIncomeSound, playRentTaxFinesSound} from "./utils";
+import {playIncomeSound, playRentTaxFinesSound} from "./sounds";
 
 
 export class BalanceManager {

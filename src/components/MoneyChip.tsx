@@ -10,6 +10,9 @@ const moneyChips = Object.freeze({
     [moneyChipsTypes.Gold]: import.meta.env.BASE_URL + 'models/moneygold.gltf',
 })
 
+useGLTF.preload(moneyChips[moneyChipsTypes.Silver])
+useGLTF.preload(moneyChips[moneyChipsTypes.Gold])
+
 interface MoneyChipProps {
     type: moneyChipsTypes;
     position?: [number, number, number];
