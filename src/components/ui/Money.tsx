@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {SmallButton} from "./styledComponents";
-import {RightTopSection} from "./common";
+import {RightBottomSection} from "./common";
 import {useContext} from "react";
 import {ButtonClickSoundContext} from "../ButtonClickSoundProvider";
 
@@ -29,7 +29,7 @@ type MoneyProps = {
 export const Money = ({currencySign = "$", ...props}: MoneyProps) => {
     const playButtonSound = useContext(ButtonClickSoundContext);
     return (
-        <RightTopSection>
+        <RightBottomSection>
             <div style={{textAlign: "center", lineHeight: 1, paddingTop: "1rem"}}>
                 <AmountText>
                     {props.amount}{currencySign}
@@ -43,6 +43,6 @@ export const Money = ({currencySign = "$", ...props}: MoneyProps) => {
                     <span>trade</span>
                 </SmallButton>
             </ButtonsContainer>
-        </RightTopSection>
+        </RightBottomSection>
     );
 }

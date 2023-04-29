@@ -53,7 +53,7 @@ export function Scene() {
             <ModalPopupProvider/>
             <CellInfoPopupProvider/>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
-            <directionalLight intensity={0.3} position={[0, 10, 0]}/>
+            <directionalLight intensity={0.1} position={[0, 10, 0]}/>
         </>
     )
 }

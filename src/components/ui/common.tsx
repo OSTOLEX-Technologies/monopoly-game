@@ -14,6 +14,13 @@ right: 0;
 bottom: 0;
 `
 
+export const RightDownSection = styled.section`
+width: max-content;
+position: absolute;
+right: 0;
+bottom: 0;
+`
+
 export const LeftTopSection = styled.section`
 width: max-content;
 position: absolute;

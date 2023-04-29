@@ -94,7 +94,7 @@ const ProjectDataContainer = styled.div`
 const ProjectStageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 8px;
 `;
 
 const ProjectStagePrice = styled.div`

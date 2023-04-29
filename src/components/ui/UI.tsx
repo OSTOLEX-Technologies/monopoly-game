@@ -6,6 +6,7 @@ import {PlayersTable} from "./PlayersTable";
 import {History} from "./History";
 import {CardPopup} from "./CardPopup";
 import {CardType} from "../../constants";
+import {Sound} from "./Sound";
 
 export const UI = () => {
     const [balance, bankruptHandler, tradeHandler] = useBalance();
@@ -15,6 +16,7 @@ export const UI = () => {
 
     return (
         <>
+            <Sound/>
             <Money amount={balance}
                    bankruptHandler={bankruptHandler}
                    tradeHandler={tradeHandler}
