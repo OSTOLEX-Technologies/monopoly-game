@@ -16,14 +16,19 @@ export const UI = () => {
 
     return (
         <>
+            <div>
+                <PlayersTable players={players}/>
+                <History history={history}/>
+            </div>
+            <div>
             <Sound/>
             <Money amount={balance}
                    bankruptHandler={bankruptHandler}
                    tradeHandler={tradeHandler}
             />
             <PropertyTable properties={properties} />
-            <PlayersTable players={players}/>
-            <History history={history}/>
+            </div>
+
         </>
     )
 }

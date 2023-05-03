@@ -7,18 +7,19 @@ right: 0;
 top: 0;
 `
 
+export const RightMiddleSection = styled.section`
+width: max-content;
+position: absolute;
+right: 0;
+  top: 3%;
+  transform: translate(0, -25%);
+`
+
 export const RightBottomSection = styled.section`
 width: max-content;
 position: absolute;
 right: 0;
-bottom: 0;
-`
-
-export const RightDownSection = styled.section`
-width: max-content;
-position: absolute;
-right: 0;
-bottom: 0;
+  top: 15%;
 `
 
 export const LeftTopSection = styled.section`

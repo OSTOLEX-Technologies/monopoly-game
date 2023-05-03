@@ -1,5 +1,5 @@
 import {SmallButton} from "./styledComponents";
-import {RightDownSection, RoundImage} from "./common";
+import {RightBottomSection, RoundImage} from "./common";
 import styled from "styled-components";
 import {PropertyStatus} from "../../constants";
 import {useContext} from "react";
@@ -61,7 +61,7 @@ type PropertyTableProps = {
 }
 
 export const PropertyTable = (props: PropertyTableProps) => (
-    <RightDownSection style={{top: "150px", }}>
+    <RightBottomSection>
         <h2 style={{textAlign: "center", fontFamily: "Orbitron"}}>Your property:</h2>
         <ProperyTableContainer>
                 {props.properties.map((property, index) => (
@@ -69,5 +69,5 @@ export const PropertyTable = (props: PropertyTableProps) => (
                                buttonCallback={property.buttonCallback} status={property.status}/>
                 ))}
         </ProperyTableContainer>
-    </RightDownSection>
+    </RightBottomSection>
 );

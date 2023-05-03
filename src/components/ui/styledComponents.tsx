@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SmallButton = styled.button`
-  background-image: import.meta.env.BASE_URL + "button big.png";
+  background-image: url("${import.meta.env.BASE_URL + "vault/button small.png"}");
   color: #fff;
   background-size: contain;
   font-family: Orbitron;

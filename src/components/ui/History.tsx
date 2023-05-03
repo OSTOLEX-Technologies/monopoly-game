@@ -42,7 +42,7 @@ type HistoryProps = {
 
 const HistoryContainer = styled.div`
 width: 20rem;
-height: 500px;
+height: 30vh;
 overflow-y: scroll;
 color: white;
 padding: 1rem;
