@@ -8,6 +8,7 @@ import goToJailSound from "./assets/sounds/SFX/go to jail.mp3";
 import rentTaxFinesSound from "./assets/sounds/SFX/rent, tax, fines.mp3";
 import stepOnTheSectorSound from "./assets/sounds/SFX/step on the sector.mp3";
 import grateClosedSound from "./assets/sounds/SFX/the grate closed.mp3";
+import {soundSettings} from "./viewGlobals";
 
 export function preloadSound(src: string) {
     const audio = new Audio(src);
@@ -29,6 +30,7 @@ preloadSound(grateClosedSound);
 export function playChanceOrTreasurySound(callback: () => void = () => {
 }) {
     const audio = new Audio(chanceOrTreasurySound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -36,6 +38,7 @@ export function playChanceOrTreasurySound(callback: () => void = () => {
 export function playBuildingHouseOrHotelSound(callback: () => void = () => {
 }) {
     const audio = new Audio(buildingHouseOrHotelSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -43,6 +46,7 @@ export function playBuildingHouseOrHotelSound(callback: () => void = () => {
 export function playBankruptSound(callback: () => void = () => {
 }) {
     const audio = new Audio(bankruptSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -50,12 +54,14 @@ export function playBankruptSound(callback: () => void = () => {
 export function playGoToJailSound(callback: () => void = () => {
 }) {
     const audio = new Audio(goToJailSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
 
 export function playGrateClosedSound(callback: () => void = () => {}) {
     const audio = new Audio(grateClosedSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -63,6 +69,7 @@ export function playGrateClosedSound(callback: () => void = () => {}) {
 export function playIncomeSound(callback: () => void = () => {
 }) {
     const audio = new Audio(incomeSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -70,6 +77,7 @@ export function playIncomeSound(callback: () => void = () => {
 export function playPurchaseOfAPlotSound(callback: () => void = () => {
 }) {
     const audio = new Audio(purchaseOfAPlotSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -77,6 +85,7 @@ export function playPurchaseOfAPlotSound(callback: () => void = () => {
 export function playRentTaxFinesSound(callback: () => void = () => {
 }) {
     const audio = new Audio(rentTaxFinesSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -84,6 +93,7 @@ export function playRentTaxFinesSound(callback: () => void = () => {
 export function playReleaseFromJailSound(callback: () => void = () => {
 }) {
     const audio = new Audio(releaseFromJailSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }
@@ -91,6 +101,7 @@ export function playReleaseFromJailSound(callback: () => void = () => {
 export function playStepOnTheSectorSound(callback: () => void = () => {
 }) {
     const audio = new Audio(stepOnTheSectorSound);
+    audio.volume = audio.volume * soundSettings.getSoundsK();
     audio.play();
     callback();
 }

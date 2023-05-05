@@ -1,14 +1,14 @@
 import {BoardPresenter} from "./board";
 import {AnimationRenderersManager} from "./animationsRenderers";
 import {PieceColor, PropertyStatus} from "./constants";
-import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager} from "./ui_logic";
+import {BalanceManager, GameHistoryManager, PlayersManager, PropertyManager, SoundSettings} from "./ui_logic";
 import {
         ReactBalanceManager,
         ReactCellInfoPopupManager,
         ReactCellsManager,
         ReactChanceCardsManager,
         ReactGameHistoryManager,
-        ReactModalPopupManager,
+        ReactModalPopupManager, ReactMusicVolumeManager,
         ReactPlayersManager,
         ReactPropertyManager,
         ReactTreasuryCardsManager
@@ -38,6 +38,9 @@ export const reactChanceCardsManager = new ReactChanceCardsManager();
 export const reactTreasuryCardsManager = new ReactTreasuryCardsManager();
 export const reactModalPopupManager = new ReactModalPopupManager();
 export const reactCellInfoPopupManager = new ReactCellInfoPopupManager();
+export const reactMusicVolumeManager = new ReactMusicVolumeManager();
+
+export const soundSettings = new SoundSettings();
 
 balanceManager.addEventListener("bankrupt", () => {
         reactModalPopupManager.showPopup({

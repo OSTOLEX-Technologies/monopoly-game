@@ -9,7 +9,11 @@ import {
     reactPlayersManager,
     reactGameHistoryManager,
     gameHistoryManager,
-    reactChanceCardsManager, reactTreasuryCardsManager, reactModalPopupManager, reactCellInfoPopupManager
+    reactChanceCardsManager,
+    reactTreasuryCardsManager,
+    reactModalPopupManager,
+    reactCellInfoPopupManager,
+    reactMusicVolumeManager, soundSettings
 } from "./viewGlobals";
 import {CellInfoPopupData, ModalPopupData} from "./ReactManagers";
 import {useEffect, useState} from "react";
@@ -160,4 +164,14 @@ export function useCellInfoPopup(): [CellInfoPopupData, boolean] {
         }
     }, [popupData, showPopup]);
     return [popupData, showPopup];
+}
+
+
+export function useMusicVolume(): number {
+    const [volume, setVolume] = useState(soundSettings.getMusicK());
+    useEffect(() => {
+        reactMusicVolumeManager.onSetMusicVolume(setVolume);
+        return () => reactMusicVolumeManager.unSetMusicVolume(setVolume);
+    }, [volume]);
+    return volume;
 }

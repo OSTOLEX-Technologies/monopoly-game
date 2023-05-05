@@ -15,21 +15,24 @@ import {AudioLoader, Audio, AudioListener} from "three";
 import {useContext, useEffect, useRef, useState} from "react";
 import gameplay from "../assets/sounds/Soundtracks/gameplay.mp3";
 import {UI} from "./ui/UI";
+import {soundSettings} from "../viewGlobals";
+import {useMusicVolume} from "../hooks";
 
 
 function GameplaySoundtrack() {
     const listener = useContext(AudioListenerContext);
     const musicPlayer = useRef<Audio>();
     const gameplayTrack = useLoader(AudioLoader, gameplay)
+    const musicK = useMusicVolume();
 
     useEffect(() => {
         if (!musicPlayer.current) return;
         musicPlayer.current!.setBuffer(gameplayTrack);
         musicPlayer.current!.setLoop(true);
-        musicPlayer.current!.setVolume(0.05);
+        musicPlayer.current!.setVolume(0.05 * musicK);
         musicPlayer.current!.setPlaybackRate(1);
         musicPlayer.current!.play();
-    }, [musicPlayer])
+    }, [musicPlayer, soundSettings.getMusicK()])
 
     return (
         // @ts-ignore

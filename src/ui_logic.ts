@@ -2,7 +2,7 @@ import {
     keepReactBalanceUpdated,
     keepReactPropertyUpdated,
     keepReactPlayersUpdated,
-    keepReactHistoryUpdated
+    keepReactHistoryUpdated, keepReactMusicVolumeUpdated
 } from "./decorators";
 import {PropertyStatus} from "./constants";
 import {playIncomeSound, playRentTaxFinesSound} from "./sounds";
@@ -120,5 +120,27 @@ export class GameHistoryManager {
     @keepReactHistoryUpdated
     public addHistoryMessage(message: string): void {
         this.history.push(message);
+    }
+}
+
+export class SoundSettings {
+    private musicK = 1;
+    private soundsK = 1;
+
+    public getMusicK(): number {
+        return this.musicK;
+    }
+
+    public getSoundsK(): number {
+        return this.soundsK;
+    }
+
+    @keepReactMusicVolumeUpdated
+    public setMusicK(k: number): void {
+        this.musicK = k;
+    }
+
+    public setSoundsK(k: number): void {
+        this.soundsK = k;
     }
 }

@@ -225,3 +225,19 @@ export class ReactCellInfoPopupManager {
         this.setCellInfoShowHandlers.forEach((handler) => handler(false));
     }
 }
+
+
+export class ReactMusicVolumeManager {
+    public setMusicVolumeHandlers: Array<(volume: number) => void> = [];
+
+    public onSetMusicVolume(handler: (volume: number) => void): void {
+        this.setMusicVolumeHandlers.push(handler);
+    }
+
+    public unSetMusicVolume(handler: (volume: number) => void): void {
+        const index = this.setMusicVolumeHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setMusicVolumeHandlers.splice(index, 1);
+    }
+}
