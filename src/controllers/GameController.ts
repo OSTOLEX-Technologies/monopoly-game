@@ -9,6 +9,7 @@ import {CardType, PropertyStatus} from "../constants";
 import {Action} from "../game/Actions/Action";
 import {TileType} from "../game/Tiles/Tile";
 import {DeclareBankruptcyAction} from "../game/Actions/DeclareBankruptcyAction";
+import {postMessage} from "./iframeMessages";
 
 export class GameController {
   private game: Game;
@@ -60,10 +61,12 @@ export class GameController {
 
   private redeem(playerId: string, cardId: string) {
     this.game.redeem(playerId, cardId);
+    postMessage({type: "redeem", cardId: cardId});
   }
 
   private mortgage(playerId: string, cardId: string) {
     this.game.mortgage(playerId, cardId);
+    postMessage({type: "mortgage", cardId: cardId});
   }
 
   private initPlayers() {
@@ -100,6 +103,7 @@ export class GameController {
   public async makeMove() {
     const actions = this.game.doStep(this.playerId);
     await this.displayMove(this.playerId, actions);
+    postMessage({type: "endOwnTurn", actions: actions});
   }
 
   private async displayMove(playerId: string, actions: Array<Action>) {
@@ -127,5 +131,6 @@ export class GameController {
 
     // TODO:
     const action = this.game.getBankruptAction(this.playerId);
+    postMessage({type: "declareBankruptcy", action: action});
   }
 }
