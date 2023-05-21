@@ -162,8 +162,11 @@ export const gameController = new GameController(gameData, playerId);
 window.addEventListener('message', async (event) => {
         const type = event.data.type;
         const data = event.data.data;
+        data.players = JSON.parse(data.players) as Array<Player>;
 
         switch (type) {
+                case "init":
+                        break
                 case "kick":
                         break;
                 case "bankrupt":
