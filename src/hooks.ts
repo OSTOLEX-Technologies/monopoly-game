@@ -152,6 +152,10 @@ export function useTradePopup() {
     return {tradePopupData, showPopup, setShowPopup};
 }
 
+function isAnyPopupShown() {
+    return reactModalPopupManager.isPopupShown || reactTreasuryCardsManager.isPopupShown || reactChanceCardsManager.isPopupShown || reactTradePopupManager.isPopupShown;
+}
+
 export function useBoardOnHoverCallbacks(): [
     (cellIndex: number, e: ThreeEvent<MouseEvent>) => void,
     (e: ThreeEvent<MouseEvent>) => void] {
@@ -159,12 +163,12 @@ export function useBoardOnHoverCallbacks(): [
     const hideTimeoutTime = 300;
     return [
         (cellIndex: number, e: ThreeEvent<MouseEvent>) => {
-            if (reactModalPopupManager.isPopupShown || reactTreasuryCardsManager.isPopupShown || reactChanceCardsManager.isPopupShown)
+            if (isAnyPopupShown())
                 return;
             reactCellInfoPopupManager.showPopupWithDelay(getCellInfoPopupData(cellIndex), showTimeoutTime);
         },
         (e: ThreeEvent<MouseEvent>) => {
-            if (reactModalPopupManager.isPopupShown || reactTreasuryCardsManager.isPopupShown || reactChanceCardsManager.isPopupShown)
+            if (isAnyPopupShown())
                 return;
             reactCellInfoPopupManager.hidePopupWithDelay(hideTimeoutTime);
             reactCellInfoPopupManager.cancelShowPopup();
