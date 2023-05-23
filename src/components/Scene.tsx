@@ -17,6 +17,7 @@ import gameplay from "../assets/sounds/Soundtracks/gameplay.mp3";
 import {UI} from "./ui/UI";
 import {soundSettings} from "../viewGlobals";
 import {useMusicVolume} from "../hooks";
+import {TradePopup} from "./ui/TradePopup";
 
 
 function GameplaySoundtrack() {
@@ -55,6 +56,33 @@ export function Scene() {
             <BoardBackground/>
             <ModalPopupProvider/>
             <CellInfoPopupProvider/>
+            {/*<TradePopup type={"outcoming"} userMoneyAmount={200} userProperties={[*/}
+            {/*    {name: "Красная улица", price: 100},*/}
+            {/*    {name: "Красная улица", price: 100},*/}
+            {/*    {name: "Красная улица", price: 100},*/}
+            {/*    {name: "Красная улица", price: 100},*/}
+            {/*]} opponents={*/}
+            {/*    [*/}
+            {/*        {name: "let45fc.near", moneyAmount: 1000, properties: [*/}
+            {/*            {name: "let45fc улица", price: 100},*/}
+            {/*            {name: "let45fc улица", price: 100},*/}
+            {/*            {name: "let45fc улица", price: 100},*/}
+            {/*            {name: "let45fc улица", price: 100},*/}
+            {/*        ]},*/}
+            {/*        {name: "kastet99.near", moneyAmount: 1000, properties: [*/}
+            {/*            {name: "kastet99 улица", price: 100},*/}
+            {/*            {name: "kastet99 улица", price: 100},*/}
+            {/*            {name: "kastet99 улица", price: 100},*/}
+            {/*            {name: "kastet99 улица", price: 100},*/}
+            {/*        ]},*/}
+            {/*        {name: "uriiyurii.near", moneyAmount: 1000, properties: [*/}
+            {/*            {name: "uriiyurii улица", price: 100},*/}
+            {/*            {name: "uriiyurii улица", price: 100},*/}
+            {/*            {name: "uriiyurii улица", price: 100},*/}
+            {/*            {name: "uriiyurii улица", price: 100},*/}
+            {/*        ]},*/}
+            {/*    ]*/}
+            {/*} onTrade={(...args) => console.log(args)}/>*/}
             <ambientLight intensity={1} position={[0, 10, 0]}/>
             <directionalLight intensity={0.1} position={[0, 10, 0]}/>
         </>
