@@ -18,6 +18,7 @@ import {UI} from "./ui/UI";
 import {soundSettings} from "../viewGlobals";
 import {useMusicVolume} from "../hooks";
 import {TradePopup} from "./ui/TradePopup";
+import {TradePopupProvider} from "./TradePopupProvider";
 
 
 function GameplaySoundtrack() {
@@ -56,7 +57,7 @@ export function Scene() {
             <BoardBackground/>
             <ModalPopupProvider/>
             <CellInfoPopupProvider/>
-            {/*<TradePopup type={"outcoming"} userMoneyAmount={200} userProperties={[*/}
+            {/*<TradePopup type={"outgoing"} userBalance={200} userProperties={[*/}
             {/*    {name: "Красная улица", price: 100},*/}
             {/*    {name: "Красная улица", price: 100},*/}
             {/*    {name: "Красная улица", price: 100},*/}
@@ -83,6 +84,7 @@ export function Scene() {
             {/*        ]},*/}
             {/*    ]*/}
             {/*} onTrade={(...args) => console.log(args)}/>*/}
+            <TradePopupProvider/>
             <ambientLight intensity={1} position={[0, 10, 0]}/>
             <directionalLight intensity={0.1} position={[0, 10, 0]}/>
         </>

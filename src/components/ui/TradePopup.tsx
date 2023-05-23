@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import {Html} from "@react-three/drei";
+import {Property, TradePopupData} from "../../ReactManagers";
 
 const Background = styled.div`
   background-image: url('${import.meta.env.BASE_URL + "vault/horisontal_popup.png"}');
@@ -179,6 +180,7 @@ const PropertyPrice = styled.label`
 `;
 
 const PropertyNameContainer = styled.div`
+  height: 86px;
   width: 17rem;
   display: flex;
   align-items: center;
@@ -189,9 +191,10 @@ type PropertyRowProps = {
     propertyName: string;
     propertyPrice: number;
     onSelect?: () => void;
+    type?: "outgoing" | "incoming";
 }
 
-const PropertyRow = ({propertyName, propertyPrice, onSelect}: PropertyRowProps) => {
+const PropertyRow = ({propertyName, propertyPrice, onSelect, type = "outgoing"}: PropertyRowProps) => {
     const id = propertyName + Math.random();
     return (
         <Line>
@@ -199,7 +202,9 @@ const PropertyRow = ({propertyName, propertyPrice, onSelect}: PropertyRowProps) 
                 <PropertyName htmlFor={id}>{propertyName}</PropertyName>
                 <PropertyPrice htmlFor={id}>{propertyPrice}$</PropertyPrice>
             </PropertyNameContainer>
-            <Checkbox type="checkbox" id={id} onClick={onSelect}/>
+            {type === "outgoing" &&
+                <Checkbox type="checkbox" id={id} onClick={onSelect}/>
+            }
         </Line>
     );
 };
@@ -243,35 +248,6 @@ const properties = [
     },
 ];
 
-
-export type Property = {
-    name: string;
-    price: number;
-}
-
-export type Opponent = {
-    name: string;
-    moneyAmount: number;
-    properties: Array<Property>;
-}
-
-
-type TradePopupProps = {
-    type?: "outcoming" | "incoming";
-    userMoneyAmount?: number;
-    userProperties?: Array<Property>;
-    opponents?: Array<Opponent>;
-    onClose?: () => void;
-    onTrade?: (userProperties: Array<Property>,
-               userMoney: number,
-               opponentName: string,
-               opponentMoneyAmount: number,
-               opponentProperties: Array<Property>) => void;
-    onAccept?: () => void;
-    onDecline?: () => void;
-};
-
-
 export function TradePopup({
                                onClose = () => {
                                },
@@ -282,12 +258,14 @@ export function TradePopup({
                                onDecline = () => {
                                },
                                userProperties = [],
-                               type = "outcoming",
-                               userMoneyAmount = 0,
+                               type = "outgoing",
+                               userBalance = 0,
+                               initialUserMoney = 0,
+                               initialOpponentMoney = 0,
                                opponents = []
-                           }: TradePopupProps) {
-    const [userMoneyAmountState, setUserMoneyAmountState] = useState(0);
-    const [opponentMoneyAmount, setOpponentMoneyAmount] = useState(0);
+                           }: TradePopupData) {
+    const [userMoneyAmountState, setUserMoneyAmountState] = useState(initialUserMoney);
+    const [opponentMoneyAmount, setOpponentMoneyAmount] = useState(initialOpponentMoney);
     const [selectedOpponentIndex, setSelectedOpponentIndex] = useState(0);
     const [selectedUserProperties, setSelectedUserProperties] = useState<Array<Property>>([]);
     const [selectedOpponentProperties, setSelectedOpponentProperties] = useState<Array<Property>>([]);
@@ -331,14 +309,14 @@ export function TradePopup({
                         <div style={{display: "flex"}}>
                             <div>
                                 <StyledText>You</StyledText>
-                                {type === "outcoming" && (
+                                {type === "outgoing" && (
                                     <SliderContainer>
                                         <Label htmlFor="priceRangeUser">0</Label>
                                         <input
                                             id="priceRangeUser"
                                             type="range"
                                             min="0"
-                                            max={userMoneyAmount}
+                                            max={userBalance}
                                             step="1"
                                             // @ts-ignore
                                             style={sliderStyle}
@@ -348,7 +326,7 @@ export function TradePopup({
                                             }
                                             value={userMoneyAmountState}
                                         />
-                                        <Label htmlFor="priceRangeUser">${userMoneyAmount}</Label>
+                                        <Label htmlFor="priceRangeUser">${userBalance}</Label>
                                     </SliderContainer>
                                 )}
                                 <SliderValue>
@@ -357,7 +335,8 @@ export function TradePopup({
                                 <PropertyList>
                                     {userProperties.map((property, index) =>
                                         <PropertyRow propertyName={property.name} propertyPrice={property.price}
-                                                     key={index} onSelect={() => updateSelectedUserProperties(index)}/>
+                                                     key={index} type={type}
+                                                     onSelect={() => updateSelectedUserProperties(index)}/>
                                     )}
                                 </PropertyList>
                             </div>
@@ -369,7 +348,7 @@ export function TradePopup({
                                         justifyContent: "center",
                                     }}
                                 >
-                                    {type === "outcoming" && (
+                                    {type === "outgoing" && (
                                         <SideButton onClick={
                                             () => {
                                                 if (selectedOpponentIndex > 0) {
@@ -387,7 +366,7 @@ export function TradePopup({
                                             />
                                         </SideButton>)}
                                     <StyledText>{selectedOpponent.name}</StyledText>
-                                    {type === "outcoming" && (
+                                    {type === "outgoing" && (
                                         <SideButton onClick={
                                             () => {
                                                 if (selectedOpponentIndex < opponents.length - 1) {
@@ -405,14 +384,14 @@ export function TradePopup({
                                             />
                                         </SideButton>)}
                                 </div>
-                                {type === "outcoming" && (
+                                {type === "outgoing" && (
                                     <SliderContainer>
                                         <Label htmlFor="priceRangeOpponent">0</Label>
                                         <input
                                             id="priceRangeOpponent"
                                             type="range"
                                             min="0"
-                                            max={selectedOpponent.moneyAmount}
+                                            max={selectedOpponent.balance}
                                             step="1"
                                             // @ts-ignore
                                             style={sliderStyle}
@@ -422,7 +401,7 @@ export function TradePopup({
                                             }
                                             value={opponentMoneyAmount}
                                         />
-                                        <Label htmlFor="priceRangeOpponent">${selectedOpponent.moneyAmount}</Label>
+                                        <Label htmlFor="priceRangeOpponent">${selectedOpponent.balance}</Label>
                                     </SliderContainer>
                                 )}
                                 <SliderValue>
@@ -431,7 +410,9 @@ export function TradePopup({
                                 <PropertyList>
                                     {opponentProperties.map((property, index) =>
                                         <PropertyRow propertyName={property.name} propertyPrice={property.price}
-                                                     key={index} onSelect={() => updateSelectedOpponentProperties(index)}/>
+                                                     key={index}
+                                                     type={type}
+                                                     onSelect={() => updateSelectedOpponentProperties(index)}/>
                                     )}
                                 </PropertyList>
                             </div>
@@ -446,7 +427,7 @@ export function TradePopup({
                         display: "flex",
                     }}
                 >
-                    {type === "outcoming" && (
+                    {type === "outgoing" && (
                         <BigButton onClick={() => onTrade(selectedUserProperties,
                             userMoneyAmountState,
                             selectedOpponent.name,

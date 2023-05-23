@@ -121,6 +121,10 @@ export class GameController {
     await this.displayMove(opponentId, gameData.lastActions);
   }
 
+  public getGame() {
+    return this.game;
+  }
+
   public showLastTransaction() {
   }
 

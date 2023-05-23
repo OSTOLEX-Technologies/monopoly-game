@@ -144,8 +144,58 @@ export class ReactModalPopupManager {
         this.setModalPopupHandlers.splice(index, 1);
     }
 
-    public showPopup(data: ModalPopupData ): void {
+    public showPopup(data: ModalPopupData): void {
         this.setModalPopupHandlers.forEach((handler) => handler(data));
+        // playChanceOrTreasurySound();
+    }
+}
+
+export type Property = {
+    name: string;
+    price: number;
+}
+
+export type Opponent = {
+    name: string;
+    balance: number;
+    properties: Array<Property>;
+}
+
+
+export type TradePopupData = {
+    type?: "outgoing" | "incoming";
+    userBalance?: number;
+    userProperties?: Array<Property>;
+    opponents?: Array<Opponent>;
+    initialUserMoney?: number;
+    initialOpponentMoney?: number;
+    onClose?: () => void;
+    onTrade?: (userProperties: Array<Property>,
+               userMoney: number,
+               opponentName: string,
+               opponentMoneyAmount: number,
+               opponentProperties: Array<Property>) => void;
+    onAccept?: () => void;
+    onDecline?: () => void;
+};
+
+export class ReactTradePopupManager {
+    public setTradePopupHandlers: Array<(data: TradePopupData) => void> = [];
+    public isPopupShown: boolean = false;
+
+    public onSetTradePopup(handler: (data: TradePopupData) => void): void {
+        this.setTradePopupHandlers.push(handler);
+    }
+
+    public unSetTradePopup(handler: (data: TradePopupData) => void): void {
+        const index = this.setTradePopupHandlers.indexOf(handler);
+        if (index == -1)
+            throw new Error("Handler not found");
+        this.setTradePopupHandlers.splice(index, 1);
+    }
+
+    public showPopup(data: TradePopupData): void {
+        this.setTradePopupHandlers.forEach((handler) => handler(data));
         // playChanceOrTreasurySound();
     }
 }

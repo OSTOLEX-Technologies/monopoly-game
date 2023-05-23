@@ -13,9 +13,11 @@ import {
     reactTreasuryCardsManager,
     reactModalPopupManager,
     reactCellInfoPopupManager,
-    reactMusicVolumeManager, soundSettings
+    reactMusicVolumeManager,
+    reactTradePopupManager,
+    soundSettings
 } from "./viewGlobals";
-import {CellInfoPopupData, ModalPopupData} from "./ReactManagers";
+import {CellInfoPopupData, ModalPopupData, TradePopupData} from "./ReactManagers";
 import {useEffect, useState} from "react";
 import {ThreeEvent} from "@react-three/fiber";
 import {getCellInfoPopupData} from "./utils";
@@ -122,6 +124,32 @@ export function useModalPopup() {
         return () => reactModalPopupManager.unSetModalPopup(handler);
     }, [modalPopupData]);
     return {modalPopupData, showPopup, setShowPopup};
+}
+
+export function useTradePopup() {
+    const [tradePopupData, setTradePopupData] = useState<TradePopupData>({
+        type: "outgoing",
+        userBalance: 0,
+        userProperties: [],
+        opponents: [],
+        initialUserMoney: 0,
+        initialOpponentMoney: 0,
+        onClose: () => {},
+        onTrade: () => {},
+        onAccept: () => {},
+        onDecline: () => {},
+    });
+    const [showPopup, setShowPopup] = useState(false);
+    const handler = (data: TradePopupData) => {
+        setTradePopupData(data);
+        setShowPopup(true);
+    }
+    useEffect(() => {
+        reactTradePopupManager.isPopupShown = showPopup;
+        reactTradePopupManager.onSetTradePopup(handler);
+        return () => reactTradePopupManager.unSetTradePopup(handler);
+    }, [tradePopupData]);
+    return {tradePopupData, showPopup, setShowPopup};
 }
 
 export function useBoardOnHoverCallbacks(): [
