@@ -162,6 +162,16 @@ export type Opponent = {
 }
 
 
+/*
+* TradePopupData
+* type: "outgoing" | "incoming"
+* outgoing - user is initiator of trade
+* incoming - user is receiver of trade
+* userBalance - user current balance
+* userProperties - user current properties
+* opponents - opponents in trade
+* initialUserMoney - initial user money (will be shown under )
+* */
 export type TradePopupData = {
     type?: "outgoing" | "incoming";
     userBalance?: number;

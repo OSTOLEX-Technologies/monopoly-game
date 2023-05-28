@@ -51,17 +51,16 @@ balanceManager.addEventListener("bankrupt", () => {
         yesText: "Yes",
         yesCallback: () => {
             playBankruptSound();
+            gameController.declareBankruptcy();
         },
         noText: "No",
-        noCallback: () => {
-            balanceManager.setBalance(balanceManager.getBalance() - 10);
-        }
+        noCallback: () => {}
     })
 })
 balanceManager.addEventListener("trade", () => {
     const game = gameController.getGame();
     reactTradePopupManager.showPopup({
-        type: "incoming",
+        type: "outgoing",
         userBalance: balanceManager.getBalance(),
         userProperties: game.getProperties(game.getCurrentPlayerId())
             .map(propertyCard => {
@@ -92,64 +91,64 @@ balanceManager.addEventListener("trade", () => {
     })
 })
 
-propertyManager.addProperty({
-    logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png",
-    propertyName: "Chance sound",
-    status: PropertyStatus.Mortgage,
-    buttonCallback: () => {
-        reactChanceCardsManager.showCard("Chance with sound!");
-    }
-});
-propertyManager.addProperty({
-    logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
-    propertyName: "Move piece to cell sound",
-    status: PropertyStatus.Mortgage,
-    buttonCallback: async () => {
-        await boardView.movePieceToCell(piece1, boardView.getCell(7));
-    }
-})
+// propertyManager.addProperty({
+//     logo: "https://i.near.social/thumbnail/https://thewiki.io/static/media/sasha_anon.6ba19561.png",
+//     propertyName: "Chance sound",
+//     status: PropertyStatus.Mortgage,
+//     buttonCallback: () => {
+//         reactChanceCardsManager.showCard("Chance with sound!");
+//     }
+// });
+// propertyManager.addProperty({
+//     logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
+//     propertyName: "Move piece to cell sound",
+//     status: PropertyStatus.Mortgage,
+//     buttonCallback: async () => {
+//         await boardView.movePieceToCell(piece1, boardView.getCell(7));
+//     }
+// })
+//
+// playersManager.addPlayer({
+//     logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
+//     username: "Go to jail sound",
+//     money: 1000,
+//     color: "red",
+//     onKick: async () => {
+//         await boardView.movePieceToJail(piece1);
+//     }
+// })
+// playersManager.addPlayer({
+//     logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
+//     username: "Release from jail sound",
+//     money: 2000,
+//     color: "blue",
+//     onKick: async () => {
+//         await boardView.movePieceFromJail(piece1);
+//     }
+// })
+// playersManager.addPlayer({
+//     logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
+//     username: "House or Hotel sound",
+//     money: 1500,
+//     color: "green",
+//     onKick: () => boardView.addCellCoin(1)
+// })
+// playersManager.addPlayer({
+//     logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
+//     username: "Owner sound",
+//     money: 1500,
+//     color: "green",
+//     onKick: () => boardView.setOwnerByIndex(1, PieceColor.Red)
+// })
 
-playersManager.addPlayer({
-    logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
-    username: "Go to jail sound",
-    money: 1000,
-    color: "red",
-    onKick: async () => {
-        await boardView.movePieceToJail(piece1);
-    }
-})
-playersManager.addPlayer({
-    logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
-    username: "Release from jail sound",
-    money: 2000,
-    color: "blue",
-    onKick: async () => {
-        await boardView.movePieceFromJail(piece1);
-    }
-})
-playersManager.addPlayer({
-    logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
-    username: "House or Hotel sound",
-    money: 1500,
-    color: "green",
-    onKick: () => boardView.addCellCoin(1)
-})
-playersManager.addPlayer({
-    logo: "https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png",
-    username: "Owner sound",
-    money: 1500,
-    color: "green",
-    onKick: () => boardView.setOwnerByIndex(1, PieceColor.Red)
-})
 
-
-const piece1 = boardView.addPiece(0, PieceColor.Blue);
-const piece2 = boardView.addPiece(0, PieceColor.Green);
-const piece3 = boardView.addPiece(0, PieceColor.Pink);
-const piece4 = boardView.addPiece(0, PieceColor.Purple);
-const piece5 = boardView.addPiece(0, PieceColor.Red);
-const piece6 = boardView.addPiece(0, PieceColor.Yellow);
-const piece7 = boardView.addPiece(0, PieceColor.Orange);
+// const piece1 = boardView.addPiece(0, PieceColor.Blue);
+// const piece2 = boardView.addPiece(0, PieceColor.Green);
+// const piece3 = boardView.addPiece(0, PieceColor.Pink);
+// const piece4 = boardView.addPiece(0, PieceColor.Purple);
+// const piece5 = boardView.addPiece(0, PieceColor.Red);
+// const piece6 = boardView.addPiece(0, PieceColor.Yellow);
+// const piece7 = boardView.addPiece(0, PieceColor.Orange);
 
 // boardView.setCellPrice(31, 2000)
 // boardView.setCellPriceType(31, CellPriceType.Fee)
@@ -157,32 +156,32 @@ const piece7 = boardView.addPiece(0, PieceColor.Orange);
 // boardView.setCellPriceType(23, CellPriceType.Fee)
 
 
-const messages = [
-    "(red).{let45fc.testnet} sent 300$ to (green).{Player3}",
-    "(red).{let45fc.testnet} bought a house on Avenue de la République for 200$",
-    "You are bankrupt!",
-    "(blue).{johndoe} traded 150$ with (purple).{janedoe}",
-    "(green).{sarahsmith} sold 3 shares of AAPL for 500$ to (red).{mikewilliams}",
-    "(orange).{samjones} bought a car for 1000$ from (green).{amythompson}",
-    "(purple).{davidsmith} sent 75$ to (blue).{peterlee}",
-    "(red).{sarahkim} traded 200$ with (blue).{danielbrown}",
-    "(green).{katiebaker} sold 5 shares of AMZN for 1000$ to (orange).{johndoe}",
-    "(blue).{markjones} bought a bike for 300$ from (purple).{mikejohnson}",
-    "(orange).{lindadavis} sent 50$ to (green).{karenwilson}",
-    "(purple).{robertmoore} traded 100$ with (red).{jimmykim}",
-    "(blue).{jessicawilliams} bought a watch for 150$ from (green).{sarahlee}",
-    "(green).{taylorharris} sold 2 shares of TSLA for 600$ to (red).{harrybrown}",
-    "(red).{johnsmith} sent 25$ to (blue).{michellelee}",
-    "(purple).{kevinjones} traded 300$ with (orange).{julielee}",
-    "(blue).{hannahbrown} bought a camera for 400$ from (green).{lucaswilson}",
-    "(orange).{sophieturner} sold 4 shares of FB for 800$ to (purple).{stevenjones}",
-    "(green).{liuyang} sent 150$ to (red).{maxwelltaylor}",
-    "(red).{emilynguyen} traded 50$ with (blue).{davidwilson}",
-];
+// const messages = [
+//     "(red).{let45fc.testnet} sent 300$ to (green).{Player3}",
+//     "(red).{let45fc.testnet} bought a house on Avenue de la République for 200$",
+//     "You are bankrupt!",
+//     "(blue).{johndoe} traded 150$ with (purple).{janedoe}",
+//     "(green).{sarahsmith} sold 3 shares of AAPL for 500$ to (red).{mikewilliams}",
+//     "(orange).{samjones} bought a car for 1000$ from (green).{amythompson}",
+//     "(purple).{davidsmith} sent 75$ to (blue).{peterlee}",
+//     "(red).{sarahkim} traded 200$ with (blue).{danielbrown}",
+//     "(green).{katiebaker} sold 5 shares of AMZN for 1000$ to (orange).{johndoe}",
+//     "(blue).{markjones} bought a bike for 300$ from (purple).{mikejohnson}",
+//     "(orange).{lindadavis} sent 50$ to (green).{karenwilson}",
+//     "(purple).{robertmoore} traded 100$ with (red).{jimmykim}",
+//     "(blue).{jessicawilliams} bought a watch for 150$ from (green).{sarahlee}",
+//     "(green).{taylorharris} sold 2 shares of TSLA for 600$ to (red).{harrybrown}",
+//     "(red).{johnsmith} sent 25$ to (blue).{michellelee}",
+//     "(purple).{kevinjones} traded 300$ with (orange).{julielee}",
+//     "(blue).{hannahbrown} bought a camera for 400$ from (green).{lucaswilson}",
+//     "(orange).{sophieturner} sold 4 shares of FB for 800$ to (purple).{stevenjones}",
+//     "(green).{liuyang} sent 150$ to (red).{maxwelltaylor}",
+//     "(red).{emilynguyen} traded 50$ with (blue).{davidwilson}",
+// ];
 
-for (let i = 0; i < messages.length; i++) {
-    gameHistoryManager.addHistoryMessage(messages[i]);
-}
+// for (let i = 0; i < messages.length; i++) {
+//     gameHistoryManager.addHistoryMessage(messages[i]);
+// }
 
 window.addEventListener('piecesLoaded', async ev => {
     // setTimeout(() => boardView.addCellCoin(1), 1000);
@@ -207,14 +206,23 @@ window.addEventListener('piecesLoaded', async ev => {
 });
 
 const players = new Array<Player>();
-players.push(new Player("player1", "", "red", "test", 100, 0));
+players.push(new Player("let45fc.testnet", "", "red", "test", 100, 0));
+players.push(new Player("player1", "", "blue", "test", 100, 0));
+players.push(new Player("player2", "", "green", "test", 100, 0));
+players.push(new Player("player3", "", "yellow", "test", 100, 0));
+players.push(new Player("player4", "", "orange", "test", 100, 0));
 
 const playersInGame = new Array<string>();
+playersInGame.push("let45fc.testnet");
 playersInGame.push("player1");
+playersInGame.push("player2");
+playersInGame.push("player3");
+playersInGame.push("player4");
 
+// TODO: move to 'message' event handler
 const gameData = new GameData(
     players,
-    "",
+    "let45fc.testnet",
     new Array<IOffer>(),
     new Array<Transaction>(),
     new Array<Action>(),
@@ -222,7 +230,7 @@ const gameData = new GameData(
     new Map<string, Array<string>>(),
     playersInGame,
 );
-const playerId = "player1";
+const playerId = "let45fc.testnet";
 
 export const gameController = new GameController(gameData, playerId);
 

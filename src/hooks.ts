@@ -122,7 +122,7 @@ export function useModalPopup() {
         reactModalPopupManager.isPopupShown = showPopup;
         reactModalPopupManager.onSetModalPopup(handler);
         return () => reactModalPopupManager.unSetModalPopup(handler);
-    }, [modalPopupData]);
+    }, [modalPopupData, showPopup]);
     return {modalPopupData, showPopup, setShowPopup};
 }
 
@@ -148,7 +148,7 @@ export function useTradePopup() {
         reactTradePopupManager.isPopupShown = showPopup;
         reactTradePopupManager.onSetTradePopup(handler);
         return () => reactTradePopupManager.unSetTradePopup(handler);
-    }, [tradePopupData]);
+    }, [tradePopupData, showPopup]);
     return {tradePopupData, showPopup, setShowPopup};
 }
 
